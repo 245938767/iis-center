@@ -1,0 +1,2 @@
+cn.iiss.common.log.service.AsyncLogService
+cn.iiss.common.log.aspect.LogAspect

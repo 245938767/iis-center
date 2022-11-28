@@ -1,0 +1,3 @@
+cn.iiss.system.face.factory.RemoteUserFallbackFactory
+cn.iiss.system.face.factory.RemoteLogFallbackFactory
+cn.iiss.system.face.factory.RemoteFileFallbackFactory

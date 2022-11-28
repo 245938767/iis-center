@@ -1,0 +1,410 @@
+2022-11-23 09:45:02,133 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=1}
+
+2022-11-23 09:45:02,698 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 09:45:02,746 INFO serviceName: DEFAULT_GROUP@@iiss-gateway changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,2681328336302
+
+2022-11-23 09:45:02,753 INFO send udp packet: 10.22.125.236,62727,2681328336302
+
+2022-11-23 09:45:02,789 INFO [PUSH-SUCC] 111ms, all delay time 750ms, SLA 656ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=1}, DataSize=1, target=10.22.125.236
+
+2022-11-23 09:47:00,367 INFO DEFAULT_GROUP@@iiss-gen is changed, add it to push queue.
+
+2022-11-23 09:47:00,377 INFO serviceName: DEFAULT_GROUP@@iiss-gen changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,2798960411980
+
+2022-11-23 09:47:00,386 INFO send udp packet: 10.22.125.236,62727,2798960411980
+
+2022-11-23 09:47:00,397 INFO [PUSH-SUCC] 30ms, all delay time 571ms for subscriber 10.22.125.236, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gen', ephemeral=true, revision=0}, DataSize=0
+
+2022-11-23 09:47:03,630 INFO DEFAULT_GROUP@@iiss-job is changed, add it to push queue.
+
+2022-11-23 09:47:03,642 INFO serviceName: DEFAULT_GROUP@@iiss-job changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,2802219657356
+
+2022-11-23 09:47:03,647 INFO send udp packet: 10.22.125.236,62727,2802219657356
+
+2022-11-23 09:47:03,653 INFO [PUSH-SUCC] 23ms, all delay time 578ms for subscriber 10.22.125.236, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-job', ephemeral=true, revision=0}, DataSize=0
+
+2022-11-23 09:47:05,355 INFO DEFAULT_GROUP@@iiss-system is changed, add it to push queue.
+
+2022-11-23 09:47:05,368 INFO serviceName: DEFAULT_GROUP@@iiss-system changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,2803945636149
+
+2022-11-23 09:47:05,374 INFO send udp packet: 10.22.125.236,62727,2803945636149
+
+2022-11-23 09:47:05,382 INFO [PUSH-SUCC] 27ms, all delay time 553ms for subscriber 10.22.125.236, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-system', ephemeral=true, revision=0}, DataSize=0
+
+2022-11-23 09:47:07,892 INFO DEFAULT_GROUP@@iiss-file is changed, add it to push queue.
+
+2022-11-23 09:47:07,894 INFO serviceName: DEFAULT_GROUP@@iiss-file changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,2806473165858
+
+2022-11-23 09:47:07,897 INFO send udp packet: 10.22.125.236,62727,2806473165858
+
+2022-11-23 09:47:07,900 INFO [PUSH-SUCC] 8ms, all delay time 531ms for subscriber 10.22.125.236, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-file', ephemeral=true, revision=0}, DataSize=0
+
+2022-11-23 09:54:23,753 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=2}
+
+2022-11-23 09:54:24,292 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 09:54:24,299 INFO serviceName: DEFAULT_GROUP@@iiss-gateway changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3131576382424
+
+2022-11-23 09:54:24,302 INFO send udp packet: 10.22.125.236,62727,3131576382424
+
+2022-11-23 09:54:24,320 INFO [PUSH-SUCC] 28ms, all delay time 606ms, SLA 568ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=2}, DataSize=0, target=10.22.125.236
+
+2022-11-23 09:54:25,933 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=3}
+
+2022-11-23 09:54:26,280 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 09:54:26,289 INFO serviceName: DEFAULT_GROUP@@iiss-gateway@@DEFAULT changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3133565597758
+
+2022-11-23 09:54:26,296 INFO send udp packet: 10.22.125.236,62727,3133565597758
+
+2022-11-23 09:54:26,305 INFO [PUSH-SUCC] 26ms, all delay time 550ms, SLA 372ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=3}, DataSize=1, target=10.22.125.236
+
+2022-11-23 10:14:36,355 INFO DEFAULT_GROUP@@iiss-gen is changed, add it to push queue.
+
+2022-11-23 10:14:36,366 INFO serviceName: DEFAULT_GROUP@@iiss-gen changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3162280495938
+
+2022-11-23 10:14:36,373 INFO send udp packet: 10.22.125.236,62727,3162280495938
+
+2022-11-23 10:14:39,613 INFO DEFAULT_GROUP@@iiss-job is changed, add it to push queue.
+
+2022-11-23 10:14:39,622 INFO serviceName: DEFAULT_GROUP@@iiss-job changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3165536205648
+
+2022-11-23 10:14:39,625 INFO send udp packet: 10.22.125.236,62727,3165536205648
+
+2022-11-23 10:14:39,717 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 10:14:39,723 INFO serviceName: DEFAULT_GROUP@@iiss-gateway@@DEFAULT changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3165636825315
+
+2022-11-23 10:14:39,727 INFO send udp packet: 10.22.125.236,62727,3165636825315
+
+2022-11-23 10:14:41,371 INFO DEFAULT_GROUP@@iiss-system is changed, add it to push queue.
+
+2022-11-23 10:14:41,383 INFO serviceName: DEFAULT_GROUP@@iiss-system changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3167296819857
+
+2022-11-23 10:14:41,387 INFO send udp packet: 10.22.125.236,62727,3167296819857
+
+2022-11-23 10:14:43,814 INFO DEFAULT_GROUP@@iiss-file is changed, add it to push queue.
+
+2022-11-23 10:14:43,829 INFO serviceName: DEFAULT_GROUP@@iiss-file changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3169739739650
+
+2022-11-23 10:14:43,837 INFO send udp packet: 10.22.125.236,62727,3169739739650
+
+2022-11-23 10:14:46,380 INFO retry to push data, key: 10.22.125.236,62727,3162280495938
+
+2022-11-23 10:14:49,633 INFO retry to push data, key: 10.22.125.236,62727,3165536205648
+
+2022-11-23 10:14:49,731 INFO retry to push data, key: 10.22.125.236,62727,3165636825315
+
+2022-11-23 10:14:51,397 INFO retry to push data, key: 10.22.125.236,62727,3167296819857
+
+2022-11-23 10:14:53,850 INFO retry to push data, key: 10.22.125.236,62727,3169739739650
+
+2022-11-23 10:14:56,388 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3162280495938
+
+2022-11-23 10:14:56,395 ERROR [PUSH-FAIL] 20040ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gen', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:14:59,645 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3165536205648
+
+2022-11-23 10:14:59,655 ERROR [PUSH-FAIL] 20042ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-job', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:14:59,747 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3165636825315
+
+2022-11-23 10:14:59,750 ERROR [PUSH-FAIL] 20033ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=5}, reason=null, target=10.22.125.236
+
+2022-11-23 10:15:01,407 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3167296819857
+
+2022-11-23 10:15:01,413 ERROR [PUSH-FAIL] 20042ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-system', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:15:03,859 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3169739739650
+
+2022-11-23 10:15:03,872 ERROR [PUSH-FAIL] 20058ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-file', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:15:55,411 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=6}
+
+2022-11-23 10:15:55,542 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=7}
+
+2022-11-23 10:15:57,837 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 10:15:57,847 INFO serviceName: DEFAULT_GROUP@@iiss-gateway@@DEFAULT changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3195787974995
+
+2022-11-23 10:15:57,854 INFO send udp packet: 10.22.125.236,62727,3195787974995
+
+2022-11-23 10:16:07,862 INFO retry to push data, key: 10.22.125.236,62727,3195787974995
+
+2022-11-23 10:16:17,876 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3195787974995
+
+2022-11-23 10:16:17,886 ERROR [PUSH-FAIL] 20049ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=7}, reason=null, target=10.22.125.236
+
+2022-11-23 10:16:24,376 INFO DEFAULT_GROUP@@iiss-gen is changed, add it to push queue.
+
+2022-11-23 10:16:24,387 INFO serviceName: DEFAULT_GROUP@@iiss-gen changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3222329630132
+
+2022-11-23 10:16:24,393 INFO send udp packet: 10.22.125.236,62727,3222329630132
+
+2022-11-23 10:16:27,625 INFO DEFAULT_GROUP@@iiss-job is changed, add it to push queue.
+
+2022-11-23 10:16:27,636 INFO serviceName: DEFAULT_GROUP@@iiss-job changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3225578688301
+
+2022-11-23 10:16:27,640 INFO send udp packet: 10.22.125.236,62727,3225578688301
+
+2022-11-23 10:16:29,355 INFO DEFAULT_GROUP@@iiss-system is changed, add it to push queue.
+
+2022-11-23 10:16:29,366 INFO serviceName: DEFAULT_GROUP@@iiss-system changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3227308443593
+
+2022-11-23 10:16:29,372 INFO send udp packet: 10.22.125.236,62727,3227308443593
+
+2022-11-23 10:16:31,788 INFO DEFAULT_GROUP@@iiss-file is changed, add it to push queue.
+
+2022-11-23 10:16:31,797 INFO serviceName: DEFAULT_GROUP@@iiss-file changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3229739688636
+
+2022-11-23 10:16:31,801 INFO send udp packet: 10.22.125.236,62727,3229739688636
+
+2022-11-23 10:16:34,399 INFO retry to push data, key: 10.22.125.236,62727,3222329630132
+
+2022-11-23 10:16:37,648 INFO retry to push data, key: 10.22.125.236,62727,3225578688301
+
+2022-11-23 10:16:39,378 INFO retry to push data, key: 10.22.125.236,62727,3227308443593
+
+2022-11-23 10:16:41,809 INFO retry to push data, key: 10.22.125.236,62727,3229739688636
+
+2022-11-23 10:16:44,414 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3222329630132
+
+2022-11-23 10:16:44,425 ERROR [PUSH-FAIL] 20049ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gen', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:16:47,663 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3225578688301
+
+2022-11-23 10:16:47,673 ERROR [PUSH-FAIL] 20048ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-job', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:16:49,386 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3227308443593
+
+2022-11-23 10:16:49,394 ERROR [PUSH-FAIL] 20039ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-system', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:16:51,816 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3229739688636
+
+2022-11-23 10:16:51,826 ERROR [PUSH-FAIL] 20039ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-file', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:25:04,840 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 10:25:04,850 INFO serviceName: DEFAULT_GROUP@@iiss-gateway changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3436239930853
+
+2022-11-23 10:25:04,855 INFO send udp packet: 10.22.125.236,62727,3436239930853
+
+2022-11-23 10:25:14,858 INFO retry to push data, key: 10.22.125.236,62727,3436239930853
+
+2022-11-23 10:25:14,968 WARN ack takes too long from /10.22.125.236:62727 ack json: {"type": "push-ack", "lastRefTime":"3436239930853", "data":""}
+
+2022-11-23 10:25:14,970 INFO [PUSH-SUCC] 10130ms, all delay time 10632ms for subscriber 10.22.125.236, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=9}, DataSize=1
+
+2022-11-23 10:34:05,264 INFO DEFAULT_GROUP@@iiss-gen is changed, add it to push queue.
+
+2022-11-23 10:34:05,274 INFO serviceName: DEFAULT_GROUP@@iiss-gen changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3462377522032
+
+2022-11-23 10:34:05,279 INFO send udp packet: 10.22.125.236,62727,3462377522032
+
+2022-11-23 10:34:08,517 INFO DEFAULT_GROUP@@iiss-job is changed, add it to push queue.
+
+2022-11-23 10:34:08,528 INFO serviceName: DEFAULT_GROUP@@iiss-job changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3465631240450
+
+2022-11-23 10:34:08,530 INFO send udp packet: 10.22.125.236,62727,3465631240450
+
+2022-11-23 10:34:09,241 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 10:34:09,248 INFO serviceName: DEFAULT_GROUP@@iiss-gateway changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3466349526992
+
+2022-11-23 10:34:09,252 INFO send udp packet: 10.22.125.236,62727,3466349526992
+
+2022-11-23 10:34:10,263 INFO DEFAULT_GROUP@@iiss-system is changed, add it to push queue.
+
+2022-11-23 10:34:10,274 INFO serviceName: DEFAULT_GROUP@@iiss-system changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3467376841076
+
+2022-11-23 10:34:10,277 INFO send udp packet: 10.22.125.236,62727,3467376841076
+
+2022-11-23 10:34:12,630 INFO DEFAULT_GROUP@@iiss-file is changed, add it to push queue.
+
+2022-11-23 10:34:12,638 INFO serviceName: DEFAULT_GROUP@@iiss-file changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3469741421244
+
+2022-11-23 10:34:12,644 INFO send udp packet: 10.22.125.236,62727,3469741421244
+
+2022-11-23 10:34:15,290 INFO retry to push data, key: 10.22.125.236,62727,3462377522032
+
+2022-11-23 10:34:18,541 INFO retry to push data, key: 10.22.125.236,62727,3465631240450
+
+2022-11-23 10:34:19,257 INFO retry to push data, key: 10.22.125.236,62727,3466349526992
+
+2022-11-23 10:34:20,284 INFO retry to push data, key: 10.22.125.236,62727,3467376841076
+
+2022-11-23 10:34:22,653 INFO retry to push data, key: 10.22.125.236,62727,3469741421244
+
+2022-11-23 10:34:25,303 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3462377522032
+
+2022-11-23 10:34:25,309 ERROR [PUSH-FAIL] 20046ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gen', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:34:28,548 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3465631240450
+
+2022-11-23 10:34:28,561 ERROR [PUSH-FAIL] 20044ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-job', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:34:29,266 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3466349526992
+
+2022-11-23 10:34:29,269 ERROR [PUSH-FAIL] 20028ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=11}, reason=null, target=10.22.125.236
+
+2022-11-23 10:34:30,295 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3467376841076
+
+2022-11-23 10:34:30,302 ERROR [PUSH-FAIL] 20039ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-system', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 10:34:32,660 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3469741421244
+
+2022-11-23 10:34:32,665 ERROR [PUSH-FAIL] 20036ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-file', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 11:56:46,656 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 11:56:46,665 INFO serviceName: DEFAULT_GROUP@@iiss-gateway@@DEFAULT changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3496420578464
+
+2022-11-23 11:56:46,675 INFO send udp packet: 10.22.125.236,62727,3496420578464
+
+2022-11-23 11:56:56,686 INFO retry to push data, key: 10.22.125.236,62727,3496420578464
+
+2022-11-23 11:57:06,699 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3496420578464
+
+2022-11-23 11:57:06,709 ERROR [PUSH-FAIL] 20053ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=13}, reason=null, target=10.22.125.236
+
+2022-11-23 12:38:48,319 INFO DEFAULT_GROUP@@iiss-gen is changed, add it to push queue.
+
+2022-11-23 12:38:48,327 INFO serviceName: DEFAULT_GROUP@@iiss-gen changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3522432868976
+
+2022-11-23 12:38:48,332 INFO send udp packet: 10.22.125.236,62727,3522432868976
+
+2022-11-23 12:38:51,478 INFO DEFAULT_GROUP@@iiss-job is changed, add it to push queue.
+
+2022-11-23 12:38:51,488 INFO serviceName: DEFAULT_GROUP@@iiss-job changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3525593457769
+
+2022-11-23 12:38:51,492 INFO send udp packet: 10.22.125.236,62727,3525593457769
+
+2022-11-23 12:38:51,835 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=15}
+
+2022-11-23 12:38:51,893 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 12:38:51,897 INFO serviceName: DEFAULT_GROUP@@iiss-gateway changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3526003369061
+
+2022-11-23 12:38:51,901 INFO send udp packet: 10.22.125.236,62727,3526003369061
+
+2022-11-23 12:38:53,331 INFO DEFAULT_GROUP@@iiss-system is changed, add it to push queue.
+
+2022-11-23 12:38:53,340 INFO serviceName: DEFAULT_GROUP@@iiss-system changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3527445630603
+
+2022-11-23 12:38:53,347 INFO send udp packet: 10.22.125.236,62727,3527445630603
+
+2022-11-23 12:38:55,697 INFO DEFAULT_GROUP@@iiss-file is changed, add it to push queue.
+
+2022-11-23 12:38:55,707 INFO serviceName: DEFAULT_GROUP@@iiss-file changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3529812644646
+
+2022-11-23 12:38:55,711 INFO send udp packet: 10.22.125.236,62727,3529812644646
+
+2022-11-23 12:38:58,339 INFO retry to push data, key: 10.22.125.236,62727,3522432868976
+
+2022-11-23 12:39:01,499 INFO retry to push data, key: 10.22.125.236,62727,3525593457769
+
+2022-11-23 12:39:01,908 INFO retry to push data, key: 10.22.125.236,62727,3526003369061
+
+2022-11-23 12:39:03,351 INFO retry to push data, key: 10.22.125.236,62727,3527445630603
+
+2022-11-23 12:39:05,718 INFO retry to push data, key: 10.22.125.236,62727,3529812644646
+
+2022-11-23 12:39:08,351 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3522432868976
+
+2022-11-23 12:39:08,359 ERROR [PUSH-FAIL] 20040ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gen', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 12:39:11,715 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3525593457769
+
+2022-11-23 12:39:11,721 ERROR [PUSH-FAIL] 20243ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-job', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 12:39:11,918 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3526003369061
+
+2022-11-23 12:39:11,921 ERROR [PUSH-FAIL] 20028ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=15}, reason=null, target=10.22.125.236
+
+2022-11-23 12:39:13,359 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3527445630603
+
+2022-11-23 12:39:13,364 ERROR [PUSH-FAIL] 20034ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-system', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 12:39:15,727 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3529812644646
+
+2022-11-23 12:39:15,736 ERROR [PUSH-FAIL] 20039ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-file', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 13:12:01,832 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 13:12:01,848 INFO serviceName: DEFAULT_GROUP@@iiss-gateway@@DEFAULT changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3558548957951
+
+2022-11-23 13:12:01,860 INFO send udp packet: 10.22.125.236,62727,3558548957951
+
+2022-11-23 13:12:11,874 INFO retry to push data, key: 10.22.125.236,62727,3558548957951
+
+2022-11-23 13:12:21,884 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3558548957951
+
+2022-11-23 13:12:21,891 ERROR [PUSH-FAIL] 20059ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=17}, reason=null, target=10.22.125.236
+
+2022-11-23 13:17:07,482 INFO DEFAULT_GROUP@@iiss-gen is changed, add it to push queue.
+
+2022-11-23 13:17:07,492 INFO serviceName: DEFAULT_GROUP@@iiss-gen changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3582439326503
+
+2022-11-23 13:17:07,494 INFO send udp packet: 10.22.125.236,62727,3582439326503
+
+2022-11-23 13:17:10,662 INFO DEFAULT_GROUP@@iiss-job is changed, add it to push queue.
+
+2022-11-23 13:17:10,671 INFO serviceName: DEFAULT_GROUP@@iiss-job changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3585619670171
+
+2022-11-23 13:17:10,676 INFO send udp packet: 10.22.125.236,62727,3585619670171
+
+2022-11-23 13:17:12,525 INFO DEFAULT_GROUP@@iiss-system is changed, add it to push queue.
+
+2022-11-23 13:17:12,536 INFO serviceName: DEFAULT_GROUP@@iiss-system changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3587484420463
+
+2022-11-23 13:17:12,540 INFO send udp packet: 10.22.125.236,62727,3587484420463
+
+2022-11-23 13:17:13,649 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 13:17:13,657 INFO serviceName: DEFAULT_GROUP@@iiss-gateway@@DEFAULT changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3588605840381
+
+2022-11-23 13:17:13,664 INFO send udp packet: 10.22.125.236,62727,3588605840381
+
+2022-11-23 13:17:14,884 INFO DEFAULT_GROUP@@iiss-file is changed, add it to push queue.
+
+2022-11-23 13:17:14,895 INFO serviceName: DEFAULT_GROUP@@iiss-file changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3589844289798
+
+2022-11-23 13:17:14,898 INFO send udp packet: 10.22.125.236,62727,3589844289798
+
+2022-11-23 13:17:17,508 INFO retry to push data, key: 10.22.125.236,62727,3582439326503
+
+2022-11-23 13:17:20,680 INFO retry to push data, key: 10.22.125.236,62727,3585619670171
+
+2022-11-23 13:17:22,549 INFO retry to push data, key: 10.22.125.236,62727,3587484420463
+
+2022-11-23 13:17:23,668 INFO retry to push data, key: 10.22.125.236,62727,3588605840381
+
+2022-11-23 13:17:24,915 INFO retry to push data, key: 10.22.125.236,62727,3589844289798
+
+2022-11-23 13:17:27,523 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3582439326503
+
+2022-11-23 13:17:27,533 ERROR [PUSH-FAIL] 20051ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gen', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 13:17:30,691 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3585619670171
+
+2022-11-23 13:17:30,699 ERROR [PUSH-FAIL] 20037ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-job', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 13:17:32,560 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3587484420463
+
+2022-11-23 13:17:32,567 ERROR [PUSH-FAIL] 20042ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-system', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 13:17:33,681 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3588605840381
+
+2022-11-23 13:17:33,690 ERROR [PUSH-FAIL] 20041ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-gateway', ephemeral=true, revision=19}, reason=null, target=10.22.125.236
+
+2022-11-23 13:17:34,923 WARN max re-push times reached, retry times 2, key: 10.22.125.236,62727,3589844289798
+
+2022-11-23 13:17:34,937 ERROR [PUSH-FAIL] 20053ms, Service{namespace='public', group='DEFAULT_GROUP', name='iiss-file', ephemeral=true, revision=0}, reason=null, target=10.22.125.236
+
+2022-11-23 13:24:00,935 INFO DEFAULT_GROUP@@iiss-gateway is changed, add it to push queue.
+
+2022-11-23 13:24:00,943 INFO serviceName: DEFAULT_GROUP@@iiss-gateway@@DEFAULT changed, schedule push for: 10.22.125.236:62727, agent: Nacos-Java-Client:v1.4.2, key: 10.22.125.236,62727,3715897586272
+
+2022-11-23 13:24:00,947 INFO send udp packet: 10.22.125.236,62727,3715897586272
+

@@ -1,0 +1,7 @@
+# 基础镜像
+FROM zhusaidong/nacos-server-m1:2.0.3
+# author
+MAINTAINER lyq
+
+# 复制conf文件到路径
+COPY ./conf/application.properties /home/nacos/conf/application.properties
