@@ -122,7 +122,7 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
         Optional<Asset> one = Optional.ofNullable(assetMapper.selectOne(new LambdaQueryWrapper<Asset>().eq(Asset::getBatchNo, assetUpdateBizModel.getBatchNo())));
         EntityOperations.doUpdate(assetMapper)
                 .load(one::get)
-                .update(x -> x.setAmount(assetUpdateBizModel.getAmount()))
+                .update(x -> x.updateAmount(assetUpdateBizModel.getAmount()))
                 .successHook(x -> eventPublisher.publishEvent(new AssetReviewEvents.AssetUpdateEvent(x, assetUpdateBizModel)))
                 .execute();
 

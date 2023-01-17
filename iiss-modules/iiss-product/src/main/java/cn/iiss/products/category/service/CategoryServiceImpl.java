@@ -150,7 +150,7 @@ public class CategoryServiceImpl implements ICategoryService {
     public List<Category> disableTreeNode(List<Category> tree, Long targetId) {
         for (Category categoryEntity : tree) {
             if (Objects.equals(categoryEntity.getId(), targetId)) {//如果当前结点为目标结点的话
-                categoryEntity.setIsDisabled(true);
+                categoryEntity.setDisabled(true);
                 List<Category> children = categoryEntity.getChildren();
                 if (!ObjectUtils.isEmpty(children)) {//如果儿子不为空，则将儿子的disabled也设置为true
                     for (Category child : children) {

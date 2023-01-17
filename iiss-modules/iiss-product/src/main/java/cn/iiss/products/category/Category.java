@@ -15,7 +15,6 @@ import java.util.List;
  * 分类crud对象 category
  * 
  */
-@Data
 @TableName("category")
 @ApiModel
 public class Category implements Serializable
@@ -38,4 +37,67 @@ public class Category implements Serializable
     @ApiModelProperty("禁用标志")
     @TableField(exist = false)
     private Boolean isDisabled;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getCatLevel() {
+        return catLevel;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public List<Category> getChildren() {
+        return children;
+    }
+
+    public Boolean getDisabled() {
+        return isDisabled;
+    }
+
+    public Category setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Category setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Category setCatLevel(Long catLevel) {
+        this.catLevel = catLevel;
+        return this;
+    }
+
+    public Category setParentId(Long parentId) {
+        this.parentId = parentId;
+        return this;
+    }
+
+    public Category setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+        return this;
+    }
+
+    public Category setChildren(List<Category> children) {
+        this.children = children;
+        return this;
+    }
+
+    public Category setDisabled(Boolean disabled) {
+        isDisabled = disabled;
+        return this;
+    }
 }

@@ -6,13 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.common.annotation.FieldDesc;
 import cn.iiss.common.constants.ValidStatus;
 import lombok.Builder;
-import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Data
 @Builder
 public class AssetRecord implements Serializable {
     @Serial
@@ -60,4 +58,193 @@ public class AssetRecord implements Serializable {
     private Boolean isOrderProduct;
     @FieldDesc(name = "订单号")
     private String orderNo;
+
+    public Long getId() {
+        return id;
+    }
+
+    public ValidStatus getValidStatus() {
+        return validStatus;
+    }
+
+    public Long getAssetId() {
+        return assetId;
+    }
+
+    public String getBatchNo() {
+        return batchNo;
+    }
+
+    public Long getHouseId() {
+        return houseId;
+    }
+
+    public String getHouseName() {
+        return houseName;
+    }
+
+    public String getOperateUser() {
+        return operateUser;
+    }
+
+    public InOutType getInOutType() {
+        return inOutType;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public String getProductImg() {
+        return productImg;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public WarehouseAssetBizType getWarehouseAssetBizType() {
+        return warehouseAssetBizType;
+    }
+
+    public String getProductSpecification() {
+        return productSpecification;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public BigDecimal getTax() {
+        return tax;
+    }
+
+    public Double getTaxRate() {
+        return taxRate;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public Long getProductNum() {
+        return productNum;
+    }
+
+    public Boolean getOrderProduct() {
+        return isOrderProduct;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public AssetRecord setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public AssetRecord setValidStatus(ValidStatus validStatus) {
+        this.validStatus = validStatus;
+        return this;
+    }
+
+    public AssetRecord setAssetId(Long assetId) {
+        this.assetId = assetId;
+        return this;
+    }
+
+    public AssetRecord setBatchNo(String batchNo) {
+        this.batchNo = batchNo;
+        return this;
+    }
+
+    public AssetRecord setHouseId(Long houseId) {
+        this.houseId = houseId;
+        return this;
+    }
+
+    public AssetRecord setHouseName(String houseName) {
+        this.houseName = houseName;
+        return this;
+    }
+
+    public AssetRecord setOperateUser(String operateUser) {
+        this.operateUser = operateUser;
+        return this;
+    }
+
+    public AssetRecord setInOutType(InOutType inOutType) {
+        this.inOutType = inOutType;
+        return this;
+    }
+
+    public AssetRecord setProductId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public AssetRecord setProductImg(String productImg) {
+        this.productImg = productImg;
+        return this;
+    }
+
+    public AssetRecord setProductCode(String productCode) {
+        this.productCode = productCode;
+        return this;
+    }
+
+    public AssetRecord setProductName(String productName) {
+        this.productName = productName;
+        return this;
+    }
+
+    public AssetRecord setWarehouseAssetBizType(WarehouseAssetBizType warehouseAssetBizType) {
+        this.warehouseAssetBizType = warehouseAssetBizType;
+        return this;
+    }
+
+    public AssetRecord setProductSpecification(String productSpecification) {
+        this.productSpecification = productSpecification;
+        return this;
+    }
+
+    public AssetRecord setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
+    public AssetRecord setTax(BigDecimal tax) {
+        this.tax = tax;
+        return this;
+    }
+
+    public AssetRecord setTaxRate(Double taxRate) {
+        this.taxRate = taxRate;
+        return this;
+    }
+
+    public AssetRecord setAmount(BigDecimal amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    public AssetRecord setProductNum(Long productNum) {
+        this.productNum = productNum;
+        return this;
+    }
+
+    public AssetRecord setOrderProduct(Boolean orderProduct) {
+        isOrderProduct = orderProduct;
+        return this;
+    }
+
+    public AssetRecord setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+        return this;
+    }
 }

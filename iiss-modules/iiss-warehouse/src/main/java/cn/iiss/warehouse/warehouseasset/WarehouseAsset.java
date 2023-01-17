@@ -14,7 +14,6 @@ import java.io.Serializable;
 /**
  * 仓库资产信息
  */
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -66,4 +65,93 @@ public class WarehouseAsset implements Serializable {
         this.validStatus = ValidStatus.VALID;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public ValidStatus getValidStatus() {
+        return validStatus;
+    }
+
+    public Long getHouseId() {
+        return houseId;
+    }
+
+    public String getHouseName() {
+        return houseName;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public String getProductImg() {
+        return productImg;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getProductSpecification() {
+        return productSpecification;
+    }
+
+    public Long getProductNum() {
+        return productNum;
+    }
+
+    public WarehouseAsset setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public WarehouseAsset setValidStatus(ValidStatus validStatus) {
+        this.validStatus = validStatus;
+        return this;
+    }
+
+    public WarehouseAsset setHouseId(Long houseId) {
+        this.houseId = houseId;
+        return this;
+    }
+
+    public WarehouseAsset setHouseName(String houseName) {
+        this.houseName = houseName;
+        return this;
+    }
+
+    public WarehouseAsset setProductId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public WarehouseAsset setProductImg(String productImg) {
+        this.productImg = productImg;
+        return this;
+    }
+
+    public WarehouseAsset setProductCode(String productCode) {
+        this.productCode = productCode;
+        return this;
+    }
+
+    public WarehouseAsset setProductName(String productName) {
+        this.productName = productName;
+        return this;
+    }
+
+    public WarehouseAsset setProductSpecification(String productSpecification) {
+        this.productSpecification = productSpecification;
+        return this;
+    }
+
+    public WarehouseAsset setProductNum(Long productNum) {
+        this.productNum = productNum;
+        return this;
+    }
 }
