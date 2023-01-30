@@ -3,7 +3,7 @@ package cn.iiss.system.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import cn.iiss.common.security.utils.DictUtils;
+import cn.iiss.commons.security.utils.DictUtils;
 import cn.iiss.system.face.domain.SysDictData;
 import cn.iiss.system.mapper.SysDictDataMapper;
 import cn.iiss.system.service.ISysDictDataService;

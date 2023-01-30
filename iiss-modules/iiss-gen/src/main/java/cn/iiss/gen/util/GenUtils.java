@@ -1,8 +1,8 @@
 package cn.iiss.gen.util;
 
 import java.util.Arrays;
-import cn.iiss.common.core.constant.GenConstants;
-import cn.iiss.common.core.utils.StringUtils;
+import cn.iiss.commons.core.constant.GenConstants;
+import cn.iiss.commons.core.utils.StringUtils;
 import cn.iiss.gen.config.GenConfig;
 import cn.iiss.gen.domain.GenTable;
 import cn.iiss.gen.domain.GenTableColumn;

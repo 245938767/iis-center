@@ -1,28 +1,5 @@
 package cn.iiss.system.domain;
 
-import java.util.ArrayList;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import cn.iiss.common.core.web.domain.BaseEntity;
-import cn.iiss.common.core.xss.Xss;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import cn.iiss.common.core.annotation.Excel;
-import cn.iiss.common.core.annotation.Excel.ColumnType;
-import cn.iiss.common.core.web.domain.BaseEntity;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 /**
  * 当前在线会话
  * 

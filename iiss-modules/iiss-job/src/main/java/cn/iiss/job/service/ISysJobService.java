@@ -2,7 +2,7 @@ package cn.iiss.job.service;
 
 import java.util.List;
 import org.quartz.SchedulerException;
-import cn.iiss.common.core.exception.job.TaskException;
+import cn.iiss.commons.core.exception.job.TaskException;
 import cn.iiss.job.domain.SysJob;
 
 /**

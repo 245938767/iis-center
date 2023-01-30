@@ -2,11 +2,11 @@ package cn.iiss.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import cn.iiss.common.core.constant.Constants;
-import cn.iiss.common.core.constant.SecurityConstants;
-import cn.iiss.common.core.utils.ServletUtils;
-import cn.iiss.common.core.utils.StringUtils;
-import cn.iiss.common.core.utils.ip.IpUtils;
+import cn.iiss.commons.core.constant.Constants;
+import cn.iiss.commons.core.constant.SecurityConstants;
+import cn.iiss.commons.core.utils.ServletUtils;
+import cn.iiss.commons.core.utils.StringUtils;
+import cn.iiss.commons.core.utils.ip.IpUtils;
 import cn.iiss.system.face.RemoteLogService;
 import cn.iiss.system.face.domain.SysLogininfor;
 

@@ -3,10 +3,7 @@ package ${packageName}.domain;
 #foreach ($import in $subImportList)
 import ${import};
 #end
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import cn.iiss.common.core.annotation.Excel;
-import cn.iiss.common.core.web.domain.BaseEntity;
+import cn.iiss.commons.core.annotation.Excel;
 
 /**
  * ${subTable.functionName}对象 ${subTableName}

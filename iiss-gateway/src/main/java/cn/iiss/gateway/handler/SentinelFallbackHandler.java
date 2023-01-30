@@ -2,7 +2,7 @@ package cn.iiss.gateway.handler;
 
 import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.GatewayCallbackManager;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import cn.iiss.common.core.utils.ServletUtils;
+import cn.iiss.commons.core.utils.ServletUtils;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebExceptionHandler;

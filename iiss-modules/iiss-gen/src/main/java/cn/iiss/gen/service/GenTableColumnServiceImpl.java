@@ -3,7 +3,7 @@ package cn.iiss.gen.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import cn.iiss.common.core.text.Convert;
+import cn.iiss.commons.core.text.Convert;
 import cn.iiss.gen.domain.GenTableColumn;
 import cn.iiss.gen.mapper.GenTableColumnMapper;
 

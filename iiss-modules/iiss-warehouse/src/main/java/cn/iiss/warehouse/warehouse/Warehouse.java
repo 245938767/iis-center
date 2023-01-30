@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.warehouse;
 
-import cn.iiss.common.core.utils.bean.BeanUtils;
+import cn.iiss.commons.core.utils.bean.BeanUtils;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.common.annotation.FieldDesc;

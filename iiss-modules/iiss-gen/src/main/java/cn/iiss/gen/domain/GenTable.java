@@ -4,9 +4,9 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import org.apache.commons.lang3.ArrayUtils;
-import cn.iiss.common.core.constant.GenConstants;
-import cn.iiss.common.core.utils.StringUtils;
-import cn.iiss.common.core.web.domain.BaseEntity;
+import cn.iiss.commons.core.constant.GenConstants;
+import cn.iiss.commons.core.utils.StringUtils;
+import cn.iiss.commons.core.web.domain.BaseEntity;
 
 /**
  * 业务表 gen_table

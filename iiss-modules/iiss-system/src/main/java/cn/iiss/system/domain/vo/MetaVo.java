@@ -1,6 +1,6 @@
 package cn.iiss.system.domain.vo;
 
-import cn.iiss.common.core.utils.StringUtils;
+import cn.iiss.commons.core.utils.StringUtils;
 
 /**
  * 路由显示信息

@@ -182,7 +182,7 @@
                         <option>all-open:annotation=com.uewell.gravid.frame.kt.compile.UeOpen</option>
                         <option>no-arg:annotation=com.uewell.gravid.frame.kt.compile.UeOpen</option>
                     </pluginOptions>
-                    <jvmTarget>1.8</jvmTarget>
+                    <jvmTarget>17</jvmTarget>
                 </configuration>
             </plugin>
             <plugin>

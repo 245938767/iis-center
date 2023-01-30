@@ -3,7 +3,7 @@ package cn.iiss.file;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import cn.iiss.common.swagger.annotation.EnableCustomSwagger2;
+import cn.iiss.commons.swagger.annotation.EnableCustomSwagger2;
 
 /**
  * 文件服务

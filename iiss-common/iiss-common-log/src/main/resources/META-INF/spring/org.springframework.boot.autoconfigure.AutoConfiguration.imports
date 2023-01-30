@@ -1,2 +1,2 @@
-cn.iiss.common.log.service.AsyncLogService
-cn.iiss.common.log.aspect.LogAspect
+cn.iiss.commons.log.service.AsyncLogService
+cn.iiss.commons.log.aspect.LogAspect

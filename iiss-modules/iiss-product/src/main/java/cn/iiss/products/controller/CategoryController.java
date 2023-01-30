@@ -2,11 +2,11 @@ package cn.iiss.products.controller;
 
 import cn.iiss.products.category.Category;
 import cn.iiss.products.category.service.ICategoryService;
-import cn.iiss.common.core.web.controller.BaseController;
-import cn.iiss.common.core.web.domain.AjaxResult;
-import cn.iiss.common.log.annotation.Log;
-import cn.iiss.common.log.enums.BusinessType;
-import cn.iiss.common.security.annotation.RequiresPermissions;
+import cn.iiss.commons.core.web.controller.BaseController;
+import cn.iiss.commons.core.web.domain.AjaxResult;
+import cn.iiss.commons.log.annotation.Log;
+import cn.iiss.commons.log.enums.BusinessType;
+import cn.iiss.commons.security.annotation.RequiresPermissions;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

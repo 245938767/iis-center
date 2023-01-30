@@ -7,16 +7,16 @@
     <parent>
         <artifactId>iiss-bom</artifactId>
         <groupId>cn.iiss</groupId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>iiss</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>iiss</name>
     <description>智能物流仓储管理系统</description>
 
     <properties>
-        <iiss.version>1.1-SNAPSHOT</iiss.version>
+        <iiss.version>1.0.0</iiss.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
@@ -38,7 +38,7 @@
         <commons-collections.version>3.2.2</commons-collections.version>
         <transmittable-thread-local.version>2.13.2</transmittable-thread-local.version>
         <hutool.version>5.8.10</hutool.version>
-        <iiss.common.version>1.1-SNAPSHOT</iiss.common.version>
+        <iiss.common.version>1.0.0</iiss.common.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -203,12 +203,12 @@
             <dependency>
                 <groupId>cn.iiss</groupId>
                 <artifactId>iiss-mybatisplus-spring-boot-starter</artifactId>
-                <version>${iiss.common.version}</version>
+                <version>${iiss.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.iiss</groupId>
                 <artifactId>iiss-commons</artifactId>
-                <version>${iiss.common.version}</version>
+                <version>${iiss.version}</version>
             </dependency>
 
             <dependency>

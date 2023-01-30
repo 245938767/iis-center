@@ -2,7 +2,7 @@ package cn.iiss.gen.util;
 
 import java.util.Properties;
 import org.apache.velocity.app.Velocity;
-import cn.iiss.common.core.constant.Constants;
+import cn.iiss.commons.core.constant.Constants;
 
 /**
  * VelocityEngine工厂

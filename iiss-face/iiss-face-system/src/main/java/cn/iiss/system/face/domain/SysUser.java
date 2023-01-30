@@ -5,12 +5,12 @@ import java.util.List;
 import javax.validation.constraints.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import cn.iiss.common.core.annotation.Excel;
-import cn.iiss.common.core.annotation.Excel.ColumnType;
-import cn.iiss.common.core.annotation.Excel.Type;
-import cn.iiss.common.core.annotation.Excels;
-import cn.iiss.common.core.web.domain.BaseEntity;
-import cn.iiss.common.core.xss.Xss;
+import cn.iiss.commons.core.annotation.Excel;
+import cn.iiss.commons.core.annotation.Excel.ColumnType;
+import cn.iiss.commons.core.annotation.Excel.Type;
+import cn.iiss.commons.core.annotation.Excels;
+import cn.iiss.commons.core.web.domain.BaseEntity;
+import cn.iiss.commons.core.xss.Xss;
 
 /**
  * 用户对象 sys_user

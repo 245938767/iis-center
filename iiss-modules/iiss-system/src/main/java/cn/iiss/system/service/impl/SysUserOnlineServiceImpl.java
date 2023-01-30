@@ -2,7 +2,7 @@ package cn.iiss.system.service.impl;
 
 import cn.iiss.system.domain.SysUserOnline;
 import org.springframework.stereotype.Service;
-import cn.iiss.common.core.utils.StringUtils;
+import cn.iiss.commons.core.utils.StringUtils;
 import cn.iiss.system.face.model.LoginUser;
 import cn.iiss.system.service.ISysUserOnlineService;
 

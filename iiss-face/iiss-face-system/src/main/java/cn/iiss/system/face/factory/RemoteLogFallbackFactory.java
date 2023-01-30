@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
-import cn.iiss.common.core.domain.R;
+import cn.iiss.commons.core.domain.R;
 import cn.iiss.system.face.RemoteLogService;
 import cn.iiss.system.face.domain.SysLogininfor;
 import cn.iiss.system.face.domain.SysOperLog;

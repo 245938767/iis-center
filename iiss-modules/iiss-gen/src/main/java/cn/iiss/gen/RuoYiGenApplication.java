@@ -2,9 +2,9 @@ package cn.iiss.gen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import cn.iiss.common.security.annotation.EnableCustomConfig;
-import cn.iiss.common.security.annotation.EnableRyFeignClients;
-import cn.iiss.common.swagger.annotation.EnableCustomSwagger2;
+import cn.iiss.commons.security.annotation.EnableCustomConfig;
+import cn.iiss.commons.security.annotation.EnableRyFeignClients;
+import cn.iiss.commons.swagger.annotation.EnableCustomSwagger2;
 
 /**
  * 代码生成

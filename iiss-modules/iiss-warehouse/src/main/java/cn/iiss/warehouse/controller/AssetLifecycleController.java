@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.controller;
 
-import cn.iiss.common.core.web.domain.AjaxResult;
+import cn.iiss.commons.core.web.domain.AjaxResult;
 import cn.iiss.warehouse.assetlifecycle.AssetLifecycleDTO;
 import cn.iiss.warehouse.assetlifecycle.service.IAssetLifecycleService;
 import io.swagger.annotations.ApiOperation;

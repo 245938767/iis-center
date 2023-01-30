@@ -1,12 +1,12 @@
 package cn.iiss.products.controller;
 
 
-import cn.iiss.common.core.web.controller.BaseController;
-import cn.iiss.common.core.web.domain.AjaxResult;
-import cn.iiss.common.log.annotation.Log;
-import cn.iiss.common.log.enums.BusinessType;
-import cn.iiss.common.security.annotation.InnerAuth;
-import cn.iiss.common.security.annotation.RequiresPermissions;
+import cn.iiss.commons.core.web.controller.BaseController;
+import cn.iiss.commons.core.web.domain.AjaxResult;
+import cn.iiss.commons.log.annotation.Log;
+import cn.iiss.commons.log.enums.BusinessType;
+import cn.iiss.commons.security.annotation.InnerAuth;
+import cn.iiss.commons.security.annotation.RequiresPermissions;
 import cn.iiss.product.face.domain.ProductQueryRequest;
 import cn.iiss.products.product.Product;
 import cn.iiss.products.product.service.IProductService;

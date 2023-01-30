@@ -9,8 +9,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.HandlerFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import cn.iiss.common.core.exception.CaptchaException;
-import cn.iiss.common.core.web.domain.AjaxResult;
+import cn.iiss.commons.core.exception.CaptchaException;
+import cn.iiss.commons.core.web.domain.AjaxResult;
 import cn.iiss.gateway.service.ValidateCodeService;
 import reactor.core.publisher.Mono;
 
