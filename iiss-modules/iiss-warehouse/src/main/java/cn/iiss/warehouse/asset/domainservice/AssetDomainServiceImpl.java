@@ -14,7 +14,7 @@ import cn.iiss.commons.core.exception.ServiceException;
 import cn.iiss.commons.core.utils.uuid.IdUtils;
 import cn.iiss.mybatis.support.EntityOperations;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import cn.iiss.common.constants.ValidStatus;
+import cn.iiss.commons.constants.ValidStatus;
 import cn.iiss.warehouse.asset.InOutBizType;
 import cn.iiss.warehouse.asset.events.AssetEvents;
 import cn.iiss.warehouse.warehouse.Warehouse;

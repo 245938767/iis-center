@@ -15,7 +15,7 @@ import cn.iiss.product.face.ProductService;
 import cn.iiss.product.face.model.GoodsVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.iiss.common.constants.ValidStatus;
+import cn.iiss.commons.constants.ValidStatus;
 import cn.iiss.warehouse.asset.InOutType;
 import cn.iiss.warehouse.asset.domainservice.model.BatchInOutModel;
 import cn.iiss.warehouse.asset.response.AssetResponse;

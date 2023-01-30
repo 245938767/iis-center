@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.assetlifecycle;
 
-import cn.iiss.common.annotation.FieldDesc;
+import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.warehouse.asset.InOutBizType;
 import cn.iiss.warehouse.asset.InOutType;
 import cn.iiss.warehouse.assetrecord.WarehouseAssetBizType;

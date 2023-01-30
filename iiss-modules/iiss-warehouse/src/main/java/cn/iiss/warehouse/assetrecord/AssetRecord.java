@@ -3,8 +3,8 @@ package cn.iiss.warehouse.assetrecord;
 import cn.iiss.warehouse.asset.InOutType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import cn.iiss.common.annotation.FieldDesc;
-import cn.iiss.common.constants.ValidStatus;
+import cn.iiss.commons.annotation.FieldDesc;
+import cn.iiss.commons.constants.ValidStatus;
 import lombok.Builder;
 
 import java.io.Serial;

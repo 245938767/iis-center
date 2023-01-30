@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.asset.request;
 
-import cn.iiss.common.model.Request;
+import cn.iiss.commons.model.Request;
 import cn.iiss.warehouse.asset.InOutBizType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

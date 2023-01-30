@@ -2,8 +2,8 @@ package cn.iiss.warehouse.warehouseasset;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import cn.iiss.common.annotation.FieldDesc;
-import cn.iiss.common.constants.ValidStatus;
+import cn.iiss.commons.annotation.FieldDesc;
+import cn.iiss.commons.constants.ValidStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

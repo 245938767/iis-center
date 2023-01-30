@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.asset.domainservice.model;
 
-import cn.iiss.common.annotation.FieldDesc;
+import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.warehouse.assetrecord.AssetRecordDTO;
 import lombok.Builder;
 import lombok.Getter;

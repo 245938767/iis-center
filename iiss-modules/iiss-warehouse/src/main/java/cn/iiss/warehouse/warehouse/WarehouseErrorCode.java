@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.warehouse;
 
-import cn.iiss.common.constants.BaseEnum;
+import cn.iiss.commons.constants.BaseEnum;
 
 import java.util.Optional;
 
