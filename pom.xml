@@ -10,13 +10,13 @@
         <version>1.1-SNAPSHOT</version>
     </parent>
     <artifactId>iiss</artifactId>
-    <version>1.0.0</version>
+    <version>1.1-SNAPSHOT</version>
 
     <name>iiss</name>
     <description>智能物流仓储管理系统</description>
 
     <properties>
-        <iiss.version>1.0.0</iiss.version>
+        <iiss.version>1.1-SNAPSHOT</iiss.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>

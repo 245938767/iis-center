@@ -6,6 +6,7 @@ services:
     build:
       context: ./nacos
       dockerfile: dockerfile
+    platform: linux/x86_64
     environment:
       - MODE=standalone
     volumes:
@@ -46,6 +47,7 @@ services:
     image: redis
     build:
       context: ./redis
+    platform: linux/x86_64
     ports:
       - "6379:6379"
     volumes:
@@ -53,6 +55,7 @@ services:
       - ./redis/data:/data
     command: redis-server /home/iiss/redis/redis.conf
   iiss-nginx:
+    platform: linux/x86_64
     container_name: iiss-nginx
     image: nginx
     build:
@@ -69,6 +72,7 @@ services:
     links:
       - iiss-gateway
   iiss-gateway:
+    platform: linux/x86_64
     container_name: iiss-gateway
     build:
       context: ./iiss/gateway
@@ -80,6 +84,7 @@ services:
     links:
       - iiss-redis
   iiss-auth:
+    platform: linux/x86_64
     container_name: iiss-auth
     build:
       context: ./iiss/auth
@@ -91,6 +96,7 @@ services:
     links:
       - iiss-redis
   iiss-modules-system:
+    platform: linux/x86_64
     container_name: iiss-modules-system
     build:
       context: ./iiss/modules/system
@@ -104,6 +110,7 @@ services:
       - iiss-redis
       - iiss-mysql
   iiss-modules-gen:
+    platform: linux/x86_64
     container_name: iiss-modules-gen
     build:
       context: ./iiss/modules/gen
@@ -115,6 +122,7 @@ services:
     links:
       - iiss-mysql
   iiss-modules-job:
+    platform: linux/x86_64
     container_name: iiss-modules-job
     build:
       context: ./iiss/modules/job
@@ -126,6 +134,7 @@ services:
     links:
       - iiss-mysql
   iiss-modules-file:
+    platform: linux/x86_64
     container_name: iiss-modules-file
     build:
       context: ./iiss/modules/file
@@ -135,6 +144,7 @@ services:
     volumes:
     - ./iiss/uploadPath:/home/iiss/uploadPath
   iiss-visual-monitor:
+    platform: linux/x86_64
     container_name: iiss-visual-monitor
     build:
       context: ./iiss/visual/monitor

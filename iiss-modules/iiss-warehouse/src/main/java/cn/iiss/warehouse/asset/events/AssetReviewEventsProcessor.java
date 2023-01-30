@@ -43,7 +43,7 @@ public class AssetReviewEventsProcessor {
                     .inOutType(asset.getInOutType())
                     .inOutBizType(asset.getInOutBizType())
                     .warehouseAssetBizType(assetRecord.getWarehouseAssetBizType())
-                    .isOrderProduct(assetRecord.getIsOrderProduct())
+                    .isOrderProduct(assetRecord.getOrderProduct())
                     .orderNo(assetRecord.getOrderNo())
 
                     .batchNo(assetRecord.getBatchNo())

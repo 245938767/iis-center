@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 
 /**
  * 此数据已经是通过筛选后的数据
+ * 资产业务信息
  */
 @Builder
 @Getter
