@@ -87,7 +87,6 @@
         <dependency>
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-commons</artifactId>
-            <version>{iiss.version}</version>
         </dependency>
 
         <dependency>
