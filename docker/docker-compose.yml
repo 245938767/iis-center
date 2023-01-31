@@ -3,7 +3,7 @@ services:
   iiss-nacos:
     container_name: iiss-nacos
 #    image: zhusaidong/nacos-server-m1:2.0.3
-    image: nacos/nacos-server:2.0.1
+    image: nnacos/nacos-server
     build:
       context: ./nacos
       dockerfile: dockerfile
