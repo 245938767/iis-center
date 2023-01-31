@@ -4,4 +4,6 @@ FROM mysql:5.7
 MAINTAINER lyq
 
 # 执行sql脚本
-ADD ./db/*.sql /docker-entrypoint-initdb.d/
+#ADD ./db/*.sql /docker-entrypoint-initdb.d/
+ADD ./conf/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+
