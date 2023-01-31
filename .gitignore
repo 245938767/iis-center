@@ -5,8 +5,8 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
-docker/ruoyi/*/jar/*.jar
-docker/ruoyi/*/*/jar/*.jar
+docker/iiss/*/jar/*.jar
+docker/iiss/*/*/jar/*.jar
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
