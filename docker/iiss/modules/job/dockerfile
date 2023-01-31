@@ -1,0 +1,15 @@
+# 基础镜像
+FROM  openjdk:17.0.2-jdk-oracle
+# author
+MAINTAINER iiss
+
+# 挂载目录
+VOLUME /home/iiss
+# 创建目录
+RUN mkdir -p /home/iiss
+# 指定路径
+WORKDIR /home/iiss
+# 复制jar文件到路径
+COPY ./jar/iiss-modules-job.jar /home/iiss/iiss-modules-job.jar
+# 启动定时任务服务
+ENTRYPOINT ["java","-jar","iiss-modules-job.jar"]
