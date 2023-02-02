@@ -160,4 +160,3 @@ services:
 
 networks:
   iissBridge:
-    driver: customer-driver-1
