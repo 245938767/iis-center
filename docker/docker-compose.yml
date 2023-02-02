@@ -148,6 +148,5 @@ services:
 
 
 networks:
-  default:
-    external:
-      name: iissBridge
+  iissBridge:
+    driver: customer-driver-1
