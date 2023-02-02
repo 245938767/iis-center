@@ -18,7 +18,7 @@ services:
       - "9849:9849"
     depends_on:
       - iiss-mysql
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-mysql:
     container_name: iiss-mysql
     image: mysql:5.7
@@ -35,7 +35,7 @@ services:
     environment:
       MYSQL_DATABASE: 'iiss-cloud'
       MYSQL_ROOT_PASSWORD: password
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-redis:
     container_name: iiss-redis
     image: redis
@@ -47,7 +47,7 @@ services:
       - ./redis/conf/redis.conf:/home/iiss/redis/redis.conf
       - ./redis/data:/data
     command: redis-server /home/iiss/redis/redis.conf
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-nginx:
     container_name: iiss-nginx
     image: nginx
@@ -64,7 +64,7 @@ services:
       - iiss-gateway
     links:
       - iiss-gateway
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-gateway:
     container_name: iiss-gateway
     build:
@@ -76,7 +76,7 @@ services:
       - iiss-redis
     links:
       - iiss-redis
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-auth:
     container_name: iiss-auth
     build:
@@ -88,7 +88,7 @@ services:
       - iiss-redis
     links:
       - iiss-redis
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-modules-system:
     container_name: iiss-modules-system
     build:
@@ -102,7 +102,7 @@ services:
     links:
       - iiss-redis
       - iiss-mysql
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-modules-gen:
     container_name: iiss-modules-gen
     build:
@@ -114,7 +114,7 @@ services:
       - iiss-mysql
     links:
       - iiss-mysql
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-modules-job:
     container_name: iiss-modules-job
     build:
@@ -126,7 +126,7 @@ services:
       - iiss-mysql
     links:
       - iiss-mysql
-    network_mode: bridge
+    network_mode: iissBridge
   iiss-modules-file:
     container_name: iiss-modules-file
     build:
@@ -134,7 +134,7 @@ services:
       dockerfile: dockerfile
     ports:
       - "9300:9300"
-    network_mode: bridge
+    network_mode: iissBridge
     volumes:
     - ./iiss/uploadPath:/home/iiss/uploadPath
   iiss-visual-monitor:
@@ -144,10 +144,10 @@ services:
       dockerfile: dockerfile
     ports:
       - "9100:9100"
-    network_mode: bridge
+    network_mode: iissBridge
 
 
 networks:
   default:
     external:
-      name: bridge
+      name: iissBridge
