@@ -22,7 +22,7 @@ public class WarehouseController {
     @ApiOperation(value = "创建仓库", nickname = "createWarehouse")
     public AjaxResult createWarehouse(@RequestBody @Valid WarehouseCreateRequest warehouseRequest) {
         Boolean aBoolean = warehouseService.create(warehouseRequest);
-        if (aBoolean) {
+        if (Boolean.TRUE.equals(aBoolean)) {
             return AjaxResult.success();
         } else {
             return AjaxResult.error();
@@ -33,7 +33,7 @@ public class WarehouseController {
     @ApiOperation(value = "更新仓库信息", nickname = "updateWarehouse")
     public AjaxResult updateWarehouse(@RequestBody @Valid WarehouseUpdateRequest warehouseUpdateRequest) {
         Boolean aBoolean = warehouseService.update(warehouseUpdateRequest);
-        if (aBoolean) {
+        if (Boolean.TRUE.equals(aBoolean)) {
             return AjaxResult.success();
         } else {
             return AjaxResult.error();

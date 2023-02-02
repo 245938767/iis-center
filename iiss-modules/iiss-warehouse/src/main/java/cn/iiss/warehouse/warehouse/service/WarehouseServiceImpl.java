@@ -54,12 +54,12 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
 
     @Override
     public boolean delete(Long warehouseId) {
-        if (assetService.houseForAssetIsData(warehouseId)) {
+        if (Boolean.TRUE.equals(assetService.houseForAssetIsData(warehouseId))) {
             throw new ServiceException(WarehouseErrorCode.WAREHOUSE_DELETE_IS_EXIT.getName());
         }
         //是否有子类
         List<Warehouse> list = list(new LambdaQueryWrapper<Warehouse>().eq(Warehouse::getParentId, warehouseId));
-        if (!(list == null) && !list.isEmpty()) {
+        if (list != null && !list.isEmpty()) {
             throw new ServiceException(WarehouseErrorCode.WAREHOUSE_ERROR_HAVE_CINDER_ID.getName());
         }
         return removeById(warehouseId);
@@ -93,18 +93,16 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
         if (warehouseId == null) {
             return Warehouse.builder().wareHouseLevel(0).build();
         }
-
         //检查是否能够创建仓库（父类有数据不能在添加）
         Warehouse warehouse = getById(warehouseId);
-        if (assetService.houseForAssetIsData(warehouseId)) {
-            throw new ServiceException(WarehouseErrorCode.WAREHOUSE_CREATE_PARENT_IS_EXIT.getName());
-        } else {
+        if (Boolean.FALSE.equals(assetService.houseForAssetIsData(warehouseId))) {
             //更新父类为无数据
             EntityOperations.doUpdate(getBaseMapper())
                     .load(() -> warehouse)
                     .update(Warehouse::updateIsDataInfoInValid)
                     .execute();
+            return warehouse;
         }
-        return warehouse;
+        throw new ServiceException(WarehouseErrorCode.WAREHOUSE_CREATE_PARENT_IS_EXIT.getName());
     }
 }
