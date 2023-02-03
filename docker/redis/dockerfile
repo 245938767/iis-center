@@ -11,3 +11,5 @@ RUN mkdir -p /home/iiss/redis
 WORKDIR /home/iiss/redis
 # 复制conf文件到路径
 COPY ./conf/redis.conf /home/iiss/redis/redis.conf
+COPY ./conf/redis.conf /usr/local/etc/redis/redis.conf
+
