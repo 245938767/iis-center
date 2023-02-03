@@ -6,7 +6,7 @@ import cn.iiss.warehouse.assetlifecycle.AssetLifecycleDTO;
 import cn.iiss.warehouse.assetrecord.service.IAssetRecordService;
 import cn.iiss.warehouse.warehouseasset.WarehouseAssetDTO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import cn.iiss.commons.constants.ValidStatus;
+import cn.iiss.commonss.constants.ValidStatus;
 import cn.iiss.warehouse.assetrecord.AssetRecord;
 import cn.iiss.warehouse.warehouseasset.service.IWarehouseAssetService;
 import lombok.RequiredArgsConstructor;

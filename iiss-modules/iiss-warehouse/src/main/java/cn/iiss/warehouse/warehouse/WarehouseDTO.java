@@ -1,7 +1,7 @@
 package cn.iiss.warehouse.warehouse;
 
-import cn.iiss.commons.annotation.FieldDesc;
-import cn.iiss.commons.constants.ValidStatus;
+import cn.iiss.commonss.annotation.FieldDesc;
+import cn.iiss.commonss.constants.ValidStatus;
 import lombok.Builder;
 import lombok.Data;
 

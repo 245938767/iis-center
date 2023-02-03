@@ -7,7 +7,7 @@ import cn.iiss.mybatis.support.EntityOperations;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.iiss.commons.constants.ValidStatus;
+import cn.iiss.commonss.constants.ValidStatus;
 import cn.iiss.warehouse.asset.service.IAssetService;
 import cn.iiss.warehouse.warehouse.Warehouse;
 import cn.iiss.warehouse.warehouse.WarehouseDTO;

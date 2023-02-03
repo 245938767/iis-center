@@ -1,8 +1,8 @@
 package cn.iiss.warehouse.assetrecord;
 
 import cn.iiss.warehouse.asset.InOutType;
-import cn.iiss.commons.annotation.FieldDesc;
-import cn.iiss.commons.constants.ValidStatus;
+import cn.iiss.commonss.annotation.FieldDesc;
+import cn.iiss.commonss.constants.ValidStatus;
 
 import lombok.Builder;
 import lombok.Getter;

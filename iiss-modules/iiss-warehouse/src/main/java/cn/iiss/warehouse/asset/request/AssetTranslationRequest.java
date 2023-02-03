@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.asset.request;
 
-import cn.iiss.commons.model.Request;
+import cn.iiss.commonss.model.Request;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
