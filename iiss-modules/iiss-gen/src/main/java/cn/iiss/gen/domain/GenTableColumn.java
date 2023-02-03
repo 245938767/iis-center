@@ -2,8 +2,8 @@ package cn.iiss.gen.domain;
 
 import javax.validation.constraints.NotBlank;
 
-import cn.iiss.commons.core.utils.StringUtils;
-import cn.iiss.commons.core.web.domain.BaseEntity;
+import cn.iiss.common.core.utils.StringUtils;
+import cn.iiss.common.core.web.domain.BaseEntity;
 
 /**
  * 代码生成业务字段表 gen_table_column

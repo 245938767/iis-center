@@ -1,10 +1,10 @@
 package cn.iiss.warehouse.warehouse;
 
-import cn.iiss.commons.core.utils.bean.BeanUtils;
+import cn.iiss.common.core.utils.bean.BeanUtils;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import cn.iiss.commonss.annotation.FieldDesc;
-import cn.iiss.commonss.constants.ValidStatus;
+import cn.iiss.commons.annotation.FieldDesc;
+import cn.iiss.commons.constants.ValidStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

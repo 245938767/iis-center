@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.warehouseasset;
 
-import cn.iiss.commonss.annotation.FieldDesc;
+import cn.iiss.commons.annotation.FieldDesc;
 import lombok.Builder;
 import lombok.Getter;
 

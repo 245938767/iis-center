@@ -7,12 +7,12 @@ import javax.annotation.PostConstruct;
 import cn.iiss.system.domain.SysConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import cn.iiss.commons.core.constant.CacheConstants;
-import cn.iiss.commons.core.constant.UserConstants;
-import cn.iiss.commons.core.exception.ServiceException;
-import cn.iiss.commons.core.text.Convert;
-import cn.iiss.commons.core.utils.StringUtils;
-import cn.iiss.commons.redis.service.RedisService;
+import cn.iiss.common.core.constant.CacheConstants;
+import cn.iiss.common.core.constant.UserConstants;
+import cn.iiss.common.core.exception.ServiceException;
+import cn.iiss.common.core.text.Convert;
+import cn.iiss.common.core.utils.StringUtils;
+import cn.iiss.common.redis.service.RedisService;
 import cn.iiss.system.mapper.SysConfigMapper;
 import cn.iiss.system.service.ISysConfigService;
 

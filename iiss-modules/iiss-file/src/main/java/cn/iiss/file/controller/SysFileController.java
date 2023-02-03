@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import cn.iiss.commons.core.domain.R;
-import cn.iiss.commons.core.utils.file.FileUtils;
+import cn.iiss.common.core.domain.R;
+import cn.iiss.common.core.utils.file.FileUtils;
 import cn.iiss.file.service.ISysFileService;
 import cn.iiss.system.face.domain.SysFile;
 

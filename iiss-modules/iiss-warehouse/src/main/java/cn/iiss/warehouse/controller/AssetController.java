@@ -1,8 +1,8 @@
 package cn.iiss.warehouse.controller;
 
-import cn.iiss.commons.core.web.controller.BaseController;
-import cn.iiss.commons.core.web.domain.AjaxResult;
-import cn.iiss.commons.core.web.page.TableDataInfo;
+import cn.iiss.common.core.web.controller.BaseController;
+import cn.iiss.common.core.web.domain.AjaxResult;
+import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.warehouse.asset.request.AssetCreateRequest;
 import cn.iiss.warehouse.asset.request.AssetQueryRequest;
 import cn.iiss.warehouse.asset.request.AssetTranslationRequest;

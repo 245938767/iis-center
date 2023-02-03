@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.iiss.auth.form.LoginBody;
 import cn.iiss.auth.form.RegisterBody;
 import cn.iiss.auth.service.SysLoginService;
-import cn.iiss.commons.core.domain.R;
-import cn.iiss.commons.core.utils.JwtUtils;
-import cn.iiss.commons.core.utils.StringUtils;
-import cn.iiss.commons.security.auth.AuthUtil;
-import cn.iiss.commons.security.service.TokenService;
-import cn.iiss.commons.security.utils.SecurityUtils;
+import cn.iiss.common.core.domain.R;
+import cn.iiss.common.core.utils.JwtUtils;
+import cn.iiss.common.core.utils.StringUtils;
+import cn.iiss.common.security.auth.AuthUtil;
+import cn.iiss.common.security.service.TokenService;
+import cn.iiss.common.security.utils.SecurityUtils;
 import cn.iiss.system.face.model.LoginUser;
 
 /**

@@ -1,7 +1,7 @@
 package cn.iiss.gateway.service
 
-import cn.iiss.commons.core.exception.CaptchaException
-import cn.iiss.commons.core.web.domain.AjaxResult
+import cn.iiss.common.core.exception.CaptchaException
+import cn.iiss.common.core.web.domain.AjaxResult
 import java.io.IOException
 
 /**

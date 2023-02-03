@@ -3,11 +3,11 @@ package cn.iiss.auth.service;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import cn.iiss.commons.core.constant.CacheConstants;
-import cn.iiss.commons.core.constant.Constants;
-import cn.iiss.commons.core.exception.ServiceException;
-import cn.iiss.commons.redis.service.RedisService;
-import cn.iiss.commons.security.utils.SecurityUtils;
+import cn.iiss.common.core.constant.CacheConstants;
+import cn.iiss.common.core.constant.Constants;
+import cn.iiss.common.core.exception.ServiceException;
+import cn.iiss.common.redis.service.RedisService;
+import cn.iiss.common.security.utils.SecurityUtils;
 import cn.iiss.system.face.domain.SysUser;
 
 /**

@@ -3,8 +3,8 @@ package cn.iiss.job.domain;
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import cn.iiss.commons.core.annotation.Excel;
-import cn.iiss.commons.core.web.domain.BaseEntity;
+import cn.iiss.common.core.annotation.Excel;
+import cn.iiss.common.core.web.domain.BaseEntity;
 
 /**
  * 定时任务调度日志表 sys_job_log

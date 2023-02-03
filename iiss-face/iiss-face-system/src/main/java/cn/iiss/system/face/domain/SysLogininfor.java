@@ -2,9 +2,9 @@ package cn.iiss.system.face.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import cn.iiss.commons.core.annotation.Excel;
-import cn.iiss.commons.core.annotation.Excel.ColumnType;
-import cn.iiss.commons.core.web.domain.BaseEntity;
+import cn.iiss.common.core.annotation.Excel;
+import cn.iiss.common.core.annotation.Excel.ColumnType;
+import cn.iiss.common.core.web.domain.BaseEntity;
 
 /**
  * 系统访问记录表 sys_logininfor

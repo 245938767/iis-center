@@ -1,5 +1,5 @@
-cn.iiss.commons.security.service.TokenService
-cn.iiss.commons.security.aspect.PreAuthorizeAspect
-cn.iiss.commons.security.aspect.InnerAuthAspect
-cn.iiss.commons.security.handler.GlobalExceptionHandler
-cn.iiss.commons.security.config.WebMvcConfig
+cn.iiss.common.security.service.TokenService
+cn.iiss.common.security.aspect.PreAuthorizeAspect
+cn.iiss.common.security.aspect.InnerAuthAspect
+cn.iiss.common.security.handler.GlobalExceptionHandler
+cn.iiss.common.security.config.WebMvcConfig

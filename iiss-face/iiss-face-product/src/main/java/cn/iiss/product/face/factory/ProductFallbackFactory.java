@@ -1,6 +1,6 @@
 package cn.iiss.product.face.factory;
 
-import cn.iiss.commons.core.domain.R;
+import cn.iiss.common.core.domain.R;
 import cn.iiss.product.face.ProductService;
 import cn.iiss.product.face.domain.ProductQueryRequest;
 import cn.iiss.product.face.model.GoodsVo;

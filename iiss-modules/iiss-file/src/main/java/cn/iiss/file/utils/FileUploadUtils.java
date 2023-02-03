@@ -6,14 +6,14 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
-import cn.iiss.commons.core.exception.file.FileNameLengthLimitExceededException;
-import cn.iiss.commons.core.exception.file.FileSizeLimitExceededException;
-import cn.iiss.commons.core.exception.file.InvalidExtensionException;
-import cn.iiss.commons.core.utils.DateUtils;
-import cn.iiss.commons.core.utils.StringUtils;
-import cn.iiss.commons.core.utils.file.FileTypeUtils;
-import cn.iiss.commons.core.utils.file.MimeTypeUtils;
-import cn.iiss.commons.core.utils.uuid.Seq;
+import cn.iiss.common.core.exception.file.FileNameLengthLimitExceededException;
+import cn.iiss.common.core.exception.file.FileSizeLimitExceededException;
+import cn.iiss.common.core.exception.file.InvalidExtensionException;
+import cn.iiss.common.core.utils.DateUtils;
+import cn.iiss.common.core.utils.StringUtils;
+import cn.iiss.common.core.utils.file.FileTypeUtils;
+import cn.iiss.common.core.utils.file.MimeTypeUtils;
+import cn.iiss.common.core.utils.uuid.Seq;
 
 /**
  * 文件上传工具类

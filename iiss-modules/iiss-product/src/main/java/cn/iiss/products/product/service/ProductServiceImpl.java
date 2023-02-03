@@ -1,7 +1,7 @@
 package cn.iiss.products.product.service;
 
 import cn.iiss.product.face.domain.ProductQueryRequest;
-import cn.iiss.commons.core.exception.ServiceException;
+import cn.iiss.common.core.exception.ServiceException;
 import cn.iiss.products.product.Product;
 import cn.iiss.products.product.mapper.ProductMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;

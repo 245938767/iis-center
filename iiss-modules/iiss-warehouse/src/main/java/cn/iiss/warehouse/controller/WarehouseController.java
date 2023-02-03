@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.controller;
 
-import cn.iiss.commons.core.web.domain.AjaxResult;
+import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.warehouse.warehouse.WarehouseDTO;
 import cn.iiss.warehouse.warehouse.request.WarehouseCreateRequest;
 import cn.iiss.warehouse.warehouse.request.WarehouseUpdateRequest;

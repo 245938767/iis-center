@@ -1,2 +1,2 @@
-cn.iiss.commons.redis.configure.RedisConfig
-cn.iiss.commons.redis.service.RedisService
+cn.iiss.common.redis.configure.RedisConfig
+cn.iiss.common.redis.service.RedisService

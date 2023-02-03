@@ -5,8 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
-import cn.iiss.commons.core.constant.ServiceNameConstants;
-import cn.iiss.commons.core.domain.R;
+import cn.iiss.common.core.constant.ServiceNameConstants;
+import cn.iiss.common.core.domain.R;
 import cn.iiss.system.face.domain.SysFile;
 import cn.iiss.system.face.factory.RemoteFileFallbackFactory;
 

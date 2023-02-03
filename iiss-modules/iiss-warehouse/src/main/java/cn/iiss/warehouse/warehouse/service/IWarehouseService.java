@@ -1,7 +1,7 @@
 package cn.iiss.warehouse.warehouse.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.iiss.commonss.constants.ValidStatus;
+import cn.iiss.commons.constants.ValidStatus;
 import cn.iiss.warehouse.warehouse.Warehouse;
 import cn.iiss.warehouse.warehouse.WarehouseDTO;
 import cn.iiss.warehouse.warehouse.request.WarehouseCreateRequest;

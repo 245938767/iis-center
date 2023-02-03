@@ -3,7 +3,7 @@ package cn.iiss;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import cn.iiss.commons.security.annotation.EnableRyFeignClients;
+import cn.iiss.common.security.annotation.EnableRyFeignClients;
 
 /**
  * 认证授权中心

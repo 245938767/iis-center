@@ -1,7 +1,7 @@
 package cn.iiss.job.task;
 
 import org.springframework.stereotype.Component;
-import cn.iiss.commons.core.utils.StringUtils;
+import cn.iiss.common.core.utils.StringUtils;
 
 /**
  * 定时任务调度测试

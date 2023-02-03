@@ -1,13 +1,13 @@
 package cn.iiss.gateway.service.impl
 
-import cn.iiss.commons.core.constant.CacheConstants
-import cn.iiss.commons.core.constant.Constants
-import cn.iiss.commons.core.exception.CaptchaException
-import cn.iiss.commons.core.utils.StringUtils
-import cn.iiss.commons.core.utils.sign.Base64
-import cn.iiss.commons.core.utils.uuid.IdUtils
-import cn.iiss.commons.core.web.domain.AjaxResult
-import cn.iiss.commons.redis.service.RedisService
+import cn.iiss.common.core.constant.CacheConstants
+import cn.iiss.common.core.constant.Constants
+import cn.iiss.common.core.exception.CaptchaException
+import cn.iiss.common.core.utils.StringUtils
+import cn.iiss.common.core.utils.sign.Base64
+import cn.iiss.common.core.utils.uuid.IdUtils
+import cn.iiss.common.core.web.domain.AjaxResult
+import cn.iiss.common.redis.service.RedisService
 import cn.iiss.gateway.config.properties.CaptchaProperties
 import cn.iiss.gateway.service.ValidateCodeService
 import com.google.code.kaptcha.Producer

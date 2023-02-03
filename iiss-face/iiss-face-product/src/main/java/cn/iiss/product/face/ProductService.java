@@ -1,7 +1,7 @@
 package cn.iiss.product.face;
 
-import cn.iiss.commons.core.constant.ServiceNameConstants;
-import cn.iiss.commons.core.domain.R;
+import cn.iiss.common.core.constant.ServiceNameConstants;
+import cn.iiss.common.core.domain.R;
 import cn.iiss.product.face.domain.ProductQueryRequest;
 import cn.iiss.product.face.factory.ProductFallbackFactory;
 import cn.iiss.product.face.model.GoodsVo;
