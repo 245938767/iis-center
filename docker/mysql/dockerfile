@@ -1,9 +1,0 @@
-# 基础镜像
-FROM mysql:8.0
-# author
-MAINTAINER lyq
-
-# 执行sql脚本
-ADD ./db/*.sql /docker-entrypoint-initdb.d/
-ADD ./conf/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
-
