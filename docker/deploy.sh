@@ -26,7 +26,7 @@ port(){
 
 # 启动基础环境（必须）
 base(){
-	docker-compose up -d iiss-mysql iiss-redis iiss-nacos
+	docker-compose up -d  iiss-redis iiss-nacos
 }
 
 # 启动程序模块（必须）
