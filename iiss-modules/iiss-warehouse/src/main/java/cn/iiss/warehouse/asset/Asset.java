@@ -42,16 +42,17 @@ public class Asset implements Serializable {
 
 
     public void in(AssetBizInfo assetBizInfo) {
-        this.inOutType = assetBizInfo.getInOutType();
+        this.inOutType = InOutType.IN;
         create(assetBizInfo);
     }
 
     public void out(AssetBizInfo assetBizInfo) {
-        this.inOutType = assetBizInfo.getInOutType();
+        this.inOutType = InOutType.OUT;
         create(assetBizInfo);
     }
-    public void updateAmount(BigDecimal amount){
-        this.amount=amount;
+
+    public void updateAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
 

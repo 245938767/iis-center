@@ -9,6 +9,9 @@ services:
       dockerfile: dockerfile
     environment:
       - MODE=standalone
+      - JVM_XMX=256m
+      - JVM_XMS=256m
+
     volumes:
       - ./nacos/logs/:/home/nacos/logs
       - ./nacos/conf/application.properties:/home/nacos/conf/application.properties
