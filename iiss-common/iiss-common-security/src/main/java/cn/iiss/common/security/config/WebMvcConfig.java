@@ -1,6 +1,7 @@
 package cn.iiss.common.security.config;
 
 import cn.iiss.common.security.interceptor.HeaderInterceptor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *
  * @author ruoyi
  */
+@Component
 public class WebMvcConfig implements WebMvcConfigurer
 {
     /** 不需要拦截地址 */
