@@ -11,6 +11,7 @@
     <modules>
         <module>iiss-face-system</module>
         <module>iiss-face-product</module>
+        <module>iiss-face-openAI</module>
     </modules>
 
     <artifactId>iiss-face</artifactId>

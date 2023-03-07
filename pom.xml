@@ -193,6 +193,11 @@
                 <artifactId>iiss-face-product</artifactId>
                 <version>${iiss.version}</version>
             </dependency>
+            <dependency>
+                <groupId>cn.iiss</groupId>
+                <artifactId>iiss-face-openAI</artifactId>
+                <version>${iiss.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.projectlombok</groupId>

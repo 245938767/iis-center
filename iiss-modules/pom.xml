@@ -15,6 +15,7 @@
         <module>iiss-file</module>
         <module>iiss-warehouse</module>
         <module>iiss-product</module>
+        <module>iiss-openAI</module>
     </modules>
 
     <artifactId>iiss-modules</artifactId>
