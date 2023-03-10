@@ -30,7 +30,7 @@ public abstract class BaseOpenAIOperation implements OpenAIOperation {
         }
     }
 
-    protected void init(String method, String jsonObject) {
+    protected final void init(String method, String jsonObject) {
         try {
             con.setRequestMethod(method);
             con.setRequestProperty("Content-Type", "application/json");

@@ -6,6 +6,7 @@ import cn.iiss.openAI.face.factory.completions.Completions;
 import cn.iiss.openAI.face.factory.completions.CompletionsRequestModel;
 import cn.iiss.openAI.face.factory.image.Images;
 import cn.iiss.openAI.face.factory.image.ImagesRequestModel;
+import cn.iiss.openAI.face.model.ImagesResponse;
 import cn.iiss.openAI.face.model.ResponseModel;
 
 import java.util.function.Consumer;
@@ -31,7 +32,7 @@ public class OpenAICreate {
      * @param consumer
      * @return
      */
-    public static Post<ResponseModel> getImages(Consumer<ImagesRequestModel> consumer) {
+    public static Post<ImagesResponse> getImages(Consumer<ImagesRequestModel> consumer) {
         return new Images<>(consumer);
     }
 }
