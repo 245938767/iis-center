@@ -2,7 +2,7 @@
  *
  * @author whiteshader@163.com
  * @datetime  2022/02/22
- * 
+ *
  * */
 
 export default [
@@ -335,11 +335,53 @@ export default [
         name: 'gen',
         icon: 'PartitionOutlined',
         path: '/tool/gen',
-        component: 'tool/gen/index', 
+        component: 'tool/gen/index',
         access: 'authorize',
         wrappers: ['@/components/KeepAlive'],
         KeepAlive: true,
         title: 'menu.title.gen'
+      },
+      {
+        name: 'design',
+        icon: 'PartitionOutlined',
+        path: '/tool/build',
+        component: 'tool/builder',
+        access: 'authorize',
+        wrappers: ['@/components/KeepAlive'],
+        KeepAlive: true,
+        title: 'menu.title.design'
+      },
+      {
+        name: 'swagger',
+        icon: 'PartitionOutlined',
+        path: '/tool/swagger',
+        component: 'tool/swagger',
+        access: 'authorize',
+        wrappers: ['@/components/KeepAlive'],
+        KeepAlive: true,
+        title: 'menu.title.swagger'
+      },
+    ],
+  },
+  {
+    name: 'Warehouse',
+    icon: 'BugOutlined',
+    path: '/warehouse',
+    component: '@/layouts/TabsLayout',
+    routes: [
+      {
+        path: '/',
+        redirect: '/warehouse/warehouse',
+      },
+      {
+        name: 'Warehouse',
+        icon: 'PartitionOutlined',
+        path: '/warehouse/warehouse',
+        component: 'warehouse/warehouse/index',
+        access: 'authorize',
+        wrappers: ['@/components/KeepAlive'],
+        KeepAlive: true,
+        title: 'menu.title.warehouse'
       },
       {
         name: 'design',
