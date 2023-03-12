@@ -22,7 +22,7 @@ const toTabList = partialRight(convertToTabList, {
 export const getWarehouseData = (params) => {
   return getByWarehouseForGoods(params).then((resp) => {
     return {
-      data: resp.rows,
+      data: resp.data,
       success: resp.code === 200,
       total: resp.total,
     };

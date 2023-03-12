@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 @Slf4j
@@ -24,9 +25,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper, WarehouseAsset> implements IWarehouseAssetService {
     private final ApplicationEventPublisher eventPublisher;
+    private final ReentrantLock reentrantLock=new ReentrantLock();
 
     @Override
     public void saveInData(AssetLifecycleDTO assetLifecycleDTO, WarehouseAssetDTO warehouseAssetDTO) {
+        reentrantLock.lock();
         Optional<WarehouseAsset> warehouseAssetData = getWarehouseAssetData(warehouseAssetDTO);
         if (warehouseAssetData.isPresent()) {
             //进行更新
@@ -45,10 +48,12 @@ public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper,
                     .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetInEvents(x, assetLifecycleDTO)))
                     .execute();
         }
+        reentrantLock.unlock();
     }
 
     @Override
     public void saveOutData(AssetLifecycleDTO assetLifecycleDTO, WarehouseAssetDTO warehouseAssetDTO) {
+        reentrantLock.lock();
         Optional<WarehouseAsset> warehouseAssetData = getWarehouseAssetData(warehouseAssetDTO);
         if (warehouseAssetData.isPresent()) {
             //进行更新
@@ -67,6 +72,7 @@ public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper,
                     .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetOutEvents(x, assetLifecycleDTO)))
                     .execute();
         }
+        reentrantLock.unlock();
     }
 
     @Override
