@@ -5,7 +5,7 @@ import request from '@/utils/request';
 
 /** 此处后端没有提供注释 GET /notices */
 export async function getNotices (options?: { [key: string]: any }) {
-  return request<API.NoticeIconList>('/notices', {
+  return request<API.NoticeIconList>('/system/notice/list', {
     method: 'GET',
     ...(options || {}),
   });
