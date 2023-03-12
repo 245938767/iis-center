@@ -8,7 +8,12 @@ import lombok.Data;
 public class WarehouseAssetRequest {
     private Long warehouseId;
 
-    public LambdaQueryWrapper<WarehouseAsset> getQuery(){
-        return new LambdaQueryWrapper<WarehouseAsset>().eq(WarehouseAsset::getHouseId,warehouseId);
+    public LambdaQueryWrapper<WarehouseAsset> getQuery() {
+
+        LambdaQueryWrapper<WarehouseAsset> warehouseAssetLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        if (warehouseId != null) {
+            warehouseAssetLambdaQueryWrapper.eq(WarehouseAsset::getHouseId, warehouseId);
+        }
+        return warehouseAssetLambdaQueryWrapper;
     }
 }

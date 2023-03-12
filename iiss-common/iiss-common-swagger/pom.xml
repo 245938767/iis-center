@@ -26,8 +26,8 @@
         <!-- Swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.fox.version}</version>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
         </dependency>
 
 	</dependencies>

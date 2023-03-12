@@ -21,6 +21,10 @@ public class WebMvcConfig implements WebMvcConfigurer
     {
         registry.addInterceptor(getHeaderInterceptor())
                 .addPathPatterns("/**")
+                .excludePathPatterns("/swagger**/**")
+                .excludePathPatterns("/webjars/**")
+                .excludePathPatterns("/v3/**")
+                .excludePathPatterns("/doc.html")
                 .excludePathPatterns(excludeUrls)
                 .order(-10);
     }

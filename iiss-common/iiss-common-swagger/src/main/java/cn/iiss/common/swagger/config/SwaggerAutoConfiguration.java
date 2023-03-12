@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -25,7 +26,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
+@EnableOpenApi
 @EnableAutoConfiguration
 @ConditionalOnProperty(name = "swagger.enabled", matchIfMissing = true)
 public class SwaggerAutoConfiguration
@@ -65,7 +66,7 @@ public class SwaggerAutoConfiguration
         List<Predicate<String>> excludePath = new ArrayList<>();
         swaggerProperties.getExcludePath().forEach(path -> excludePath.add(PathSelectors.ant(path)));
 
-        ApiSelectorBuilder builder = new Docket(DocumentationType.SWAGGER_2).host(swaggerProperties.getHost())
+        ApiSelectorBuilder builder = new Docket(DocumentationType.OAS_30).host(swaggerProperties.getHost())
                 .apiInfo(apiInfo(swaggerProperties)).select()
                 .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getBasePackage()));
 

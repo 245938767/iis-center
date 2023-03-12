@@ -1,5 +1,6 @@
 import { Avatar, Space } from 'antd';
 import {ProColumns} from "@ant-design/pro-table";
+import { ReactChild, ReactFragment, ReactPortal, Key } from 'react';
 
 export enum INPUT_WAREHOUSE_TYPE_ENUM {
   PURCHASE_RECEIPT = 1,
@@ -16,11 +17,6 @@ export const INPUT_WAREHOUSE_TYPE_OPTIONS = Array.from(INPUT_WAREHOUSE_TYPE_MAP)
   label: item[1],
 }));
 
-export enum WAREHOUSE_STATUS {
-  APPROVE = 1,
-  WAIT = 2,
-  REJECT = 3,
-}
 
 export enum INPUT_WAREHOUSE_PRODUCT_TYPE_ENUM {
   YI_HAO_PIN = 1,
@@ -82,7 +78,7 @@ export const WAREHOUSE_PRODUCT_BASE_COLUMNS: ProColumns[] = [
     editable: false,
     width: 160,
     dataIndex: 'productImg',
-    render: (text) => <Avatar shape="square" size="large" src={text} />,
+    render: (text) => <Avatar shape="square" size="large" src={text}/>,
   },
   {
     title: '编号',
@@ -113,7 +109,7 @@ export const WAREHOUSE_PRODUCT_ATTR_VALUE_COLUMNS: ProColumns = {
   search: false,
   valueEnum: INPUT_WAREHOUSE_PRODUCT_TYPE_MAP,
   width: 140,
-  formItemProps: { rules: [{ required: true }] },
+  formItemProps: {rules: [{required: true}]},
 };
 
 export const PRODUCT_NUM_COLUMNS: ProColumns = {
@@ -123,8 +119,8 @@ export const PRODUCT_NUM_COLUMNS: ProColumns = {
   search: false,
   align: 'right',
   width: 80,
-  fieldProps: { min: 1 },
-  formItemProps: { initialValue: 1 },
+  fieldProps: {min: 1},
+  formItemProps: {initialValue: 1},
 };
 
 export const PRODUCT_PRICE_COLUMNS: ProColumns = {
@@ -182,7 +178,7 @@ export const WAREHOUSE_PRODUCT_IMAGE_COLUMNS: ProColumns = {
   render(dom, entity) {
     return (
       <Space>
-        {entity.warehouseProductImgList.map((item, index) => {
+        {entity.warehouseProductImgList.map((item: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined, index: Key | null | undefined) => {
           // eslint-disable-next-line react/no-array-index-key
           return <Avatar shape="square" key={index} src={item} size="large" />;
         })}
@@ -229,11 +225,6 @@ export const INPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
     search: false,
   },
   {
-    title: '审核状态',
-    dataIndex: 'status',
-    valueEnum: WAREHOUSE_STATUS_MAP,
-  },
-  {
     title: '操作人',
     dataIndex: 'createUserName',
   },
@@ -267,11 +258,6 @@ export const OUTPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
     dataIndex: 'updateTime',
     valueType: 'dateTime',
     search: false,
-  },
-  {
-    title: '审核状态',
-    dataIndex: 'status',
-    valueEnum: WAREHOUSE_STATUS_MAP,
   },
   {
     title: '操作人',
