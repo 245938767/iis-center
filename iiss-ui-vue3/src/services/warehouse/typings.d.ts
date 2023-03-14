@@ -83,6 +83,10 @@ declare namespace API {
     warehouseAssetId: number;
   };
 
+  type getParentOneParams = {
+    /** id */
+    id: number;
+  };
   type getByIdParams = {
     /** id */
     id: number;
@@ -112,6 +116,7 @@ declare namespace API {
     /** 代码 */
     code?: string;
     id: number;
+    parentId: number;
     phone?: string;
     /** 仓库地址 */
     warehouseAddress?: string;
@@ -119,5 +124,6 @@ declare namespace API {
     warehouseAdminId?: number;
     /** 仓库名 */
     warehouseName?: string;
+    phone?: string;
   };
 }

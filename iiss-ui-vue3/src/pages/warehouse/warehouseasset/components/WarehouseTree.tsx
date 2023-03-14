@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Tree, message } from 'antd';
-import { getDeptTree } from '../service';
+import { getTreeList } from '@/services/warehouse/warehouseController';
 
 const { DirectoryTree } = Tree;
 
 /* *
  *
- * @author whiteshader@163.com
- * @datetime  2021/09/16
- * 
+ * @author xiao
+ *
  * */
-
 
 export type TreeProps = {
   onSelect: (values: any) => Promise<void>;
 };
 
-const DeptTree: React.FC<TreeProps> = (props) => {
+const WarehouseTree: React.FC<TreeProps> = (props) => {
   const [treeData, setTreeData] = useState<any>([]);
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
   const [autoExpandParent, setAutoExpandParent] = useState<boolean>(true);
@@ -24,20 +22,26 @@ const DeptTree: React.FC<TreeProps> = (props) => {
   const fetchDeptList = async () => {
     const hide = message.loading('正在查询');
     try {
-      await getDeptTree({}).then((res: any) => {
+      await getTreeList().then((res: any) => {
+        const data = res.data;
+        console.info(res);
         const exKeys = [];
         exKeys.push('1');
-        setTreeData(res);
-        exKeys.push(res[0].children[0].id);
-        setExpandedKeys(exKeys);
-        props.onSelect(res[0].children[0]);
+        setTreeData(data);
+        if (data[0].child == null) {
+          exKeys.push(data[0].id);
+          setExpandedKeys(exKeys);
+          props.onSelect(data[0]);
+        } else {
+          exKeys.push(data[0].children[0].id);
+          setExpandedKeys(exKeys);
+          props.onSelect(data[0].children[0]);
+        }
       });
       hide();
-      // message.success('数据查询成功');
       return true;
     } catch (error) {
       hide();
-      // message.error('数据查询失败');
       return false;
     }
   };
@@ -63,9 +67,10 @@ const DeptTree: React.FC<TreeProps> = (props) => {
       expandedKeys={expandedKeys}
       autoExpandParent={autoExpandParent}
       onSelect={onSelect}
+      fieldNames={{ title: "warehouseName", key: "id", children: "children" }}
       treeData={treeData}
     />
   );
 };
 
-export default DeptTree;
+export default WarehouseTree;

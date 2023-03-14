@@ -31,6 +31,19 @@ export async function deleteWarehouse(
   });
 }
 
+/** 获得Parent的子数据 GET /warehouse/v1/getParentOneListj/${param0} */
+export async function getParentOneList(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getParentOneParams,
+  options?: { [key: string]: any },
+) {
+  const { id: param0, ...queryParams } = params;
+  return request<Record<string, any>>(`/warehouse/warehouse/v1/getParentOneList/${param0}`, {
+    method: 'POST',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
 /** 获得ID数据 GET /warehouse/v1/getByid/${param0} */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
