@@ -15,8 +15,8 @@ spring:
       discovery:
         # 服务注册地址
         server-addr: 175.24.167.229:8848
-        ip: 175.24.167.229
-        port: 9200
+#        ip: 175.24.167.229
+#        port: 9200
       config:
         # 配置中心地址
         server-addr: 175.24.167.229:8848

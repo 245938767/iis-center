@@ -54,10 +54,6 @@ public class AssetRecord implements Serializable {
     @FieldDesc(name = "金额")
     private BigDecimal amount;
     private Long productNum;
-    @FieldDesc(name = "是否订单产品")
-    private Boolean isOrderProduct;
-    @FieldDesc(name = "订单号")
-    private String orderNo;
 
     public Long getId() {
         return id;
@@ -133,14 +129,6 @@ public class AssetRecord implements Serializable {
 
     public Long getProductNum() {
         return productNum;
-    }
-
-    public Boolean getOrderProduct() {
-        return isOrderProduct;
-    }
-
-    public String getOrderNo() {
-        return orderNo;
     }
 
     public AssetRecord setId(Long id) {
@@ -238,13 +226,4 @@ public class AssetRecord implements Serializable {
         return this;
     }
 
-    public AssetRecord setOrderProduct(Boolean orderProduct) {
-        isOrderProduct = orderProduct;
-        return this;
-    }
-
-    public AssetRecord setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
-        return this;
-    }
 }

@@ -72,6 +72,13 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
     }
 
     @Override
+    public List<WarehouseDTO> getOneData(Long id) {
+        LambdaQueryWrapper<Warehouse> eq = new LambdaQueryWrapper<Warehouse>().eq(Warehouse::getParentId, id);
+        List<WarehouseDTO> warehouseDTOS = list(eq).stream().map(Warehouse::warehouse2DTO).toList();
+        return (warehouseDTOS);
+    }
+
+    @Override
     public WarehouseDTO getWarehouseById(Long id) {
         return getById(id).warehouse2DTO();
     }
@@ -90,17 +97,19 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
     }
 
     private Warehouse checkParentIsHaveData(Long warehouseId) {
-        if (warehouseId == null) {
+        if (warehouseId == null|| warehouseId==0) {
             return Warehouse.builder().wareHouseLevel(0).build();
         }
         //检查是否能够创建仓库（父类有数据不能在添加）
         Warehouse warehouse = getById(warehouseId);
         if (Boolean.FALSE.equals(assetService.houseForAssetIsData(warehouseId))) {
             //更新父类为无数据
-            EntityOperations.doUpdate(getBaseMapper())
-                    .load(() -> warehouse)
-                    .update(Warehouse::updateIsDataInfoInValid)
-                    .execute();
+            warehouse.updateIsDataInfoInValid();
+            updateById(warehouse);
+//            EntityOperations.doUpdate(getBaseMapper())
+//                    .load(() -> warehouse)
+//                    .update(Warehouse::updateIsDataInfoInValid)
+//                    .execute();
             return warehouse;
         }
         throw new ServiceException(WarehouseErrorCode.WAREHOUSE_CREATE_PARENT_IS_EXIT.getName());

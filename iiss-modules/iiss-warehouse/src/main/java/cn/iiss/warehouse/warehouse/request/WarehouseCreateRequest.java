@@ -6,10 +6,12 @@ import cn.iiss.warehouse.warehouse.Warehouse;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class WarehouseCreateRequest {
 
+    private Long id;
     @FieldDesc(name = "仓库名")
     @NotBlank(message = "请输入仓库名称")
     private String warehouseName;
@@ -23,7 +25,7 @@ public class WarehouseCreateRequest {
     private Long warehouseAdminId;
     private String phone;
 
-    public Warehouse translationWarehouse(Integer warehouseLevel){
+    public Warehouse translationWarehouse(Integer warehouseLevel) {
         return Warehouse.builder()
                 .warehouseName(warehouseName)
                 .parentId(parentId)

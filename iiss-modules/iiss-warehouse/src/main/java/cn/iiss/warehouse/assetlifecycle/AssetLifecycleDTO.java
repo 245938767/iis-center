@@ -71,8 +71,6 @@ public class AssetLifecycleDTO implements Serializable {
                 .tax(tax)
                 .taxRate(taxRate)
                 .amount(amount)
-                .isOrderProduct(isOrderProduct)
-                .orderNo(orderNo)
                 .build();
     }
     public AssetLifecycleDTO assetLifecycle2Dto(AssetLifecycle assetLifecycle){
@@ -92,8 +90,6 @@ public class AssetLifecycleDTO implements Serializable {
                 .tax(assetLifecycle.getTax())
                 .taxRate(assetLifecycle.getTaxRate())
                 .amount(assetLifecycle.getAmount())
-                .isOrderProduct(assetLifecycle.getOrderProduct())
-                .orderNo(assetLifecycle.getOrderNo())
                 .build();
     }
 

@@ -1,5 +1,6 @@
 package cn.iiss.warehouse.warehouse.request;
 
+import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.warehouse.warehouse.Warehouse;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,6 +16,8 @@ public class WarehouseUpdateRequest {
     @ApiModelProperty("仓库名")
     @NotBlank(message = "请输入仓库名称")
     private String warehouseName;
+    @FieldDesc(name = "父id")
+    private Long parentId;
     @ApiModelProperty("仓库地址")
     private String warehouseAddress;
     @ApiModelProperty("代码")
@@ -32,6 +35,7 @@ public class WarehouseUpdateRequest {
                 .warehouseAdminId(warehouseAdminId)
                 .phone(phone)
                 .wareHouseLevel(warehouseLevel)
+                .parentId(parentId)
                 .build();
     }
 }

@@ -37,13 +37,13 @@ public class WarehouseDTO implements Serializable {
     private ValidStatus isDataInfo;
     private ValidStatus validStatus;
 
-    private List<WarehouseDTO> child;
+    private List<WarehouseDTO> children;
 
     public void setList(WarehouseDTO warehouseDTO) {
-        if (child == null) {
-            child = new ArrayList<>();
+        if (children == null) {
+            children = new ArrayList<>();
         }
-        child.add(warehouseDTO);
+        children.add(warehouseDTO);
     }
 
     public Warehouse dto2WarehouseCreate(){

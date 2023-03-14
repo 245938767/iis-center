@@ -57,8 +57,6 @@ public class AssetRecordUpdate implements Serializable {
                 .assetId(assetId)
                 .amount(amount)
                 .productNum(productNum)
-                .isOrderProduct(isOrderProduct)
-                .orderNo(orderNo)
                 .price(price)
                 .tax(tax)
                 .taxRate(taxRate)

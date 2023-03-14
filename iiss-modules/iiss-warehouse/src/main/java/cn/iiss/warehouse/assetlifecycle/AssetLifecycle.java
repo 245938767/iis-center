@@ -52,10 +52,6 @@ public class AssetLifecycle implements Serializable {
     @FieldDesc(name = "金额")
     private BigDecimal amount;
     private Long productNum;
-    @FieldDesc(name = "是否订单产品")
-    private Boolean isOrderProduct;
-    @FieldDesc(name = "订单号")
-    private String orderNo;
 
     public Long getId() {
         return id;
@@ -125,13 +121,6 @@ public class AssetLifecycle implements Serializable {
         return productNum;
     }
 
-    public Boolean getOrderProduct() {
-        return isOrderProduct;
-    }
-
-    public String getOrderNo() {
-        return orderNo;
-    }
 
     public AssetLifecycle setId(Long id) {
         this.id = id;
@@ -215,16 +204,6 @@ public class AssetLifecycle implements Serializable {
 
     public AssetLifecycle setProductNum(Long productNum) {
         this.productNum = productNum;
-        return this;
-    }
-
-    public AssetLifecycle setOrderProduct(Boolean orderProduct) {
-        isOrderProduct = orderProduct;
-        return this;
-    }
-
-    public AssetLifecycle setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
         return this;
     }
 }

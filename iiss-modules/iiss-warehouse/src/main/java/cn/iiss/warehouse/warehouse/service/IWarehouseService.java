@@ -53,7 +53,15 @@ public interface IWarehouseService extends IService<Warehouse> {
     public List<WarehouseDTO> getTreeData();
 
     /**
+     * 获得某个数据子列表
+     *
+     * @return
+     */
+    public List<WarehouseDTO> getOneData(Long id);
+
+    /**
      * 获得ID数据
+     *
      * @param id
      * @return
      */

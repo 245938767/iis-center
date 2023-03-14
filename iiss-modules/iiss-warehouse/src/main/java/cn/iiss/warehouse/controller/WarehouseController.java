@@ -47,6 +47,13 @@ public class WarehouseController {
         return AjaxResult.success(treeData);
     }
 
+    @PostMapping("/getParentOneList/{id}")
+    @ApiOperation(value = "获得列表", nickname = "getTreeList")
+    public AjaxResult getParentOneList(@PathVariable Long id) {
+        List<WarehouseDTO> treeData = warehouseService.getOneData(id);
+        return AjaxResult.success(treeData);
+    }
+
     @ApiOperation(value = "删除仓库数据", nickname = "deleteWarehouse")
     @PostMapping("/delete/{houseId}")
     public AjaxResult deleteWarehouse(@PathVariable Long houseId) {
