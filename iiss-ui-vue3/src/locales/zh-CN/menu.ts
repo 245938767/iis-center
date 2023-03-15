@@ -74,5 +74,5 @@ export default {
   'menu.title.asset': '资产录入',
   'menu.title.product': '商品',
   'menu.title.category': '商品分类',
-  'menu.title.warehouseAsset': '资产信息',
+  'menu.title.warehouseasset': '资产信息',
 };

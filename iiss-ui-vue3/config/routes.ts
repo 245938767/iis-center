@@ -381,7 +381,7 @@ export default [
         access: 'authorize',
         wrappers: ['@/components/KeepAlive'],
         KeepAlive: true,
-        title: 'menu.title.warehosueAsset',
+        title: 'menu.title.warehouseasset',
       },
       {
         name: 'Warehouse',
@@ -391,7 +391,7 @@ export default [
         access: 'authorize',
         wrappers: ['@/components/KeepAlive'],
         KeepAlive: true,
-        title: 'menu.title.warehosue',
+        title: 'menu.title.warehouse',
       },
       {
         name: 'ProductCategory',
