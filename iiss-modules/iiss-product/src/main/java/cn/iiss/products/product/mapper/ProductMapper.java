@@ -1,5 +1,6 @@
 package cn.iiss.products.product.mapper;
 
+import cn.iiss.product.face.domain.ProductQueryRequest;
 import cn.iiss.products.product.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -27,7 +28,7 @@ public interface ProductMapper extends BaseMapper<Product>
      * @param product 商品管理
      * @return 商品管理集合
      */
-    public List<Product> selectGoodsList(Product product);
+    public List<Product> selectGoodsList(ProductQueryRequest product);
 
     /**
      * 新增商品管理

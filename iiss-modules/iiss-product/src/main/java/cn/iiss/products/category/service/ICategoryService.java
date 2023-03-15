@@ -3,6 +3,7 @@ package cn.iiss.products.category.service;
 
 
 import cn.iiss.products.category.Category;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * 分类crudService接口
  *
  */
-public interface ICategoryService {
+public interface ICategoryService extends IService<Category> {
     /**
      * 查询分类crud
      *

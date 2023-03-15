@@ -29,8 +29,7 @@ public class ProductController extends BaseController {
      * 查询商品管理列表
      */
     @ApiOperation(value = "查询商品管理列表", nickname = "getGoodsList")
-    @RequiresPermissions("product:goods:list")
-    @InnerAuth
+//    @RequiresPermissions("product:goods:list")
     @GetMapping("/list")
     public AjaxResult list(ProductQueryRequest queryRequest) {
         List<Product> list = goodsService.selectGoodsList(queryRequest);
@@ -42,7 +41,7 @@ public class ProductController extends BaseController {
      */
     @ApiOperation(value = "获取商品管理详细信息", nickname = "getGoodsInfo")
     @InnerAuth
-    @RequiresPermissions("product:goods:query")
+//    @RequiresPermissions("product:goods:query")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id) {
         return AjaxResult.success(goodsService.selectGoodsById(id));
@@ -52,7 +51,7 @@ public class ProductController extends BaseController {
      * 新增商品管理
      */
     @ApiOperation(value = "新增商品管理", nickname = "addNewGoods")
-    @RequiresPermissions("product:goods:add')")
+//    @RequiresPermissions("product:goods:add')")
     @Log(title = "商品管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Product product) {
@@ -63,7 +62,7 @@ public class ProductController extends BaseController {
      * 修改商品管理
      */
     @ApiOperation(value = "修改商品管理", nickname = "updateGoods")
-    @RequiresPermissions("product:goods:edit')")
+//    @RequiresPermissions("product:goods:edit')")
     @Log(title = "商品管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Product product) {
@@ -74,7 +73,7 @@ public class ProductController extends BaseController {
      * 删除商品管理
      */
     @ApiOperation(value = "删除商品管理", nickname = "deleteGoods")
-    @RequiresPermissions("product:goods:remove')")
+//    @RequiresPermissions("product:goods:remove')")
     @Log(title = "商品管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids) {

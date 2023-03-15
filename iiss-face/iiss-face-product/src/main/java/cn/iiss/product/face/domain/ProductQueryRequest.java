@@ -41,6 +41,9 @@ public class ProductQueryRequest {
     @ApiModelProperty("规格")
     private String productSpecification;
 
+    @ApiModelProperty("备注")
+    private String note;
+
     /**
      * 型号
      */

@@ -7,6 +7,7 @@ import cn.iiss.products.product.Product;
 import cn.iiss.products.product.mapper.ProductMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -17,11 +18,10 @@ import java.util.Objects;
 
 /**
  * 分类crudService业务层处理
- *
  */
 @Service
 @RequiredArgsConstructor
-public class CategoryServiceImpl implements ICategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements ICategoryService {
     private final CategoryMapper categoryMapper;
     private final ProductMapper productMapper;
 
@@ -79,11 +79,11 @@ public class CategoryServiceImpl implements ICategoryService {
     public int deleteCategoryByIds(Long[] ids) {
         //检查分类是否被使用
 
-        List<Product> goods = productMapper.selectList(new LambdaQueryWrapper<Product>().in(Product::getCategoryId, ids));
-        if (goods.size()>0){
-            throw new ServiceException("分类已分配，请先取消分配");
+        List<Product> goods = productMapper.selectList(new LambdaQueryWrapper<Product>().in(Product::getCategoryId, (Object) ids));
+        if (goods.isEmpty()) {
+            return categoryMapper.deleteCategoryByIds(ids);
         }
-        return categoryMapper.deleteCategoryByIds(ids);
+        throw new ServiceException("分类已分配，请先取消分配");
     }
 
     /**
@@ -95,7 +95,7 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public int deleteCategoryById(Long id) {
         List<Product> goods = productMapper.selectList(new LambdaQueryWrapper<Product>().eq(Product::getCategoryId, id));
-        if (goods.size()>0){
+        if (!goods.isEmpty()) {
             throw new ServiceException("分类已分配，请先取消分配");
         }
         return categoryMapper.deleteCategoryById(id);
@@ -103,7 +103,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public List<Category> getTree() {
-        List<Category> categories = categoryMapper.list();
+        List<Category> categories = categoryMapper.selectList(null);
         return listToTree(categories, 0L);
     }
 

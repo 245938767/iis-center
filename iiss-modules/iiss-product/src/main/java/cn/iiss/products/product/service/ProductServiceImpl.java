@@ -38,14 +38,7 @@ public class ProductServiceImpl implements IProductService {
      */
     @Override
     public List<Product> selectGoodsList(ProductQueryRequest queryRequest) {
-        LambdaQueryWrapper<Product> goodsLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        if (!(queryRequest.getProductName() == null || queryRequest.getProductName().isBlank())) {
-            goodsLambdaQueryWrapper.like(Product::getProductName, queryRequest.getProductName());
-        }
-        if (!(queryRequest.getCategoryId() != null || queryRequest.getCategoryId() > 0)) {
-            goodsLambdaQueryWrapper.eq(Product::getCategoryId, queryRequest.getCategoryId());
-        }
-        return productMapper.selectList(goodsLambdaQueryWrapper);
+        return productMapper.selectGoodsList(queryRequest);
     }
 
     /**

@@ -21,18 +21,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select id, product_code, product_name, category_id, brand, note, product_specification, model, unit,  product_img from product
     </sql>
 
-    <select id="selectGoodsList" parameterType="cn.iiss.products.product.Product" resultMap="GoodsResult">
+    <select id="selectGoodsList" parameterType="cn.iiss.product.face.domain.ProductQueryRequest" resultMap="GoodsResult">
         select * from product
         <where>
-            <if test="productCode != null  and productCode != ''"> and product_code = #{productCode}</if>
+            <if test="productCode != null  and productCode != ''"> and product_code like concat('%', #{productCode}, '%')</if>
             <if test="productName != null  and productName != ''"> and product_name like concat('%', #{productName}, '%')</if>
             <if test="categoryId != null "> and category_id = #{categoryId}</if>
             <if test="brand != null  and brand != ''"> and brand = #{brand}</if>
-            <if test="note != null  and note != ''"> and note = #{note}</if>
+            <if test="note != null  and note != ''"> and note like concat('%', #{note}, '%')</if>
             <if test="productSpecification != null  and productSpecification != ''"> and product_specification = #{productSpecification}</if>
             <if test="model != null  and model != ''"> and model = #{model}</if>
             <if test="unit != null  and unit != ''"> and unit = #{unit}</if>
-            <if test="productImg != null  and productImg != ''"> and product_img = #{productImg}</if>
         </where>
     </select>
 
