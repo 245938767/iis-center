@@ -70,4 +70,9 @@ export default {
   'menu.title.gen': '代码生成',
   'menu.title.design': '表单构建',
   'menu.title.swagger': 'swagger',
+  'menu.title.warehouse': '仓库',
+  'menu.title.asset': '资产录入',
+  'menu.title.product': '商品',
+  'menu.title.category': '商品分类',
+  'menu.title.warehouseAsset': '资产信息',
 };

@@ -59,8 +59,8 @@ export default defineConfig({
     // },
     {
       requestLibPath: "import { request } from 'umi'",
-      schemaPath: 'http://localhost:9203/v3/api-docs',
-      projectName: 'warehouse',
+      schemaPath: 'http://localhost:9202/v3/api-docs',
+      projectName: 'peoduct',
     },
   ],
   nodeModulesTransform: {
@@ -69,7 +69,5 @@ export default defineConfig({
   mfsu: {},
   webpack5: {},
   exportStatic: {},
-  externals: {
-
-  }
+  externals: {},
 });

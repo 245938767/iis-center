@@ -8,7 +8,6 @@ import WrapContent from '@/components/WrapContent';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import UpdateForm from './components/edit';
-import { buildTreeData } from '@/utils/utils';
 import {
   createWarehouse,
   deleteWarehouse,
@@ -133,9 +132,6 @@ const DeptTableList: React.FC = () => {
     });
   }, []);
 
-  /** 国际化配置 */
-  const intl = useIntl();
-
   const access = useAccess();
 
   const columns: ProColumns[] = [
@@ -174,10 +170,12 @@ const DeptTableList: React.FC = () => {
           onClick={() => {
             getTreeList().then((res) => {
               if (res.code === 200) {
-                let depts = res.data;
-                if (depts.length === 0) {
-                  depts = [{ id: 0, title: '无上级', children: undefined, key: 0, value: 0 }];
-                }
+                const depts =  [{
+                  id: 0,
+                  warehouseName: '无上级',
+                  children: undefined,
+                  parentId: 0,
+                }].concat(res.data);
                 setDeptTree(depts);
                 setModalVisible(true);
                 setCurrentRow(record);
@@ -238,7 +236,14 @@ const DeptTableList: React.FC = () => {
               onClick={async () => {
                 getTreeList().then((res) => {
                   if (res.code === 200) {
-                    setDeptTree(res.data);
+                    const depts =  [{
+                      id: 0,
+                      warehouseName: '无上级',
+                      children: undefined,
+                      parentId: 0,
+                    }].concat(res.data);
+                    depts.push();
+                    setDeptTree(depts);
                     setCurrentRow(undefined);
                     setModalVisible(true);
                   } else {

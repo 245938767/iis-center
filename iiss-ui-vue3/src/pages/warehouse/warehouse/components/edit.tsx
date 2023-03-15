@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { ProFormDigit, ProFormText, ProFormRadio, ProFormTreeSelect } from '@ant-design/pro-form';
 import { Form, Modal, Row, Col } from 'antd';
 import { useIntl, FormattedMessage } from 'umi';
-import Title from 'antd/lib/skeleton/Title';
 
 /* *
  *
@@ -90,10 +89,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
           <Col span={24} order={1}>
             <ProFormTreeSelect
               name="parentId"
-              label={intl.formatMessage({
-                id: 'system.Dept.parent_dept',
-                defaultMessage: '上级仓库:',
-              })}
+              label='上级仓库:'
               request={async () => {
                 return deptTree;
               }}
@@ -104,7 +100,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
                 {
                   required: true,
                   message: (
-                    <FormattedMessage id="请选择上级部门！" defaultMessage="请选择上级部门!" />
+                    "请选择上级部门!"
                   ),
                 },
               ]}
