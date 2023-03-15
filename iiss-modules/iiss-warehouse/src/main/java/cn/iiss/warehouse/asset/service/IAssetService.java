@@ -44,6 +44,11 @@ public interface IAssetService extends IService<Asset> {
      */
     public List<AssetResponse> getAssetByPage(AssetQueryRequest queryRequest);
 
+    /**
+     * 检查当前资产是否有数据
+     * @param hosueId
+     * @return
+     */
     public Boolean houseForAssetIsData(Long hosueId);
 
 

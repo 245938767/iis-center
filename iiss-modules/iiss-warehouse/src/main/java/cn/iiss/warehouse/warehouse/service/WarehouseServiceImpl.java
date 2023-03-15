@@ -3,12 +3,12 @@ package cn.iiss.warehouse.warehouse.service;
 import cn.iiss.warehouse.warehouse.WarehouseErrorCode;
 import cn.iiss.warehouse.warehouse.request.WarehouseCreateRequest;
 import cn.iiss.common.core.exception.ServiceException;
-import cn.iiss.mybatis.support.EntityOperations;
+import cn.iiss.warehouse.warehouseasset.WarehouseAsset;
+import cn.iiss.warehouse.warehouseasset.mapper.WarehouseAssetMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.iiss.commons.constants.ValidStatus;
-import cn.iiss.warehouse.asset.service.IAssetService;
 import cn.iiss.warehouse.warehouse.Warehouse;
 import cn.iiss.warehouse.warehouse.WarehouseDTO;
 import cn.iiss.warehouse.warehouse.mapper.WarehouseMapper;
@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Transactional
 @RequiredArgsConstructor
 public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse> implements IWarehouseService {
-    private final IAssetService assetService;
+    private final WarehouseAssetMapper warehouseAssetMapper;
 
     @Override
     public boolean updateWarehouseUseStatus(Long houseId, ValidStatus validStatus) {
@@ -54,7 +54,7 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
 
     @Override
     public boolean delete(Long warehouseId) {
-        if (Boolean.TRUE.equals(assetService.houseForAssetIsData(warehouseId))) {
+        if (Boolean.TRUE.equals(hasWarehouseAssetData(warehouseId))) {
             throw new ServiceException(WarehouseErrorCode.WAREHOUSE_DELETE_IS_EXIT.getName());
         }
         //是否有子类
@@ -97,21 +97,25 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
     }
 
     private Warehouse checkParentIsHaveData(Long warehouseId) {
-        if (warehouseId == null|| warehouseId==0) {
+        if (warehouseId == null || warehouseId == 0) {
             return Warehouse.builder().wareHouseLevel(0).build();
         }
         //检查是否能够创建仓库（父类有数据不能在添加）
         Warehouse warehouse = getById(warehouseId);
-        if (Boolean.FALSE.equals(assetService.houseForAssetIsData(warehouseId))) {
-            //更新父类为无数据
-            warehouse.updateIsDataInfoInValid();
-            updateById(warehouse);
-//            EntityOperations.doUpdate(getBaseMapper())
-//                    .load(() -> warehouse)
-//                    .update(Warehouse::updateIsDataInfoInValid)
-//                    .execute();
-            return warehouse;
+        if (Boolean.TRUE.equals(hasWarehouseAssetData(warehouseId))) {
+            throw new ServiceException(WarehouseErrorCode.WAREHOUSE_CREATE_PARENT_IS_EXIT.getName());
         }
-        throw new ServiceException(WarehouseErrorCode.WAREHOUSE_CREATE_PARENT_IS_EXIT.getName());
+        return warehouse;
+    }
+
+    /**
+     * 检查仓库中是否已有数据
+     *
+     * @param warehouseId
+     * @return
+     */
+    private boolean hasWarehouseAssetData(Long warehouseId) {
+        WarehouseAsset warehouseAsset = warehouseAssetMapper.selectOne(new LambdaQueryWrapper<WarehouseAsset>().eq(WarehouseAsset::getHouseId, warehouseId));
+        return warehouseAsset != null;
     }
 }

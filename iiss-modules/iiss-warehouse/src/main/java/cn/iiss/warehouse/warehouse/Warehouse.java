@@ -48,7 +48,10 @@ public class Warehouse implements Serializable {
     private Integer wareHouseLevel;
 
 
-    public void updateIsDataInfoInValid() {
+    /**
+     * 更新为无数据
+     */
+    public void updateIsDataInfoValid() {
         this.isDataInfo = ValidStatus.VALID;
     }
 

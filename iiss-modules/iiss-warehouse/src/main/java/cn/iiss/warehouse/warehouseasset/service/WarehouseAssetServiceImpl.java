@@ -1,6 +1,9 @@
 package cn.iiss.warehouse.warehouseasset.service;
 
+import cn.iiss.commons.constants.ValidStatus;
 import cn.iiss.warehouse.assetlifecycle.AssetLifecycleDTO;
+import cn.iiss.warehouse.warehouse.Warehouse;
+import cn.iiss.warehouse.warehouse.mapper.WarehouseMapper;
 import cn.iiss.warehouse.warehouseasset.WarehouseAssetDTO;
 import cn.iiss.warehouse.warehouseasset.events.WarehouseAssetEvents;
 import cn.iiss.warehouse.warehouseasset.request.WarehouseAssetRequest;
@@ -25,7 +28,8 @@ import java.util.concurrent.locks.ReentrantLock;
 @RequiredArgsConstructor
 public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper, WarehouseAsset> implements IWarehouseAssetService {
     private final ApplicationEventPublisher eventPublisher;
-    private final ReentrantLock reentrantLock=new ReentrantLock();
+    private final ReentrantLock reentrantLock = new ReentrantLock();
+    private final WarehouseMapper warehouseMapper;
 
     @Override
     public void saveInData(AssetLifecycleDTO assetLifecycleDTO, WarehouseAssetDTO warehouseAssetDTO) {
@@ -77,7 +81,12 @@ public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper,
 
     @Override
     public List<WarehouseAsset> getByPage(WarehouseAssetRequest warehouseAssetRequest) {
-        return list(warehouseAssetRequest.getQuery());
+        //获得有数据的仓库ID
+        var x = warehouseMapper.selectList(new LambdaQueryWrapper<Warehouse>()
+                .eq(Warehouse::getIsDataInfo, ValidStatus.VALID).and(query -> query.eq(Warehouse::getId, warehouseAssetRequest.getWarehouseId())
+                        .or().eq(Warehouse::getParentId, warehouseAssetRequest.getWarehouseId()))
+        );
+        return list(warehouseAssetRequest.getQuery(x.stream().map(Warehouse::getId).toList()));
     }
 
 
