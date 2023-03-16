@@ -9,7 +9,7 @@ export async function getByBatchNo(
   options?: { [key: string]: any },
 ) {
   const { batchNo: param0, ...queryParams } = params;
-  return request<Record<string, any>>(`/asset/v1/get/${param0}`, {
+  return request<Record<string, any>>(`/warehouse/asset/v1/get/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),
@@ -18,7 +18,7 @@ export async function getByBatchNo(
 
 /** 获得分页数据 POST /asset/v1/getPage */
 export async function getByPage(body: API.AssetQueryRequest, options?: { [key: string]: any }) {
-  return request<API.TableDataInfo>('/asset/v1/getPage', {
+  return request<API.TableDataInfo>('/warehouse/asset/v1/getPage', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export async function assetCreateIn(
   body: API.AssetCreateRequest,
   options?: { [key: string]: any },
 ) {
-  return request<Record<string, any>>('/asset/v1/saveIn', {
+  return request<Record<string, any>>('/warehouse/asset/v1/saveIn', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
