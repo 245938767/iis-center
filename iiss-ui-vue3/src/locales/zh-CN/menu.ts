@@ -75,4 +75,7 @@ export default {
   'menu.title.product': '商品',
   'menu.title.category': '商品分类',
   'menu.title.warehouseasset': '资产信息',
+  'menu.title.warehousing': '入仓',
+  'menu.title.exwarehouse': '出仓',
+  'menu.title.adjustment': '转仓',
 };

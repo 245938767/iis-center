@@ -1,6 +1,6 @@
 import { Avatar, Space } from 'antd';
-import {ProColumns} from "@ant-design/pro-table";
-import { ReactChild, ReactFragment, ReactPortal, Key } from 'react';
+import type {ProColumns} from "@ant-design/pro-table";
+import type { ReactChild, ReactFragment, ReactPortal, Key } from 'react';
 
 export enum INPUT_WAREHOUSE_TYPE_ENUM {
   PURCHASE_RECEIPT = 1,
@@ -105,7 +105,7 @@ export const WAREHOUSE_PRODUCT_BASE_COLUMNS: ProColumns[] = [
 
 export const WAREHOUSE_PRODUCT_ATTR_VALUE_COLUMNS: ProColumns = {
   title: '商品属性',
-  dataIndex: 'productAttrValue',
+  dataIndex: 'warehouseAssetBizType',
   search: false,
   valueEnum: INPUT_WAREHOUSE_PRODUCT_TYPE_MAP,
   width: 140,

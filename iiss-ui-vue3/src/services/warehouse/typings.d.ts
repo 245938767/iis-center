@@ -43,6 +43,7 @@ declare namespace API {
   };
 
   type AssetQueryRequest = {
+    warehouseRecordStatus: number;
     /** 仓库号 */
     houseId?: number;
     /** 出入库业务类型 */
