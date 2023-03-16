@@ -108,7 +108,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
 
     @Override
     public List<AssetResponse> getAssetByPage(AssetQueryRequest queryRequest) {
-        return list(queryRequest.getQueryWrapper()).stream().map(x -> AssetResponse.builder().build().data2Response(x, null)).collect(Collectors.toList());
+        return list(queryRequest.getQueryWrapper()).stream().map(x -> AssetResponse.builder().build().data2Response(x, null)).toList();
     }
 
     @Override
@@ -121,8 +121,8 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     /**
      * 数据转换类
      *
-     * @param assetProductRequestList
-     * @return
+     * @param assetProductRequestList 入库时的产品信息
+     * @return 中间类
      */
     private List<AssetRecordDTO> request2DTO(List<AssetProductRequest> assetProductRequestList) {
         //计算
@@ -135,7 +135,6 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                     return AssetRecordDTO
                             .builder()
                             .price(x.getPrice())
-                            .orderNo(x.getOrderNo())
                             .tax(x.getTax())
                             .taxRate(x.getTaxRate())
                             .productNum(x.getProductNum())
@@ -150,10 +149,8 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                             .operateUser(SecurityUtils.getUsername())
                             .warehouseAssetBizType(x.getWarehouseAssetBizType())
 
-                            .isOrderProduct(x.getIsOrderProduct())
-                            .orderNo(x.getOrderNo())
                             .build();
-                }).collect(Collectors.toList());
+                }).toList();
     }
 
     private Warehouse getWarehouse(Long houseId) {

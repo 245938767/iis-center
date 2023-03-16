@@ -9,10 +9,13 @@ import java.util.List;
 @Data
 public class WarehouseAssetRequest {
     private Long warehouseId;
+    private String productName;
 
     public LambdaQueryWrapper<WarehouseAsset> getQuery(List<Long> warehouseList) {
-
         LambdaQueryWrapper<WarehouseAsset> warehouseAssetLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        if (productName != null && !productName.isEmpty()) {
+            warehouseAssetLambdaQueryWrapper.like(WarehouseAsset::getProductName, productName);
+        }
         if (!warehouseList.isEmpty()) {
             warehouseAssetLambdaQueryWrapper.in(WarehouseAsset::getHouseId, warehouseList);
         } else {

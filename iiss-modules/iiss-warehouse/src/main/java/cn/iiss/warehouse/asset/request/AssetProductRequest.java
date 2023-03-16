@@ -33,8 +33,4 @@ public class AssetProductRequest implements Request {
     @ApiModelProperty(value = "金额")
     private BigDecimal amount;
     private Long productNum;
-    @ApiModelProperty(value = "是否订单产品")
-    private Boolean isOrderProduct;
-    @ApiModelProperty(value = "订单号")
-    private String orderNo;
 }

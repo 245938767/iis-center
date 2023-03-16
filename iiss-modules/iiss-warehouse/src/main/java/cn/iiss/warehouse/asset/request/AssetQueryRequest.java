@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Getter
@@ -24,9 +25,24 @@ public class AssetQueryRequest implements Serializable {
     @ApiModelProperty("出入库业务类型")
     private InOutBizType inOutBizType;
 
+    private int warehouseRecordStatus;
+
 
     public LambdaQueryWrapper<Asset> getQueryWrapper() {
+
         LambdaQueryWrapper<Asset> assetLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        switch (warehouseRecordStatus) {
+
+            case 2:
+                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.OUT);
+                break;
+            case 3:
+                assetLambdaQueryWrapper.eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_IN).or().eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_OUT);
+                break;
+            default:
+                //入库
+                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.IN);
+        }
         if (houseId != null) {
             assetLambdaQueryWrapper.eq(Asset::getHouseId, houseId);
         }
