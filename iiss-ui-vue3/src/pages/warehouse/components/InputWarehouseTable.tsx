@@ -25,7 +25,10 @@ const InputWarehouseTable: React.FC<InputWarehouseTablePorps> = (props) => {
   const { editAccess, optionClomuns, ...resetProps } = props;
 
   const colmuns = React.useMemo<ProColumns[]>(() => {
-    const hasChanChengPing = (value: any, record: { warehouseAssetBizType: INPUT_WAREHOUSE_PRODUCT_TYPE_ENUM; }) => {
+    const hasChanChengPing = (
+      value: any,
+      record: { warehouseAssetBizType: INPUT_WAREHOUSE_PRODUCT_TYPE_ENUM },
+    ) => {
       if (record.warehouseAssetBizType === INPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.CHAN_CHENG_PIN) {
         return false;
       }
@@ -56,7 +59,7 @@ const InputWarehouseTable: React.FC<InputWarehouseTablePorps> = (props) => {
 
     if (props.readonly) {
       innerColmuns.forEach((item) => {
-        item.editable = true;
+        item.editable = false;
       });
     }
 

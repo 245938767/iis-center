@@ -171,14 +171,14 @@ export const WAREHOUSE_OPTION_COLUMNS: ProColumns = {
 
 export const WAREHOUSE_PRODUCT_IMAGE_COLUMNS: ProColumns = {
   title: '商品图片',
-  dataIndex: 'warehouseProductImgList',
+  dataIndex: 'productImg',
   valueType: 'image',
   search: false,
   width: 160,
   render(dom, entity) {
     return (
       <Space>
-        {entity.warehouseProductImgList.map((item: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined, index: Key | null | undefined) => {
+        {entity.productImg.map((item: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined, index: Key | null | undefined) => {
           // eslint-disable-next-line react/no-array-index-key
           return <Avatar shape="square" key={index} src={item} size="large" />;
         })}

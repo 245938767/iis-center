@@ -1,13 +1,12 @@
 import TableSelectionModal from '@/components/TableSelectionModal';
 import type { ModalBaseProps } from '@/types';
 import { isEmpty, objectMap } from '@/utils';
-// import { useFormSubmitter } from '@/utils/hooks';
 import type { ProFormInstance } from '@ant-design/pro-form';
 import { ModalForm, ProFormGroup, ProFormSelect } from '@ant-design/pro-form';
 import type { ActionType } from '@ant-design/pro-table';
-import { useBoolean } from 'ahooks';
+import { useBoolean, useUpdateEffect } from 'ahooks';
 import { Button, Card, message } from 'antd';
-import { map, partialRight, unionWith } from 'lodash';
+import { map, omit, partialRight, unionWith } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { getGoodsData, productColumn } from '@/pages/product/goods';
 import GoodsCreator from '@/pages/product/goods/GoodsCreator';
@@ -17,14 +16,15 @@ import TableHeader from './TableHeader';
 import WarehouseSelectro from './WarehouseSelectro';
 import { assetCreateIn } from '@/services/warehouse/assetController';
 
-const TABLE_NAME = 'warehouseProductSaveRequestList';
+const TABLE_NAME = 'assetProductRequestList';
 
 export const productFiledMap = {
   productId: 'id',
   productName: 'productName',
   productImg: 'productImg',
   productCode: 'productCode',
-  productSpecification: 'productSpecification'};
+  productSpecification: 'productSpecification',
+};
 
 type InputWarehouseProps = ModalBaseProps;
 
@@ -34,7 +34,7 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
 
   const formRef = useRef<ProFormInstance>();
   const actionRef = useRef<ActionType>();
-
+  const [canEdit, setEditable] = useState<boolean>(true);
   const [tableModalParams, setTableModalParams] = useState<any>({});
   const [selectionModalVisibel, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false);
 
@@ -48,6 +48,14 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
       return true;
     });
   };
+
+  useUpdateEffect(() => {
+    if (!canEdit) {
+      const tableData = formRef.current?.getFieldValue(TABLE_NAME) || [];
+      const updateData = map(tableData, (item) => omit(item, 'tax', 'taxRate', 'price', 'amount'));
+      formRef.current?.setFieldValue(TABLE_NAME, updateData);
+    }
+  }, [canEdit]);
 
   useEffect(() => {
     if (!visible) {
@@ -79,7 +87,7 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
           <ProFormSelect
             label="入库方式"
             width="md"
-            name="warehouseType"
+            name="inOutBizType"
             initialValue={1}
             options={INPUT_WAREHOUSE_TYPE_OPTIONS}
           />
@@ -87,6 +95,7 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
         <Card title={<TableHeader title="入库商品表" tableName={[TABLE_NAME]} />}>
           <InputWarehouseTable
             optionClomuns
+            editAccess={canEdit}
             name={TABLE_NAME}
             recordCreatorProps={{
               newRecordType: 'dataSource',
@@ -107,7 +116,11 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
           const selectedData = map(rows, (row) => convertToProduct(row));
           const preTableData = formRef.current?.getFieldValue(TABLE_NAME);
           //组合数组
-          const newTableData = unionWith(preTableData, selectedData, (a, b) => a.productId === b.productId);
+          const newTableData = unionWith(
+            preTableData,
+            selectedData,
+            (a, b) => a.productId === b.productId,
+          );
           formRef.current?.setFieldsValue({ [TABLE_NAME]: newTableData });
           closeModal();
         }}

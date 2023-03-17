@@ -1,3 +1,4 @@
+import WrapContent from '@/components/WrapContent';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { useBoolean } from 'ahooks';
@@ -16,8 +17,8 @@ export type WarehousingRowType = {
 
 const Warehousing: React.FC = () => {
   const [sheetVisible, setSheetVisible] = React.useState(false);
-  const [inputVisible, { setTrue: openInputModal, set: setInputVisible }] = useBoolean(false);
-  const [recordId, setRecordId] = React.useState<React.Key>('1');
+  const [inputVisible, { setTrue: openInputModal, toggle: setInputVisible }] = useBoolean(false);
+  const [recordId, setRecordId] = React.useState<React.Key>(1);
   const actionRef = useRef<ActionType>();
 
   const columns: ProColumns<WarehousingRowType>[] = [
@@ -44,7 +45,7 @@ const Warehousing: React.FC = () => {
   ];
 
   return (
-    <>
+    <WrapContent>
       <ProTable<WarehousingRowType>
         actionRef={actionRef}
         rowKey="warehouseProductRecordId"
@@ -70,7 +71,7 @@ const Warehousing: React.FC = () => {
         onDone={() => actionRef.current?.reload()}
         onVisibleChange={setSheetVisible}
       />
-    </>
+    </WrapContent>
   );
 };
 

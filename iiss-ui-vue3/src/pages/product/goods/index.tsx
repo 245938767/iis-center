@@ -45,7 +45,7 @@ export const productColumn: ProColumns<any>[] = [
     title: '规格',
     search: false,
     editable: false,
-    dataIndex: 'standard',
+    dataIndex: 'productSpecification',
   },
   {
     title: '型号',
