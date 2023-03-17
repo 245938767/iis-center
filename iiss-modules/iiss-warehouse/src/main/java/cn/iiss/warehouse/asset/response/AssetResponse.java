@@ -47,8 +47,8 @@ public class AssetResponse {
     private List<AssetRecord> assetRecordList;
 
     public AssetResponse data2Response(Asset asset, List<AssetRecord> assetRecordList) {
-        houseId = asset.getHouseId();
-        houseName = asset.getHouseName();
+        houseId = asset.getWarehouseId();
+        houseName = asset.getWarehouseName();
         createUserId = asset.getCreateUserId();
         createUserName = asset.getCreateUserName();
         amount = asset.getAmount();

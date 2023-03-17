@@ -22,13 +22,13 @@ import java.util.List;
 public class AssetRecordServiceImpl extends ServiceImpl<AssetRecordMapper, AssetRecord> implements IAssetRecordService {
     @Override
     public boolean batchSaveIn(Asset asset, List<AssetRecordDTO> assetRecordDTOList) {
-        List<AssetRecord> assetRecords = assetRecordDTOList.stream().map(x -> x.transAssetRecord(asset.getBatchNo(), asset.getId(), asset.getHouseId(), asset.getHouseName(), InOutType.IN)).toList();
+        List<AssetRecord> assetRecords = assetRecordDTOList.stream().map(x -> x.transAssetRecord(asset.getBatchNo(), asset.getId(), asset.getWarehouseId(), asset.getWarehouseName(), InOutType.IN)).toList();
         return saveBatch(assetRecords);
     }
 
     @Override
     public boolean batchSaveOut(Asset asset, List<AssetRecordDTO> assetRecordDTOList) {
-        List<AssetRecord> assetRecords = assetRecordDTOList.stream().map(x -> x.transAssetRecord(asset.getBatchNo(), asset.getId(), asset.getHouseId(), asset.getHouseName(), InOutType.OUT)).toList();
+        List<AssetRecord> assetRecords = assetRecordDTOList.stream().map(x -> x.transAssetRecord(asset.getBatchNo(), asset.getId(), asset.getWarehouseId(), asset.getWarehouseName(), InOutType.OUT)).toList();
         return saveBatch(assetRecords);
     }
 

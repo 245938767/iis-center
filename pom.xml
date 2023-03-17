@@ -7,7 +7,7 @@
     <parent>
         <artifactId>iiss-bom</artifactId>
         <groupId>cn.iiss</groupId>
-        <version>1.0.0</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
     <artifactId>iiss</artifactId>
     <version>1.0.0</version>
@@ -17,6 +17,7 @@
 
     <properties>
         <iiss.version>1.0.0</iiss.version>
+        <iiss.parent.version>1.1-SNAPSHOT</iiss.parent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
@@ -208,12 +209,12 @@
             <dependency>
                 <groupId>cn.iiss</groupId>
                 <artifactId>iiss-mybatisplus-spring-boot-starter</artifactId>
-                <version>${iiss.version}</version>
+                <version>${iiss.parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.iiss</groupId>
                 <artifactId>iiss-commons</artifactId>
-                <version>${iiss.version}</version>
+                <version>${iiss.parent.version}</version>
             </dependency>
 
             <dependency>

@@ -69,7 +69,6 @@ public class SysOperlogController extends BaseController
         return success();
     }
 
-    @InnerAuth
     @PostMapping
     public AjaxResult add(@RequestBody SysOperLog operLog)
     {

@@ -34,49 +34,58 @@ public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper,
     @Override
     public void saveInData(AssetLifecycleDTO assetLifecycleDTO, WarehouseAssetDTO warehouseAssetDTO) {
         reentrantLock.lock();
-        Optional<WarehouseAsset> warehouseAssetData = getWarehouseAssetData(warehouseAssetDTO);
-        if (warehouseAssetData.isPresent()) {
-            //进行更新
-            EntityOperations
-                    .doUpdate(baseMapper)
-                    .load(warehouseAssetData::get)
-                    .update(asset -> asset.updateIn(warehouseAssetDTO))
-                    .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetInEvents(x, assetLifecycleDTO)))
-                    .execute();
-        } else {
-            //创建
-            EntityOperations
-                    .doCreate(baseMapper)
-                    .create(WarehouseAsset::new)
-                    .update(warehouseAsset -> warehouseAsset.dto2WarehouseAsset(warehouseAssetDTO))
-                    .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetInEvents(x, assetLifecycleDTO)))
-                    .execute();
+        try {
+
+            Optional<WarehouseAsset> warehouseAssetData = getWarehouseAssetData(warehouseAssetDTO);
+            if (warehouseAssetData.isPresent()) {
+                //进行更新
+                EntityOperations
+                        .doUpdate(baseMapper)
+                        .load(warehouseAssetData::get)
+                        .update(asset -> asset.updateIn(warehouseAssetDTO))
+                        .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetInEvents(x, assetLifecycleDTO)))
+                        .execute();
+            } else {
+                //创建
+                EntityOperations
+                        .doCreate(baseMapper)
+                        .create(WarehouseAsset::new)
+                        .update(warehouseAsset -> warehouseAsset.dto2WarehouseAsset(warehouseAssetDTO))
+                        .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetInEvents(x, assetLifecycleDTO)))
+                        .execute();
+            }
+        } finally {
+
+            reentrantLock.unlock();
         }
-        reentrantLock.unlock();
     }
 
     @Override
     public void saveOutData(AssetLifecycleDTO assetLifecycleDTO, WarehouseAssetDTO warehouseAssetDTO) {
         reentrantLock.lock();
-        Optional<WarehouseAsset> warehouseAssetData = getWarehouseAssetData(warehouseAssetDTO);
-        if (warehouseAssetData.isPresent()) {
-            //进行更新
-            EntityOperations
-                    .doUpdate(baseMapper)
-                    .load(warehouseAssetData::get)
-                    .update(asset -> asset.updateOut(warehouseAssetDTO))
-                    .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetOutEvents(x, assetLifecycleDTO)))
-                    .execute();
-        } else {
-            //创建
-            EntityOperations
-                    .doCreate(baseMapper)
-                    .create(WarehouseAsset::new)
-                    .update(warehouseAsset -> warehouseAsset.dto2WarehouseAsset(warehouseAssetDTO))
-                    .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetOutEvents(x, assetLifecycleDTO)))
-                    .execute();
+        try {
+            Optional<WarehouseAsset> warehouseAssetData = getWarehouseAssetData(warehouseAssetDTO);
+            if (warehouseAssetData.isPresent()) {
+                //进行更新
+                EntityOperations
+                        .doUpdate(baseMapper)
+                        .load(warehouseAssetData::get)
+                        .update(asset -> asset.updateOut(warehouseAssetDTO))
+                        .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetOutEvents(x, assetLifecycleDTO)))
+                        .execute();
+            } else {
+                //创建
+                EntityOperations
+                        .doCreate(baseMapper)
+                        .create(WarehouseAsset::new)
+                        .update(warehouseAsset -> warehouseAsset.dto2WarehouseAsset(warehouseAssetDTO))
+                        .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetOutEvents(x, assetLifecycleDTO)))
+                        .execute();
+            }
+        } finally {
+
+            reentrantLock.unlock();
         }
-        reentrantLock.unlock();
     }
 
     @Override

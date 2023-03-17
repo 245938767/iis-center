@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Getter
@@ -44,7 +43,7 @@ public class AssetQueryRequest implements Serializable {
                 assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.IN);
         }
         if (houseId != null) {
-            assetLambdaQueryWrapper.eq(Asset::getHouseId, houseId);
+            assetLambdaQueryWrapper.eq(Asset::getWarehouseId, houseId);
         }
         if (inOutBizType != null) {
             assetLambdaQueryWrapper.eq(Asset::getInOutBizType, inOutType);

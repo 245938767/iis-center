@@ -111,7 +111,6 @@ public class SysUserController extends BaseController
     /**
      * 获取当前用户信息
      */
-    @InnerAuth
     @GetMapping("/info/{username}")
     public R<LoginUser> info(@PathVariable("username") String username)
     {
@@ -134,7 +133,6 @@ public class SysUserController extends BaseController
     /**
      * 注册用户信息
      */
-    @InnerAuth
     @PostMapping("/register")
     public R<Boolean> register(@RequestBody SysUser sysUser)
     {

@@ -1,5 +1,6 @@
 package cn.iiss.warehouse.asset;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.commons.annotation.FieldDesc;
@@ -20,9 +21,9 @@ public class Asset implements Serializable {
     private Long id;
 
     @FieldDesc(name = "仓库唯一ID")
-    private Long houseId;
+    private Long warehouseId;
     @FieldDesc(name = "仓库名称")
-    private String houseName;
+    private String warehouseName;
     @FieldDesc(name = "创建人ID")
     private Long createUserId;
     @FieldDesc(name = "创建人")
@@ -61,23 +62,27 @@ public class Asset implements Serializable {
         this.batchNo = assetBizInfo.getBatchNo();
         this.inOutBizType = assetBizInfo.getInOutBizType();
         //仓库数据
-        this.houseId = assetBizInfo.getWarehouseId();
-        this.houseName = assetBizInfo.getWarehouseName();
+        this.warehouseId = assetBizInfo.getWarehouseId();
+        this.warehouseName = assetBizInfo.getWarehouseName();
         //用户数据
         this.createUserName = assetBizInfo.getCreateUserName();
         this.createUserId = assetBizInfo.getCreateUserId();
+        //time
+        this.createTime= DateTime.now();
+        this.updateTime=DateTime.now();
+
     }
 
     public Long getId() {
         return id;
     }
 
-    public Long getHouseId() {
-        return houseId;
+    public Long getWarehouseId() {
+        return warehouseId;
     }
 
-    public String getHouseName() {
-        return houseName;
+    public String getWarehouseName() {
+        return warehouseName;
     }
 
     public Long getCreateUserId() {
@@ -117,13 +122,13 @@ public class Asset implements Serializable {
         return this;
     }
 
-    private Asset setHouseId(Long houseId) {
-        this.houseId = houseId;
+    private Asset setWarehouseId(Long warehouseId) {
+        this.warehouseId = warehouseId;
         return this;
     }
 
-    private Asset setHouseName(String houseName) {
-        this.houseName = houseName;
+    private Asset setWarehouseName(String warehouseName) {
+        this.warehouseName = warehouseName;
         return this;
     }
 

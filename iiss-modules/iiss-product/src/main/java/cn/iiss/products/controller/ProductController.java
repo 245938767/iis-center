@@ -29,7 +29,6 @@ public class ProductController extends BaseController {
      * 查询商品管理列表
      */
     @ApiOperation(value = "查询商品管理列表", nickname = "getGoodsList")
-    @InnerAuth
 //    @RequiresPermissions("product:goods:list")
     @GetMapping("/list")
     public AjaxResult list(ProductQueryRequest queryRequest) {
@@ -41,7 +40,6 @@ public class ProductController extends BaseController {
      * 获取商品管理详细信息
      */
     @ApiOperation(value = "获取商品管理详细信息", nickname = "getGoodsInfo")
-    @InnerAuth
 //    @RequiresPermissions("product:goods:query")
     @GetMapping(value = "/{id}")
     public R<Product> getInfo(@PathVariable("id") Long id) {

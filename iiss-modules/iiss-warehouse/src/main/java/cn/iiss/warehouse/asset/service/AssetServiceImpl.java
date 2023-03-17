@@ -112,7 +112,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
 
     @Override
     public Boolean houseForAssetIsData(Long houseId) {
-        LambdaQueryWrapper<Asset> assetq = new LambdaQueryWrapper<Asset>().eq(Asset::getHouseId, houseId);
+        LambdaQueryWrapper<Asset> assetq = new LambdaQueryWrapper<Asset>().eq(Asset::getWarehouseId, houseId);
         List<Asset> list = list(assetq);
         return list != null && !list.isEmpty();
     }

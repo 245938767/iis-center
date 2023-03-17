@@ -48,7 +48,7 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
                 .createUserId(batchInOutModel.getCreateUserId())
                 .warehouseId(batchInOutModel.getWarehouseId())
                 .warehouseName(batchInOutModel.getWarehouseName())
-                .batchNo(IdUtils.fastSimpleUUID())
+                .batchNo(String.valueOf((int)Math.random()*100000))
                 .amount(batchInOutModel.getAmount())
                 .inOutBizType(batchInOutModel.getInOutBizType())
                 .build();

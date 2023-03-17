@@ -83,7 +83,6 @@ public class SysLogininforController extends BaseController
         return success();
     }
 
-    @InnerAuth
     @PostMapping
     public AjaxResult add(@RequestBody SysLogininfor logininfor)
     {
