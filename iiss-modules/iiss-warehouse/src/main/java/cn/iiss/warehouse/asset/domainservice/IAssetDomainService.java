@@ -28,11 +28,4 @@ public interface IAssetDomainService {
      */
     void handleAssetTransfer(TransferModel transferModel);
 
-    /**
-     * 资产信息修改
-     *
-     * @param assetUpdateBizModel
-     */
-    void handleAssetUpdate(AssetUpdateBizModel assetUpdateBizModel);
-
 }

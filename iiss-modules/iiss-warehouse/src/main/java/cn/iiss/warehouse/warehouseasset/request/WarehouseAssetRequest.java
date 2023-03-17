@@ -17,9 +17,9 @@ public class WarehouseAssetRequest {
             warehouseAssetLambdaQueryWrapper.like(WarehouseAsset::getProductName, productName);
         }
         if (!warehouseList.isEmpty()) {
-            warehouseAssetLambdaQueryWrapper.in(WarehouseAsset::getHouseId, warehouseList);
+            warehouseAssetLambdaQueryWrapper.in(WarehouseAsset::getWarehouseId, warehouseList);
         } else {
-            warehouseAssetLambdaQueryWrapper.eq(WarehouseAsset::getHouseId, warehouseId);
+            warehouseAssetLambdaQueryWrapper.eq(WarehouseAsset::getWarehouseId, warehouseId);
         }
         return warehouseAssetLambdaQueryWrapper;
     }

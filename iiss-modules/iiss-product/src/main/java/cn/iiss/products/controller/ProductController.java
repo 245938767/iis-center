@@ -1,14 +1,14 @@
 package cn.iiss.products.controller;
 
 
+import cn.iiss.common.core.domain.R;
 import cn.iiss.common.core.web.controller.BaseController;
 import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.common.log.annotation.Log;
 import cn.iiss.common.log.enums.BusinessType;
 import cn.iiss.common.security.annotation.InnerAuth;
-import cn.iiss.common.security.annotation.RequiresPermissions;
 import cn.iiss.product.face.domain.ProductQueryRequest;
-import cn.iiss.products.product.Product;
+import cn.iiss.product.face.model.Product;
 import cn.iiss.products.product.service.IProductService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +29,7 @@ public class ProductController extends BaseController {
      * 查询商品管理列表
      */
     @ApiOperation(value = "查询商品管理列表", nickname = "getGoodsList")
+    @InnerAuth
 //    @RequiresPermissions("product:goods:list")
     @GetMapping("/list")
     public AjaxResult list(ProductQueryRequest queryRequest) {
@@ -43,8 +44,8 @@ public class ProductController extends BaseController {
     @InnerAuth
 //    @RequiresPermissions("product:goods:query")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") Long id) {
-        return AjaxResult.success(goodsService.selectGoodsById(id));
+    public R<Product> getInfo(@PathVariable("id") Long id) {
+        return R.ok(goodsService.selectGoodsById(id));
     }
 
     /**

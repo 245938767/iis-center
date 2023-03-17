@@ -24,9 +24,9 @@ public class AssetRecord implements Serializable {
     @FieldDesc(name = "批次号")
     private String batchNo;
     @FieldDesc(name = "仓库ID(唯一)")
-    private Long houseId;
+    private Long warehouseId;
     @FieldDesc(name = "仓库名称")
-    private String houseName;
+    private String warehouseName;
     @FieldDesc(name = "操作人")
     private String operateUser;
 
@@ -71,12 +71,12 @@ public class AssetRecord implements Serializable {
         return batchNo;
     }
 
-    public Long getHouseId() {
-        return houseId;
+    public Long getWarehouseId() {
+        return warehouseId;
     }
 
-    public String getHouseName() {
-        return houseName;
+    public String getWarehouseName() {
+        return warehouseName;
     }
 
     public String getOperateUser() {
@@ -151,13 +151,13 @@ public class AssetRecord implements Serializable {
         return this;
     }
 
-    public AssetRecord setHouseId(Long houseId) {
-        this.houseId = houseId;
+    public AssetRecord setWarehouseId(Long warehouseId) {
+        this.warehouseId = warehouseId;
         return this;
     }
 
-    public AssetRecord setHouseName(String houseName) {
-        this.houseName = houseName;
+    public AssetRecord setWarehouseName(String warehouseName) {
+        this.warehouseName = warehouseName;
         return this;
     }
 

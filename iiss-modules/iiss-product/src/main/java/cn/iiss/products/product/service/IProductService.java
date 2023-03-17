@@ -3,7 +3,7 @@ package cn.iiss.products.product.service;
 
 
 import cn.iiss.product.face.domain.ProductQueryRequest;
-import cn.iiss.products.product.Product;
+import cn.iiss.product.face.model.Product;
 
 import java.util.List;
 

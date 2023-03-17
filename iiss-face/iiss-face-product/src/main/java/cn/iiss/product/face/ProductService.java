@@ -4,7 +4,7 @@ import cn.iiss.common.core.constant.ServiceNameConstants;
 import cn.iiss.common.core.domain.R;
 import cn.iiss.product.face.domain.ProductQueryRequest;
 import cn.iiss.product.face.factory.ProductFallbackFactory;
-import cn.iiss.product.face.model.GoodsVo;
+import cn.iiss.product.face.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +15,8 @@ import java.util.List;
 public interface ProductService {
 
     @GetMapping(value = "/product/v1/{id}")
-    public R<GoodsVo> getById(@PathVariable("id") Long id);
+    public R<Product> getById(@PathVariable("id") Long id);
 
-    @GetMapping(value = "/upload")
-    public R<List<GoodsVo>> getList(ProductQueryRequest productQueryRequest);
+    @GetMapping(value = "/product/v1/list")
+    public R<List<Product>> getList(ProductQueryRequest productQueryRequest);
 }

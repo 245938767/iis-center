@@ -56,8 +56,8 @@ public class AssetRecordDTO implements Serializable {
                 .batchNo(batchNo)
                 .validStatus(ValidStatus.INVALID)
 
-                .houseId(houseId)
-                .houseName(houseName)
+                .warehouseId(houseId)
+                .warehouseName(houseName)
                 .operateUser(operateUser)
                 .productId(productId)
                 .productImg(productImg)

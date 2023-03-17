@@ -20,7 +20,7 @@ import java.util.List;
 public class AssetCreateRequest implements Request {
     @ApiModelProperty(value = "仓库唯一ID",required = true)
     @NotNull(message = "请输入仓库号")
-    private Long houseId;
+    private Long warehouseId;
     @ApiModelProperty(value = "出入库业务类型",required = true)
     @NotNull(message = "请选择出入库业务类型")
     private InOutBizType inOutBizType;

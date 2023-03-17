@@ -62,8 +62,8 @@ public class AssetRecordUpdate implements Serializable {
                 .taxRate(taxRate)
                 .batchNo(batchNo)
 
-                .houseId(houseId)
-                .houseName(houseName)
+                .warehouseId(houseId)
+                .warehouseName(houseName)
                 .operateUser(operateUser)
                 .productId(productId)
                 .productImg(productImg)

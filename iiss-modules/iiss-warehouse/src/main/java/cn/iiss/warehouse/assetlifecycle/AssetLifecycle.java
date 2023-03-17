@@ -20,7 +20,7 @@ public class AssetLifecycle implements Serializable {
     private Long warehouseAssetId;
 
     @FieldDesc(name = "仓库名称")
-    private String houseName;
+    private String warehouseName;
     @FieldDesc(name = "操作人")
     private String operateUser;
 
@@ -61,8 +61,8 @@ public class AssetLifecycle implements Serializable {
         return warehouseAssetId;
     }
 
-    public String getHouseName() {
-        return houseName;
+    public String getWarehouseName() {
+        return warehouseName;
     }
 
     public String getOperateUser() {
@@ -132,8 +132,8 @@ public class AssetLifecycle implements Serializable {
         return this;
     }
 
-    public AssetLifecycle setHouseName(String houseName) {
-        this.houseName = houseName;
+    public AssetLifecycle setWarehouseName(String warehouseName) {
+        this.warehouseName = warehouseName;
         return this;
     }
 

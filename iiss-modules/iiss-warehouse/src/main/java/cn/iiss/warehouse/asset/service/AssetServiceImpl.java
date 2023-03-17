@@ -1,5 +1,6 @@
 package cn.iiss.warehouse.asset.service;
 
+import cn.iiss.product.face.model.Product;
 import cn.iiss.warehouse.asset.Asset;
 import cn.iiss.warehouse.asset.domainservice.IAssetDomainService;
 import cn.iiss.warehouse.asset.domainservice.model.TransferModel;
@@ -12,7 +13,6 @@ import cn.iiss.warehouse.asset.AssetErrorCode;
 import cn.iiss.common.core.exception.ServiceException;
 import cn.iiss.common.security.utils.SecurityUtils;
 import cn.iiss.product.face.ProductService;
-import cn.iiss.product.face.model.GoodsVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.iiss.commons.constants.ValidStatus;
@@ -32,7 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -47,14 +46,14 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
 
     @Override
     public void assetCreateIn(AssetCreateRequest assetCreateRequest) {
-        Warehouse warehouse = getWarehouse(assetCreateRequest.getHouseId());
+        Warehouse warehouse = getWarehouse(assetCreateRequest.getWarehouseId());
         List<AssetRecordDTO> assetRecordDTOList = request2DTO(assetCreateRequest.getAssetProductRequestList());
         BatchInOutModel batchInOutModel = BatchInOutModel
                 .builder()
                 .createUserId(SecurityUtils.getUserId())
                 .createUserName(SecurityUtils.getUsername())
-                .houseId(assetCreateRequest.getHouseId())
-                .houseName(warehouse.getWarehouseName())
+                .warehouseId(assetCreateRequest.getWarehouseId())
+                .warehouseName(warehouse.getWarehouseName())
                 .inOutBizType(assetCreateRequest.getInOutBizType())
                 .inOutType(InOutType.IN)
                 .assetRecordDTOList(assetRecordDTOList)
@@ -65,14 +64,14 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
 
     @Override
     public void assetCreateOut(AssetCreateRequest assetCreateRequest) {
-        Warehouse warehouse = getWarehouse(assetCreateRequest.getHouseId());
+        Warehouse warehouse = getWarehouse(assetCreateRequest.getWarehouseId());
         List<AssetRecordDTO> assetRecordDTOList = request2DTO(assetCreateRequest.getAssetProductRequestList());
         BatchInOutModel batchInOutModel = BatchInOutModel
                 .builder()
                 .createUserId(SecurityUtils.getUserId())
                 .createUserName(SecurityUtils.getUsername())
-                .houseId(assetCreateRequest.getHouseId())
-                .houseName(warehouse.getWarehouseName())
+                .warehouseId(assetCreateRequest.getWarehouseId())
+                .warehouseName(warehouse.getWarehouseName())
                 .inOutBizType(assetCreateRequest.getInOutBizType())
                 .inOutType(InOutType.OUT)
                 .assetRecordDTOList(assetRecordDTOList)
@@ -131,7 +130,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                     BigDecimal amount = Optional.ofNullable(x.getPrice()).orElse(BigDecimal.ZERO)
                             .multiply(BigDecimal.valueOf(Optional.ofNullable(x.getProductNum()).orElse(0L)));
                     //获得商品数据
-                    GoodsVo goodInfo = productService.getById(x.getProductId()).getData();
+                    Product goodInfo = productService.getById(x.getProductId()).getData();
                     return AssetRecordDTO
                             .builder()
                             .price(x.getPrice())

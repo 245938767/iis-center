@@ -3,7 +3,7 @@ package cn.iiss.product.face.factory;
 import cn.iiss.common.core.domain.R;
 import cn.iiss.product.face.ProductService;
 import cn.iiss.product.face.domain.ProductQueryRequest;
-import cn.iiss.product.face.model.GoodsVo;
+import cn.iiss.product.face.model.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -20,12 +20,12 @@ public class ProductFallbackFactory implements FallbackFactory<ProductService> {
         log.error("文件服务调用失败:{}", cause.getMessage());
         return new ProductService() {
             @Override
-            public R<GoodsVo> getById(Long id) {
+            public R<Product> getById(Long id) {
                 return R.fail();
             }
 
             @Override
-            public R<List<GoodsVo>> getList(ProductQueryRequest productQueryRequest) {
+            public R<List<Product>> getList(ProductQueryRequest productQueryRequest) {
                 return R.fail();
             }
         };

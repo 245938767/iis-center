@@ -25,7 +25,7 @@ public class WarehouseAssetEventsProcessor {
         AssetLifecycle assetLifecycle = assetLifecycleStatusDTO.dto2AssetLife(warehouseAsset.getId());
         boolean b = assetLifecycleService.saveLifecycle(assetLifecycle);
         // 更新仓库数据
-        Warehouse warehouse = warehouseMapper.selectById(warehouseAsset.getHouseId());
+        Warehouse warehouse = warehouseMapper.selectById(warehouseAsset.getWarehouseId());
         warehouse.updateIsDataInfoValid();
         int i = warehouseMapper.updateById(warehouse);
         log.debug("Processor商品生命周期记录(入库)");

@@ -7,7 +7,6 @@ import cn.iiss.warehouse.asset.domainservice.model.AssetBizInfo;
 import cn.iiss.warehouse.asset.domainservice.model.AssetUpdateBizModel;
 import cn.iiss.warehouse.asset.domainservice.model.BatchInOutModel;
 import cn.iiss.warehouse.asset.domainservice.model.TransferModel;
-import cn.iiss.warehouse.asset.events.AssetReviewEvents;
 import cn.iiss.warehouse.asset.mapper.AssetMapper;
 import cn.iiss.warehouse.asset.AssetErrorCode;
 import cn.iiss.common.core.exception.ServiceException;
@@ -41,14 +40,14 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
     @Override
     public void handleAssetIn(BatchInOutModel batchInOutModel) {
         Assert.notEmpty(batchInOutModel.getAssetRecordDTOList());
-        handleWarehouseForIsDataInfo(batchInOutModel.getHouseId());
+        handleWarehouseForIsDataInfo(batchInOutModel.getWarehouseId());
         AssetBizInfo assetBizInfo = AssetBizInfo
                 .builder()
                 .inOutType(batchInOutModel.getInOutType())
                 .createUserName(batchInOutModel.getCreateUserName())
                 .createUserId(batchInOutModel.getCreateUserId())
-                .houseId(batchInOutModel.getHouseId())
-                .houseName(batchInOutModel.getHouseName())
+                .warehouseId(batchInOutModel.getWarehouseId())
+                .warehouseName(batchInOutModel.getWarehouseName())
                 .batchNo(IdUtils.fastSimpleUUID())
                 .amount(batchInOutModel.getAmount())
                 .inOutBizType(batchInOutModel.getInOutBizType())
@@ -65,14 +64,14 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
     @Override
     public void handleAssetOut(BatchInOutModel batchInOutModel) {
         Assert.notEmpty(batchInOutModel.getAssetRecordDTOList());
-        handleWarehouseForIsDataInfo(batchInOutModel.getHouseId());
+        handleWarehouseForIsDataInfo(batchInOutModel.getWarehouseId());
         AssetBizInfo assetBizInfo = AssetBizInfo
                 .builder()
                 .inOutType(batchInOutModel.getInOutType())
                 .createUserName(batchInOutModel.getCreateUserName())
                 .createUserId(batchInOutModel.getCreateUserId())
-                .houseId(batchInOutModel.getHouseId())
-                .houseName(batchInOutModel.getHouseName())
+                .warehouseId(batchInOutModel.getWarehouseId())
+                .warehouseName(batchInOutModel.getWarehouseName())
                 .batchNo(IdUtils.fastSimpleUUID())
                 .amount(batchInOutModel.getAmount())
                 .inOutBizType(batchInOutModel.getInOutBizType())
@@ -93,8 +92,8 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
                 .assetRecordDTOList(transferModel.getAssetRecordDTOList())
                 .inOutType(InOutType.OUT)
                 .inOutBizType(InOutBizType.WAREHOUSE_ADJUST_OUT)
-                .houseId(transferModel.getHouseId())
-                .houseName(transferModel.getWarehouseName())
+                .warehouseId(transferModel.getHouseId())
+                .warehouseName(transferModel.getWarehouseName())
                 .createUserName(transferModel.getCreateUserName())
                 .createUserId(transferModel.getCreateUserId())
                 .amount(transferModel.getAmount())
@@ -106,8 +105,8 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
                 .assetRecordDTOList(transferModel.getAssetRecordDTOList())
                 .inOutType(InOutType.IN)
                 .inOutBizType(InOutBizType.WAREHOUSE_ADJUST_IN)
-                .houseId(transferModel.getTranslationHouseId())
-                .houseName(transferModel.getWarehouseName())
+                .warehouseId(transferModel.getTranslationHouseId())
+                .warehouseName(transferModel.getWarehouseName())
                 .createUserName(transferModel.getCreateUserName())
                 .createUserId(transferModel.getCreateUserId())
                 .amount(transferModel.getAmount())
@@ -116,17 +115,6 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
         handleAssetIn(in);
     }
 
-    @Override
-    public void handleAssetUpdate(AssetUpdateBizModel assetUpdateBizModel) {
-        Assert.notEmpty(assetUpdateBizModel.getAssetRecordUpdateList());
-        Optional<Asset> one = Optional.ofNullable(assetMapper.selectOne(new LambdaQueryWrapper<Asset>().eq(Asset::getBatchNo, assetUpdateBizModel.getBatchNo())));
-        EntityOperations.doUpdate(assetMapper)
-                .load(one::get)
-                .update(x -> x.updateAmount(assetUpdateBizModel.getAmount()))
-                .successHook(x -> eventPublisher.publishEvent(new AssetReviewEvents.AssetUpdateEvent(x, assetUpdateBizModel)))
-                .execute();
-
-    }
 
     private Warehouse handleWarehouseForIsDataInfo(Long houseId) {
         Warehouse warehouse = warehouseMapper.selectById(houseId);

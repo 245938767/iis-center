@@ -14,9 +14,9 @@ import java.util.List;
 @Builder
 public class BatchInOutModel {
     @FieldDesc(name = "仓库唯一ID")
-    private Long houseId;
+    private Long warehouseId;
     @FieldDesc(name = "仓库名称")
-    private String houseName;
+    private String warehouseName;
     @FieldDesc(name = "批次总金额")
     private BigDecimal amount;
     @FieldDesc(name = "出入库业务类型")

@@ -1,10 +1,7 @@
-package cn.iiss.products.product;
+package cn.iiss.product.face.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -20,7 +17,6 @@ public class Product implements Serializable {
     /**
      * $column.columnComment
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
     /**
      * 商品代码

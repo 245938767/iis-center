@@ -6,7 +6,6 @@ import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.constants.ValidStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -25,9 +24,9 @@ public class WarehouseAsset implements Serializable {
     private ValidStatus validStatus;
 
     @FieldDesc(name = "仓库ID(唯一)")
-    private Long houseId;
+    private Long warehouseId;
     @FieldDesc(name = "仓库名称")
-    private String houseName;
+    private String warehouseName;
 
     @FieldDesc(name = "商品唯一ID(唯一)")
     private Long productId;
@@ -60,8 +59,8 @@ public class WarehouseAsset implements Serializable {
         this.productName = warehouseAssetDTO.getProductName();
         this.productNum = warehouseAssetDTO.getProductNum();
         this.productCode = warehouseAssetDTO.getProductCode();
-        this.houseId = warehouseAssetDTO.getHouseId();
-        this.houseName = warehouseAssetDTO.getHouseName();
+        this.warehouseId = warehouseAssetDTO.getHouseId();
+        this.warehouseName = warehouseAssetDTO.getHouseName();
         this.validStatus = ValidStatus.VALID;
     }
 
@@ -73,12 +72,12 @@ public class WarehouseAsset implements Serializable {
         return validStatus;
     }
 
-    public Long getHouseId() {
-        return houseId;
+    public Long getWarehouseId() {
+        return warehouseId;
     }
 
-    public String getHouseName() {
-        return houseName;
+    public String getWarehouseName() {
+        return warehouseName;
     }
 
     public Long getProductId() {
@@ -115,13 +114,13 @@ public class WarehouseAsset implements Serializable {
         return this;
     }
 
-    public WarehouseAsset setHouseId(Long houseId) {
-        this.houseId = houseId;
+    public WarehouseAsset setWarehouseId(Long warehouseId) {
+        this.warehouseId = warehouseId;
         return this;
     }
 
-    public WarehouseAsset setHouseName(String houseName) {
-        this.houseName = houseName;
+    public WarehouseAsset setWarehouseName(String warehouseName) {
+        this.warehouseName = warehouseName;
         return this;
     }
 

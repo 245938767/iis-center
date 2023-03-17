@@ -1,7 +1,7 @@
 package cn.iiss.products.product.mapper;
 
 import cn.iiss.product.face.domain.ProductQueryRequest;
-import cn.iiss.products.product.Product;
+import cn.iiss.product.face.model.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

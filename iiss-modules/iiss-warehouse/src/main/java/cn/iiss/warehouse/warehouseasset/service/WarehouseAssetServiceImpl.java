@@ -93,7 +93,7 @@ public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper,
     private Optional<WarehouseAsset> getWarehouseAssetData(WarehouseAssetDTO warehouseAssetDTO) {
         return Optional.ofNullable(getOne(new LambdaQueryWrapper<WarehouseAsset>()
                 .eq(WarehouseAsset::getProductId, warehouseAssetDTO.getProductId())
-                .eq(WarehouseAsset::getHouseId, warehouseAssetDTO.getHouseId())));
+                .eq(WarehouseAsset::getWarehouseId, warehouseAssetDTO.getHouseId())));
     }
 
 

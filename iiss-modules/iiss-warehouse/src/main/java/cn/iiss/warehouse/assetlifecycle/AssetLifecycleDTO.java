@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class AssetLifecycleDTO implements Serializable {
 
     @FieldDesc(name = "仓库名称")
-    private String houseName;
+    private String warehouseName;
     @FieldDesc(name = "操作人")
     private String operateUser;
 
@@ -56,7 +56,7 @@ public class AssetLifecycleDTO implements Serializable {
     public AssetLifecycle dto2AssetLife(Long warehouseAssetId) {
         return AssetLifecycle.builder()
                 .warehouseAssetId(warehouseAssetId)
-                .houseName(houseName)
+                .warehouseName(warehouseName)
                 .operateUser(operateUser)
                 .productImg(productImg)
                 .productCode(productCode)
@@ -75,7 +75,7 @@ public class AssetLifecycleDTO implements Serializable {
     }
     public AssetLifecycleDTO assetLifecycle2Dto(AssetLifecycle assetLifecycle){
         return AssetLifecycleDTO.builder()
-                .houseName(assetLifecycle.getHouseName())
+                .warehouseName(assetLifecycle.getWarehouseName())
                 .operateUser(assetLifecycle.getOperateUser())
                 .productImg(assetLifecycle.getProductImg())
                 .productCode(assetLifecycle.getProductCode())

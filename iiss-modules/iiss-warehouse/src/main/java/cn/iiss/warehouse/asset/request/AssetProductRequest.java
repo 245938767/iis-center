@@ -24,6 +24,10 @@ public class AssetProductRequest implements Request {
     @NotNull(message = "请选择商品业务类型")
     private WarehouseAssetBizType warehouseAssetBizType;
 
+    private String productImg;
+
+    private String productSpecification;
+
     @ApiModelProperty(value = "单价")
     private BigDecimal price;
     @ApiModelProperty(value = "税款")

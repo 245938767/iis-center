@@ -61,8 +61,8 @@ public class Asset implements Serializable {
         this.batchNo = assetBizInfo.getBatchNo();
         this.inOutBizType = assetBizInfo.getInOutBizType();
         //仓库数据
-        this.houseId = assetBizInfo.getHouseId();
-        this.houseName = assetBizInfo.getHouseName();
+        this.houseId = assetBizInfo.getWarehouseId();
+        this.houseName = assetBizInfo.getWarehouseName();
         //用户数据
         this.createUserName = assetBizInfo.getCreateUserName();
         this.createUserId = assetBizInfo.getCreateUserId();
