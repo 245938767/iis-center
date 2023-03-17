@@ -26,27 +26,21 @@ const TABLE_NAME = 'warehouseAgreeProductList';
 const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
   const [loading, setLoading] = React.useState(true);
   const [dataSource, setDataSource] = React.useState<any>();
-  const [, setStepProps] = React.useState<{
-    current?: number;
-    status?: 'wait' | 'process' | 'finish' | 'error';
-  }>({});
   const formRef = useRef<ProFormInstance>();
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
 
   React.useEffect(() => {
     if (!props.visible) {
       setDataSource(undefined);
-      setStepProps({});
       setLoading(true);
       return;
     }
-    // getByBatchNo({ batchNo: props.recordId  }).then((resp) => {
-    //   if (!resp) return;
-    //   setDataSource(resp.data);
-    //   formRef.current?.setFieldsValue({ [TABLE_NAME]: resp.data.warehouseData });
-
-    //   setLoading(false);
-    // });
+    getByBatchNo({ batchNo: props.recordId } as API.getByBatchNoParams).then((resp) => {
+      if (!resp) return;
+      setDataSource(resp.data);
+      formRef.current?.setFieldsValue({ [TABLE_NAME]: resp.data.assetRecordList });
+      setLoading(false);
+    });
   }, [props.recordId, props.visible]);
 
   const submitterRender = useCallback(() => {
@@ -100,7 +94,7 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
           {notice}
           <Card>
             <ProDescriptions column={4} title="仓库信息" dataSource={dataSource}>
-              <ProDescriptions.Item label="单号" dataIndex={'warehouseOrder'} valueType="text" />
+              <ProDescriptions.Item label="单号" dataIndex={'batchOn'} valueType="text" />
               <ProDescriptions.Item label="仓库名称" dataIndex={'warehouseName'} valueType="text" />
               <ProDescriptions.Item
                 label="商品来源"
@@ -115,7 +109,7 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
               />
               <ProDescriptions.Item
                 label="商品属性"
-                dataIndex={'warehouseType'}
+                dataIndex={'warehouseAssetBizType'}
                 valueType="text"
                 valueEnum={
                   dataSource.direction
@@ -145,7 +139,7 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
               <OutputWarehouseTable
                 name={TABLE_NAME}
                 recordCreatorProps={false}
-                warehouseType={dataSource.warehouseType}
+                warehouseType={dataSource.warehouseAssetBizType}
                 optionClomuns={false}
                 rowSelection={rowSelectionProps}
               />

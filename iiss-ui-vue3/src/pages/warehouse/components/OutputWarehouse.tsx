@@ -24,7 +24,7 @@ import type { ProColumns } from '@ant-design/pro-table';
 import { assetCreateOut } from '@/services/warehouse/assetController';
 import { getByWarehouseForGoods } from '@/services/warehouse/warehouseAssetController';
 
-const TABLE_NAME = 'warehouseProductSaveOutRequestList';
+const TABLE_NAME = 'assetProductRequestList';
 
 const warehouseProductColumns: ProColumns[] = [
   ...WAREHOUSE_PRODUCT_BASE_COLUMNS,

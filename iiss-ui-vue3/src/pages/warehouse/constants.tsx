@@ -1,10 +1,10 @@
 import { Avatar, Space } from 'antd';
-import type {ProColumns} from "@ant-design/pro-table";
+import type { ProColumns } from '@ant-design/pro-table';
 import type { ReactChild, ReactFragment, ReactPortal, Key } from 'react';
 
 export enum INPUT_WAREHOUSE_TYPE_ENUM {
-  PURCHASE_RECEIPT = 1,
-  PRODUCTION_WAREHOUSING = 2,
+  PURCHASE_RECEIPT = 'PURCHASE_WAREHOUSE',
+  PRODUCTION_WAREHOUSING = 'PRODUCT_WAREHOUSE',
 }
 
 export const INPUT_WAREHOUSE_TYPE_MAP = new Map([
@@ -17,14 +17,13 @@ export const INPUT_WAREHOUSE_TYPE_OPTIONS = Array.from(INPUT_WAREHOUSE_TYPE_MAP)
   label: item[1],
 }));
 
-
 export enum INPUT_WAREHOUSE_PRODUCT_TYPE_ENUM {
-  YI_HAO_PIN = 1,
-  ZHU_LIAO = 2,
-  CHAN_CHENG_PIN = 3,
-  WEI_XIU_PEI_JIAN = 4,
-  XIAO_SHOU_SHANG_PIN = 5,
-  FU_LIAO = 6,
+  YI_HAO_PIN = 'CONSUMABLE',
+  ZHU_LIAO = 'MAIN_INGREDiENT',
+  CHAN_CHENG_PIN = 'PRODUCT',
+  WEI_XIU_PEI_JIAN = 'REPAIR_PARTS',
+  XIAO_SHOU_SHANG_PIN = 'PRODUCT_SALES',
+  FU_LIAO = 'INGREDIENTS',
 }
 
 export const INPUT_WAREHOUSE_PRODUCT_TYPE_MAP = new Map([
@@ -44,10 +43,10 @@ export const INPUT_WAREHOUSE_PRODUCT_TYPE_OPTIONS = Array.from(
 }));
 
 export enum OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM {
-  XIAO_SHOU_CHU_KU = 1,
-  SHENG_CHAN_LING_YONG = 2,
-  TIAO_CANG = 3,
-  WAI_FA_JIA_GONG = 4,
+  XIAO_SHOU_CHU_KU = 'WAREHOUSE_SALES',
+  SHENG_CHAN_LING_YONG = 'WAREHOUSE_REVIEW',
+  TIAO_CANG = 'WAREHOUSE_ADJUST_POSiTION',
+  WAI_FA_JIA_GONG = 'WAREHOUSE_OUTSOURCING',
 }
 
 export const OUTPUT_WAREHOUSE_PRODUCT_TYPE_MAP = new Map([
@@ -78,7 +77,7 @@ export const WAREHOUSE_PRODUCT_BASE_COLUMNS: ProColumns[] = [
     editable: false,
     width: 160,
     dataIndex: 'productImg',
-    render: (text) => <Avatar shape="square" size="large" src={text}/>,
+    render: (text) => <Avatar shape="square" size="large" src={text} />,
   },
   {
     title: '编号',
@@ -109,7 +108,7 @@ export const WAREHOUSE_PRODUCT_ATTR_VALUE_COLUMNS: ProColumns = {
   search: false,
   valueEnum: INPUT_WAREHOUSE_PRODUCT_TYPE_MAP,
   width: 140,
-  formItemProps: {rules: [{required: true}]},
+  formItemProps: { rules: [{ required: true }] },
 };
 
 export const PRODUCT_NUM_COLUMNS: ProColumns = {
@@ -119,8 +118,8 @@ export const PRODUCT_NUM_COLUMNS: ProColumns = {
   search: false,
   align: 'right',
   width: 80,
-  fieldProps: {min: 1},
-  formItemProps: {initialValue: 1},
+  fieldProps: { min: 1 },
+  formItemProps: { initialValue: 1 },
 };
 
 export const PRODUCT_PRICE_COLUMNS: ProColumns = {
@@ -178,10 +177,14 @@ export const WAREHOUSE_PRODUCT_IMAGE_COLUMNS: ProColumns = {
   render(dom, entity) {
     return (
       <Space>
-        {entity.productImg.map((item: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined, index: Key | null | undefined) => {
-          // eslint-disable-next-line react/no-array-index-key
-          return <Avatar shape="square" key={index} src={item} size="large" />;
-        })}
+        {entity.productImgs.map(
+          (
+            item: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined,
+            index: Key | null | undefined,
+          ) => {
+            return <Avatar shape="square" key={index} src={item} size="large" />;
+          },
+        )}
       </Space>
     );
   },
@@ -198,7 +201,7 @@ export const INPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
   WAREHOUSE_PRODUCT_IMAGE_COLUMNS,
   {
     title: '入库单号',
-    dataIndex: 'warehouseOrder',
+    dataIndex: 'batchNo',
     valueType: 'text',
   },
   {
@@ -208,12 +211,12 @@ export const INPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
   },
   {
     title: '入库方式',
-    dataIndex: 'warehouseType',
+    dataIndex: 'inOutBizType',
     valueEnum: INPUT_WAREHOUSE_TYPE_MAP,
   },
   {
     title: '库存总金额',
-    dataIndex: 'warehouseAmount',
+    dataIndex: 'amount',
     valueType: 'money',
     align: 'right',
   },

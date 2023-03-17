@@ -33,7 +33,7 @@ const Warehousing: React.FC = () => {
           <a
             key={'key3'}
             onClick={() => {
-              setRecordId(entity.warehouseProductRecordId);
+              setRecordId(entity.batchNo);
               setSheetVisible(true);
             }}
           >

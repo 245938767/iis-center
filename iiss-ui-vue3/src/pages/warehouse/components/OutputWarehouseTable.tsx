@@ -1,6 +1,6 @@
 import FormEditableTable from '@/components/ProForm/FormEditableTable';
 import type { ProColumns } from '@ant-design/pro-table';
-import type { EditableFormInstance, EditableProTableProps } from '@ant-design/pro-table/lib/components/EditableTable';
+import type { EditableProTableProps } from '@ant-design/pro-table/lib/components/EditableTable';
 import { map } from 'lodash';
 import React, { useMemo } from 'react';
 import {
@@ -24,7 +24,6 @@ const DEFAULT_ROW_KEY = 'productId';
 
 const OutputWarehouseTable: React.FC<OutputWarehouseTablePorps> = (props) => {
   const { editAccess, optionClomuns, warehouseType, ...resetProps } = props;
-  const editorFormRef = React.useRef<EditableFormInstance<any>>();
 
   const salesDeliveryColumns = useMemo<ProColumns[]>(() => {
     return [
@@ -41,51 +40,14 @@ const OutputWarehouseTable: React.FC<OutputWarehouseTablePorps> = (props) => {
     ];
   }, [editAccess]);
 
-  const productionRequisitionColumns = useMemo<ProColumns[]>(() => {
-    const colmuns: ProColumns[] = [
-      {
-        title: '是否为订单产品',
-        dataIndex: 'isOrderProduct',
-        search: false,
-        width: 140,
-        valueType: 'select',
-        initialValue: true,
-        fieldProps(form, { rowIndex }) {
-          return {
-            options: [
-              { label: '是', value: true },
-              { label: '否', value: false },
-            ],
-            onChange: (value: boolean) => {
-              if (value === true) {
-                editorFormRef.current?.setRowData?.(rowIndex, { orderNo: undefined });
-              }
-            },
-          };
-        },
-      },
-      {
-        title: '订单号',
-        dataIndex: 'orderNo',
-        valueType: 'text',
-        search: false,
-        formItemProps: { rules: [{ required: true }] },
-        editable: (_, record) => {
-          return record.isOrderProduct !== false;
-        },
-      },
-    ];
-    return colmuns;
-  }, []);
 
   const columnsMap = useMemo(() => {
     const cmap = new Map();
     cmap.set(OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.XIAO_SHOU_CHU_KU, salesDeliveryColumns);
-    cmap.set(OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.SHENG_CHAN_LING_YONG, productionRequisitionColumns);
     cmap.set(OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.TIAO_CANG, []);
     cmap.set(OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.WAI_FA_JIA_GONG, []);
     return cmap;
-  }, [productionRequisitionColumns, salesDeliveryColumns]);
+  }, [ salesDeliveryColumns]);
 
   const colmuns = useMemo<ProColumns[]>(() => {
     const innerColmuns: ProColumns[] = [

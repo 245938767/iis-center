@@ -17,7 +17,7 @@ export type WarehousingRowType = {
 
 const Warehousing: React.FC = () => {
   const [sheetVisible, { setTrue: openSheet, toggle: setSheetVisible }] = useBoolean(false);
-  const [outputVisible, { setTrue: openInputModal, setFalse: setOutputVisible }] = useBoolean(false);
+  const [outputVisible, { setTrue: openInputModal, toggle: setOutputVisible }] = useBoolean(false);
   const [recordId, setRecordId] = React.useState<React.Key>(0);
   const actionRef = useRef<ActionType>();
 
@@ -33,7 +33,7 @@ const Warehousing: React.FC = () => {
           <a
             key={'key3'}
             onClick={() => {
-              setRecordId(entity.warehouseProductRecordId);
+              setRecordId(entity.batchNo);
               openSheet();
             }}
           >
