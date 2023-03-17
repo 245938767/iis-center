@@ -61,6 +61,7 @@ public class WarehouseAsset implements Serializable {
         this.productCode = warehouseAssetDTO.getProductCode();
         this.warehouseId = warehouseAssetDTO.getHouseId();
         this.warehouseName = warehouseAssetDTO.getHouseName();
+        this.productImg=warehouseAssetDTO.getProductImg();
         this.validStatus = ValidStatus.VALID;
     }
 

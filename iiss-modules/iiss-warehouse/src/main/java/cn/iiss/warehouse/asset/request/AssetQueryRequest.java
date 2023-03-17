@@ -18,7 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class AssetQueryRequest implements Serializable {
     @ApiModelProperty("仓库号")
-    private Long houseId;
+    private Long warehouseId;
     @ApiModelProperty("出入库类型")
     private InOutType inOutType;
     @ApiModelProperty("出入库业务类型")
@@ -42,8 +42,8 @@ public class AssetQueryRequest implements Serializable {
                 //入库
                 assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.IN);
         }
-        if (houseId != null) {
-            assetLambdaQueryWrapper.eq(Asset::getWarehouseId, houseId);
+        if (warehouseId != null) {
+            assetLambdaQueryWrapper.eq(Asset::getWarehouseId, warehouseId);
         }
         if (inOutBizType != null) {
             assetLambdaQueryWrapper.eq(Asset::getInOutBizType, inOutType);

@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
 
 /**
  * 领域层禁止有业务逻辑出现，所有的model数据都是可信的
@@ -48,7 +48,7 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
                 .createUserId(batchInOutModel.getCreateUserId())
                 .warehouseId(batchInOutModel.getWarehouseId())
                 .warehouseName(batchInOutModel.getWarehouseName())
-                .batchNo(String.valueOf((int)Math.random()*100000))
+                .batchNo(getRandom(5))
                 .amount(batchInOutModel.getAmount())
                 .inOutBizType(batchInOutModel.getInOutBizType())
                 .build();
@@ -122,5 +122,15 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
             throw new ServiceException(AssetErrorCode.ASSET_WAREHOUSE_IS_NO_DATA);
         }
         return warehouse;
+    }
+
+    public static String getRandom(int len) {
+        String source = "0123456789ABCDEF";
+        Random r = new Random();
+        StringBuilder rs = new StringBuilder();
+        for (int j = 0; j < len; j++) {
+            rs.append(source.charAt(r.nextInt(10)));
+        }
+        return rs.toString();
     }
 }

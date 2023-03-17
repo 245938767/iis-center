@@ -107,7 +107,13 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
 
     @Override
     public List<AssetResponse> getAssetByPage(AssetQueryRequest queryRequest) {
-        return list(queryRequest.getQueryWrapper()).stream().map(x -> AssetResponse.builder().build().data2Response(x, null)).toList();
+
+        return list(queryRequest.getQueryWrapper()).stream().map(x -> {
+            //获得数据
+            List<AssetRecord> list = assetRecordService.list(
+                    new LambdaQueryWrapper<AssetRecord>().eq(AssetRecord::getAssetId, x.getId()));
+            return AssetResponse.builder().build().data2Response(x, list);
+        }).toList();
     }
 
     @Override

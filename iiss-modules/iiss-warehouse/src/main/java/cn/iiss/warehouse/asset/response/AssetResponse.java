@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +20,9 @@ import java.util.List;
 public class AssetResponse {
 
     @ApiModelProperty(value = "仓库唯一ID")
-    private Long houseId;
+    private Long warehouseId;
     @ApiModelProperty(value = "仓库名称")
-    private String houseName;
+    private String warehouseName;
 
     @ApiModelProperty(value = "创建人ID")
     private Long createUserId;
@@ -45,10 +46,11 @@ public class AssetResponse {
     private Date createTime;
     private Date updateTime;
     private List<AssetRecord> assetRecordList;
+    private List<String> productImgs;
 
     public AssetResponse data2Response(Asset asset, List<AssetRecord> assetRecordList) {
-        houseId = asset.getWarehouseId();
-        houseName = asset.getWarehouseName();
+        warehouseId = asset.getWarehouseId();
+        warehouseName = asset.getWarehouseName();
         createUserId = asset.getCreateUserId();
         createUserName = asset.getCreateUserName();
         amount = asset.getAmount();
@@ -60,6 +62,10 @@ public class AssetResponse {
         createTime = asset.getCreateTime();
         updateTime = asset.getUpdateTime();
         this.assetRecordList = assetRecordList;
+        if (assetRecordList != null && !assetRecordList.isEmpty()) {
+            productImgs = new ArrayList<>(assetRecordList.size());
+            assetRecordList.forEach(x -> this.productImgs.add(x.getProductImg()));
+        }
         return this;
     }
 
