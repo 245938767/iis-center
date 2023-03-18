@@ -59,8 +59,8 @@ export default defineConfig({
     // },
     {
       requestLibPath: "import { request } from 'umi'",
-      schemaPath: 'http://localhost:9202/v3/api-docs',
-      projectName: 'peoduct',
+      schemaPath: 'http://localhost:9201/v3/api-docs',
+      projectName: 'system',
     },
   ],
   nodeModulesTransform: {

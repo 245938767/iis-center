@@ -6,7 +6,8 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
-import { Alert, Col, message, Row, Tabs, Image } from 'antd';
+// import gitee from './public/icons/gitee.svg';
+import { Alert, Col, message, Row, Tabs, Image, Button } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { ProFormCaptcha, ProFormCheckbox, ProFormText, LoginForm } from '@ant-design/pro-form';
 import { useIntl, history, FormattedMessage, SelectLang, useModel } from 'umi';
@@ -15,6 +16,9 @@ import { getCaptchaImage, getFakeCaptcha, login } from '@/services/login';
 
 import styles from './index.less';
 import { clearSessionToken, setSessionToken } from '@/access';
+import Icon, { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
+import { Color } from '@antv/l7-react/lib/component/LayerAttribute';
+import { authBindingUsingGET } from '@/services/system/sysAuthController';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -49,7 +53,7 @@ const Login: React.FC = () => {
     }
   };
   const getCaptchaCode = async () => {
-    const response = await getCaptchaImage()
+    const response = await getCaptchaImage();
     const imgdata = `data:image/png;base64,${response.img}`;
     setCaptchaCode(imgdata);
     setUuid(response.uuid);
@@ -71,18 +75,17 @@ const Login: React.FC = () => {
 
         await fetchUserInfo();
         /** 此方法会跳转到 redirect 参数所在的位置 */
-        if (!history)
-          return;
+        if (!history) return;
 
         const { query } = history.location;
         const { redirect } = query as { redirect: string };
         history.push(redirect || '/');
         return;
-      } else{
-        console.log('login failed')
+      } else {
+        console.log('login failed');
         clearSessionToken();
         // 如果失败去设置用户错误信息
-        setUserLoginState({status: 'error', type: 'account', massage: response.msg});
+        setUserLoginState({ status: 'error', type: 'account', massage: response.msg });
         message.error(response.msg);
         getCaptchaCode();
       }
@@ -97,7 +100,14 @@ const Login: React.FC = () => {
     }
   };
   const { status, type: loginType, massage } = userLoginState;
-
+  // const GiteeSVG = (props: Partial<CustomIconComponentProps>) => (
+  //   <Icon component={gitee} {...props} />
+  // );
+  const auth = async (source: string) => {
+    //调用第三方
+    const res = await authBindingUsingGET({ source: source });
+    window.location.href = res.msg;
+  };
   useEffect(() => {
     getCaptchaCode();
   }, []);
@@ -121,7 +131,15 @@ const Login: React.FC = () => {
               id="pages.login.loginWith"
               defaultMessage="其他登录方式"
             />,
-            <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
+            <Button
+              key="button"
+              type="primary"
+              shape="circle"
+              onClick={async () => await auth('gitee')}
+            >
+              <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />
+            </Button>,
+            // <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
             <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
             <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
           ]}
@@ -146,9 +164,7 @@ const Login: React.FC = () => {
             />
           </Tabs>
 
-          {status === 'error' && loginType === 'account' && (
-            <LoginMessage content={massage} />
-          )}
+          {status === 'error' && loginType === 'account' && <LoginMessage content={massage} />}
           {type === 'account' && (
             <>
               <ProFormText
@@ -198,45 +214,45 @@ const Login: React.FC = () => {
                 ]}
               />
               <Row>
-              <Col flex={3}>
-                <ProFormText
-                  style={{
-                    float: 'right',
-                  }}
-                  name="code"
-                  placeholder={intl.formatMessage({
-                    id: 'pages.login.code.placeholder',
-                    defaultMessage: '请输入验证',
-                  })}
-                  rules={[
-                    {
-                      required: true,
-                      message: (
-                        <FormattedMessage
-                          id="pages.searchTable.updateForm.ruleName.nameRules"
-                          defaultMessage="请输入验证啊"
-                        />
-                      ),
-                    },
-                  ]}
-                />
-              </Col>
-              <Col flex={2}>
-                <Image
-                  src={captchaCode}
-                  alt="验证码"
-                  style={{
-                    display: 'inline-block',
-                    verticalAlign: 'top',
-                    cursor: 'pointer',
-                    paddingLeft: '10px',
-                    width: '100px',
-                  }}
-                  preview={false}
-                  onClick={() => getCaptchaCode()}
-                />
-              </Col>
-            </Row>
+                <Col flex={3}>
+                  <ProFormText
+                    style={{
+                      float: 'right',
+                    }}
+                    name="code"
+                    placeholder={intl.formatMessage({
+                      id: 'pages.login.code.placeholder',
+                      defaultMessage: '请输入验证',
+                    })}
+                    rules={[
+                      {
+                        required: true,
+                        message: (
+                          <FormattedMessage
+                            id="pages.searchTable.updateForm.ruleName.nameRules"
+                            defaultMessage="请输入验证啊"
+                          />
+                        ),
+                      },
+                    ]}
+                  />
+                </Col>
+                <Col flex={2}>
+                  <Image
+                    src={captchaCode}
+                    alt="验证码"
+                    style={{
+                      display: 'inline-block',
+                      verticalAlign: 'top',
+                      cursor: 'pointer',
+                      paddingLeft: '10px',
+                      width: '100px',
+                    }}
+                    preview={false}
+                    onClick={() => getCaptchaCode()}
+                  />
+                </Col>
+              </Row>
             </>
           )}
 
