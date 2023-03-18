@@ -56,6 +56,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                 .warehouseName(warehouse.getWarehouseName())
                 .inOutBizType(assetCreateRequest.getInOutBizType())
                 .inOutType(InOutType.IN)
+                .batchNo(assetCreateRequest.getBatchNo())
                 .assetRecordDTOList(assetRecordDTOList)
                 .amount(getForRecordListPrice(assetRecordDTOList))
                 .build();
@@ -74,6 +75,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                 .warehouseName(warehouse.getWarehouseName())
                 .inOutBizType(assetCreateRequest.getInOutBizType())
                 .inOutType(InOutType.OUT)
+                .batchNo(assetCreateRequest.getBatchNo())
                 .assetRecordDTOList(assetRecordDTOList)
                 .amount(getForRecordListPrice(assetRecordDTOList))
                 .build();
@@ -82,17 +84,19 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
 
     @Override
     public void assetTranslation(AssetTranslationRequest assetTranslationRequest) {
-        Warehouse warehouse = getWarehouse(assetTranslationRequest.getHouseId());
-        Warehouse translationWarehouse = getWarehouse(assetTranslationRequest.getTranslationHouseId());
+        Warehouse warehouse = getWarehouse(assetTranslationRequest.getWarehouseId());
+        Warehouse translationWarehouse = getWarehouse(assetTranslationRequest.getTranslationWarehouseId());
         List<AssetRecordDTO> assetRecordDTOS = request2DTO(assetTranslationRequest.getAssetProductRequestList());
         TransferModel build = TransferModel.builder()
                 .translationWarehouseName(translationWarehouse.getWarehouseName())
                 .warehouseName(warehouse.getWarehouseName())
-                .translationHouseId(translationWarehouse.getId())
-                .houseId(warehouse.getId())
+                .translationWarehouseId(translationWarehouse.getId())
+                .warehouseId(warehouse.getId())
                 .createUserId(SecurityUtils.getUserId())
                 .createUserName(SecurityUtils.getUsername())
                 .assetRecordDTOList(assetRecordDTOS)
+                .inBatchNo(assetTranslationRequest.getTranslationBatchNo())
+                .outBatchNo(assetTranslationRequest.getBatchNo())
                 .amount(getForRecordListPrice(assetRecordDTOS))
                 .build();
         assetDomainService.handleAssetTransfer(build);

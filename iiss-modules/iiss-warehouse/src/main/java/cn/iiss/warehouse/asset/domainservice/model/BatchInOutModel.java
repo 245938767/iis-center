@@ -27,5 +27,8 @@ public class BatchInOutModel {
     private Long createUserId;
     @FieldDesc(name = "创建人")
     private String createUserName;
+
+    @FieldDesc(name = "批次号")
+    private String batchNo;
     private List<AssetRecordDTO> assetRecordDTOList;
 }

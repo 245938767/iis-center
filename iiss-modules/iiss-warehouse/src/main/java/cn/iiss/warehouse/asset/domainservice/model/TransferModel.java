@@ -12,10 +12,12 @@ import java.util.List;
 @Getter
 @Builder
 public class TransferModel implements Serializable {
-    private Long houseId;
+    private Long warehouseId;
     private String warehouseName;
-    private Long translationHouseId;
+    private Long translationWarehouseId;
     private String translationWarehouseName;
+    private String outBatchNo;
+    private String inBatchNo;
 
     @FieldDesc(name = "批次总金额")
     private BigDecimal amount;
