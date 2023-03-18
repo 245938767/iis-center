@@ -56,7 +56,7 @@ public class SysAuthController extends BaseController {
     private static final Map<String, String> auths = new HashMap<String, String>();
 
     {
-        auths.put("gitee", "{\"clientId\":\"c7a397427526c718ad7cdb17d69e02ff2c8f2f4a0146db1e6a39a631444db963\",\"clientSecret\":\"a68a5bc01dc4095a478580405004d3da33caacb1e67ff64f346fc2756c022377\",\"redirectUri\":\"http://127.0.0.1:80/social-login?source=gitee\"}");
+        auths.put("gitee", "{\"clientId\":\"c7a397427526c718ad7cdb17d69e02ff2c8f2f4a0146db1e6a39a631444db963\",\"clientSecret\":\"a68a5bc01dc4095a478580405004d3da33caacb1e67ff64f346fc2756c022377\",\"redirectUri\":\"http://127.0.0.1:8000/social-login?source=gitee\"}");
 //        auths.put("github", "{\"clientId\":\"Iv1.1be0cdcd71aca63b\",\"clientSecret\":\"0d59d28b43152bc8906011624db37b0fed88d154\",\"redirectUri\":\"http://127.0.0.1:80/social-login?source=github\"}");
         authStateCache = AuthDefaultStateCache.INSTANCE;
     }
