@@ -58,6 +58,13 @@ public class LoginUser implements Serializable
      */
     private SysUser sysUser;
 
+    public LoginUser(){}
+    public LoginUser(Long userId, Long deptId, SysUser user, Set<String> menuPermission) {
+        this.userid=userId;
+        this.sysUser=user;
+        this.permissions=menuPermission;
+    }
+
     public String getToken()
     {
         return token;
