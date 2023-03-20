@@ -1,12 +1,4 @@
-import {
-  AlipayCircleOutlined,
-  LockOutlined,
-  MobileOutlined,
-  TaobaoCircleOutlined,
-  UserOutlined,
-  WeiboCircleOutlined,
-} from '@ant-design/icons';
-// import gitee from './public/icons/gitee.svg';
+import { GithubOutlined, LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons';
 import { Alert, Col, message, Row, Tabs, Image, Button } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { ProFormCaptcha, ProFormCheckbox, ProFormText, LoginForm } from '@ant-design/pro-form';
@@ -16,9 +8,10 @@ import { getCaptchaImage, getFakeCaptcha, login } from '@/services/login';
 
 import styles from './index.less';
 import { clearSessionToken, setSessionToken } from '@/access';
-import Icon, { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
-import { Color } from '@antv/l7-react/lib/component/LayerAttribute';
+import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
+import Icon from '@ant-design/icons/lib/components/Icon';
 import { authBindingUsingGET } from '@/services/system/sysAuthController';
+import GiteeIcon from '@/components/svg/giteesvg';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -52,6 +45,7 @@ const Login: React.FC = () => {
       }));
     }
   };
+
   const getCaptchaCode = async () => {
     const response = await getCaptchaImage();
     const imgdata = `data:image/png;base64,${response.img}`;
@@ -100,13 +94,14 @@ const Login: React.FC = () => {
     }
   };
   const { status, type: loginType, massage } = userLoginState;
-  // const GiteeSVG = (props: Partial<CustomIconComponentProps>) => (
-  //   <Icon component={gitee} {...props} />
-  // );
   const auth = async (source: string) => {
     //调用第三方
     const res = await authBindingUsingGET({ source: source });
-    window.location.href = res.msg;
+    if (res.code == 200) {
+      window.location.href = res.msg;
+    } else {
+      window.location.href = '/';
+    }
   };
   useEffect(() => {
     getCaptchaCode();
@@ -131,17 +126,16 @@ const Login: React.FC = () => {
               id="pages.login.loginWith"
               defaultMessage="其他登录方式"
             />,
-            <Button
-              key="button"
-              type="primary"
-              shape="circle"
+            <div key="GiteeIcon" onClick={async () => await auth('gitee')}>
+              <GiteeIcon className={styles.icon} style={{ fontSize: '32px', color: 'red' }} />
+            </div>,
+            <GithubOutlined
+              key="GithubOutlined"
+              className={styles.icon}
               onClick={async () => await auth('gitee')}
-            >
-              <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />
-            </Button>,
-            // <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
-            <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
-            <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
+            />,
+            // <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
+            // <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
           ]}
           onFinish={async (values) => {
             await handleSubmit(values as API.LoginParams);

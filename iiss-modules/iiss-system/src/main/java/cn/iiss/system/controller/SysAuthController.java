@@ -57,7 +57,7 @@ public class SysAuthController extends BaseController {
 
     {
         auths.put("gitee", "{\"clientId\":\"c7a397427526c718ad7cdb17d69e02ff2c8f2f4a0146db1e6a39a631444db963\",\"clientSecret\":\"a68a5bc01dc4095a478580405004d3da33caacb1e67ff64f346fc2756c022377\",\"redirectUri\":\"http://127.0.0.1:8000/social-login?source=gitee\"}");
-//        auths.put("github", "{\"clientId\":\"Iv1.1be0cdcd71aca63b\",\"clientSecret\":\"0d59d28b43152bc8906011624db37b0fed88d154\",\"redirectUri\":\"http://127.0.0.1:80/social-login?source=github\"}");
+        auths.put("github", "{\"clientId\":\"c9d7bfea717dc4b50d12\",\"clientSecret\":\"40b2f28e695f7416613fd11652ec47d5b574546a\",\"redirectUri\":\"http://127.0.0.1:8000/social-login?source=github\"}");
         authStateCache = AuthDefaultStateCache.INSTANCE;
     }
 
@@ -115,13 +115,13 @@ public class SysAuthController extends BaseController {
                 SysAuthUser authUser = new SysAuthUser();
                 authUser.setAvatar(response.getData().getAvatar());
                 authUser.setUuid(source + response.getData().getUuid());
-                authUser.setUserId(SecurityUtils.getUserId());
+                authUser.setUserId(tokenUser.getUserid());
                 authUser.setUserName(response.getData().getUsername());
                 authUser.setNickName(response.getData().getNickname());
                 authUser.setEmail(response.getData().getEmail());
                 authUser.setSource(source);
                 userMapper.insertAuthUser(authUser);
-                Map<String, Object> token = tokenService.createToken(SecurityUtils.getLoginUser());
+                Map<String, Object> token = tokenService.createToken(tokenUser);
                 return success().put(Constants.TOKEN, token.get("access_token"));
             }
             SysUser authUser = userMapper.selectAuthUserByUuid(source + response.getData().getUuid());

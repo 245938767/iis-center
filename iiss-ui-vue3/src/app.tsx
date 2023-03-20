@@ -17,6 +17,7 @@ import { getUserInfo, getRoutersInfo } from './services/session';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
+const socialLogin = '/social-login';
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
@@ -32,22 +33,41 @@ export async function getInitialState(): Promise<{
   loading?: boolean;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
+  const fetchUserInfoLogin = async () => {
+    try {
+      const resp = await getUserInfo();
+      if (resp === undefined || resp.code !== 200) {
+      } else {
+        return { ...resp.user, permissions: resp.permissions } as API.CurrentUser;
+      }
+    } catch (error) {
+    }
+    return undefined;
+  };
   const fetchUserInfo = async () => {
     try {
       const resp = await getUserInfo();
-      if(resp === undefined || resp.code !== 200) {
+      if (resp === undefined || resp.code !== 200) {
         history.push(loginPath);
       } else {
         return { ...resp.user, permissions: resp.permissions } as API.CurrentUser;
       }
     } catch (error) {
-      history.push(loginPath);
+        history.push(loginPath);
     }
     return undefined;
   };
+  if (history.location.pathname === socialLogin) {
+    return {
+      fetchUserInfo:fetchUserInfoLogin,
+      settings: defaultSettings,
+    };
+  }
   // 如果是登录页面，不执行
   if (history.location.pathname !== loginPath) {
     const currentUser = await fetchUserInfo();
+    console.info('获得用户信息');
+    console.info(currentUser);
     return {
       settings: defaultSettings,
       currentUser,
@@ -70,9 +90,12 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-      // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
-        history.push(loginPath);
+      if (location.pathname === socialLogin) {
+      } else {
+        // 如果没有登录，重定向到 login
+        if (!initialState?.currentUser && location.pathname !== loginPath) {
+          history.push(loginPath);
+        }
       }
     },
     links: isDev

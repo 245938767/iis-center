@@ -223,6 +223,11 @@
                 <version>${hutool.version}</version>
             </dependency>
             <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-http</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>me.zhyd.oauth</groupId>
                 <artifactId>JustAuth</artifactId>
                 <version>1.16.5</version>

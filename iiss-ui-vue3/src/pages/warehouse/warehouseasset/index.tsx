@@ -8,7 +8,7 @@ import { getByWarehouseForGoods } from '@/services/warehouse/warehouseAssetContr
 import WarehousesTree from './components/WarehouseTree';
 import WrapContent from '@/components/WrapContent';
 
-export const getWarehouseData = (params) => {
+export const getWarehouseData = (params: any) => {
   return getByWarehouseForGoods(params).then((resp) => {
     return {
       data: resp.data,

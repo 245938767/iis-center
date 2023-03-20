@@ -22,6 +22,7 @@ import {
 import UpdateForm from './components/edit';
 import { getDict } from '../dict/service';
 import ResetPwd from './components/ResetPwd';
+import RealationAccount from './components/RealationAccount';
 import DeptTree from './components/DeptTree';
 import type { DataNode } from 'antd/lib/tree';
 import { getPostList } from '../post/service';

@@ -422,7 +422,6 @@ export default [
         wrappers: ['@/components/KeepAlive'],
         KeepAlive: true,
         title: 'menu.title.asset',
-        
       },
       {
         name: 'Adjustment',
@@ -456,6 +455,7 @@ export default [
       },
     ],
   },
+  { path: '/social-login', layout: false, name: 'sociallogin', component: './user/auth' },
   {
     path: '/',
     redirect: '/dashboard',

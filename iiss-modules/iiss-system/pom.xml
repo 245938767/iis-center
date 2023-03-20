@@ -77,6 +77,10 @@
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-common-swagger</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+        </dependency>
 
     </dependencies>
 

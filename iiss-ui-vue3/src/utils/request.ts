@@ -46,12 +46,12 @@ const errorHandler = (error: { response: Response }): Response => {
   return response;
 };
 
-function createClient () {
+function createClient() {
   /** 配置request请求时的默认参数 */
   return extend({
     errorHandler, // 默认错误处理
     credentials: 'include', // 默认请求是否带上cookie
-    prefix: defaultSettings.apiBasePath
+    prefix: defaultSettings.apiBasePath,
   });
 }
 
@@ -64,7 +64,15 @@ request.interceptors.request.use((url: string, options: any) => {
   // console.log('-------------------------')
   console.log('request:', url);
   const headers = options.headers ? options.headers : [];
+  console.info(options);
   if (headers['Authorization'] === '' || headers['Authorization'] == null) {
+    // if (url.indexOf('/social-login') > 0) {
+    //   console.info('进入无token是social');
+    //   return {
+    //     url,
+    //     options,
+    //   };
+    // }
     const expireTime = getTokenExpireTime();
     if (expireTime) {
       const left = Number(expireTime) - new Date().getTime();
@@ -91,6 +99,7 @@ request.interceptors.request.use((url: string, options: any) => {
       options: { ...options, headers },
     };
   } else {
+    console.info('进入有token不是social');
     return {
       url,
       options,
@@ -102,8 +111,8 @@ request.interceptors.request.use((url: string, options: any) => {
 request.interceptors.response.use(async (response: Response) => {
   const { status } = response;
   if (status === 401 || status === 403) {
-    const msg = codeMessage[status] || codeMessage[10000]
-    message.warn(`${status} ${msg}`)
+    const msg = codeMessage[status] || codeMessage[10000];
+    message.warn(`${status} ${msg}`);
   }
   //  else if (status === 200) {
   //   const contentType = response.headers.get('content-type');
