@@ -8,8 +8,6 @@ import { getCaptchaImage, getFakeCaptcha, login } from '@/services/login';
 
 import styles from './index.less';
 import { clearSessionToken, setSessionToken } from '@/access';
-import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
-import Icon from '@ant-design/icons/lib/components/Icon';
 import { authBindingUsingGET } from '@/services/system/sysAuthController';
 import GiteeIcon from '@/components/svg/giteesvg';
 
@@ -114,8 +112,8 @@ const Login: React.FC = () => {
       </div>
       <div className={styles.content}>
         <LoginForm
-          logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
+          logo={<img alt="logo" src="/icons/logos.png" />}
+          title="IISS"
           subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,
@@ -126,9 +124,9 @@ const Login: React.FC = () => {
               id="pages.login.loginWith"
               defaultMessage="其他登录方式"
             />,
-            <div key="GiteeIcon" onClick={async () => await auth('gitee')}>
+            <span key="GiteeIcon" onClick={async () => await auth('gitee')}>
               <GiteeIcon className={styles.icon} style={{ fontSize: '32px', color: 'red' }} />
-            </div>,
+            </span>,
             <GithubOutlined
               key="GithubOutlined"
               className={styles.icon}
@@ -149,13 +147,13 @@ const Login: React.FC = () => {
                 defaultMessage: '账户密码登录',
               })}
             />
-            <Tabs.TabPane
+            {/* <Tabs.TabPane
               key="mobile"
               tab={intl.formatMessage({
                 id: 'pages.login.phoneLogin.tab',
                 defaultMessage: '手机号登录',
               })}
-            />
+            /> */}
           </Tabs>
 
           {status === 'error' && loginType === 'account' && <LoginMessage content={massage} />}
