@@ -18,7 +18,7 @@ import {
 import OutputWarehouseTable from './OutputWarehouseTable';
 import TableHeader from './TableHeader';
 import WarehouseSelectro from './WarehouseSelectro';
-import type { ProFormInstance } from '@ant-design/pro-form';
+import { ProFormInstance, ProFormText } from '@ant-design/pro-form';
 import { ModalForm, ProFormDependency, ProFormSelect } from '@ant-design/pro-form';
 import type { ProColumns } from '@ant-design/pro-table';
 import { assetCreateOut } from '@/services/warehouse/assetController';
@@ -84,7 +84,7 @@ const OutputWarehouse: React.FC<OutputWarehouseProps> = (props) => {
   const request = useCallback(async (params) => {
     const resp = await getByWarehouseForGoods(params);
     return {
-      data: resp.rows,
+      data: resp.data,
       success: resp.code === 200,
       total: resp.total,
     };
@@ -104,6 +104,7 @@ const OutputWarehouse: React.FC<OutputWarehouseProps> = (props) => {
       >
         <Row gutter={24}>
           <Col>
+        <ProFormText name="batchNo" label="批次号" />
             <WarehouseSelectro
               name={'warehouseId'}
               label="出库仓"
@@ -117,7 +118,7 @@ const OutputWarehouse: React.FC<OutputWarehouseProps> = (props) => {
           <Col>
             <ProFormDependency name={['warehouseType']}>
               {(values) => {
-                if (values.warehouseType != 3) return undefined;
+                if (values.warehouseType != 'WAREHOUSE_ADJUST_POSiTION') return undefined;
                 return <WarehouseSelectro name={'warehouseAdjustId'} label="调往仓库" />;
               }}
             </ProFormDependency>

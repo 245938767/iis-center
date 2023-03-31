@@ -1,11 +1,11 @@
 import TableSelectionModal from '@/components/TableSelectionModal';
 import type { ModalBaseProps } from '@/types';
 import { isEmpty, objectMap } from '@/utils';
-import type { ProFormInstance } from '@ant-design/pro-form';
+import { ProFormInstance, ProFormText } from '@ant-design/pro-form';
 import { ModalForm, ProFormGroup, ProFormSelect } from '@ant-design/pro-form';
 import type { ActionType } from '@ant-design/pro-table';
 import { useBoolean, useUpdateEffect } from 'ahooks';
-import { Button, Card, message } from 'antd';
+import { Button, Card, Input, message } from 'antd';
 import { map, omit, partialRight, unionWith } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { getGoodsData, productColumn } from '@/pages/product/goods';
@@ -75,6 +75,7 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
         onFinish={handleFinish}
       >
         <ProFormGroup>
+        <ProFormText name="batchNo" label="批次号" />
           <WarehouseSelectro
             name={'warehouseId'}
             label="入库仓"
@@ -88,7 +89,7 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
             label="入库方式"
             width="md"
             name="inOutBizType"
-            initialValue={1}
+            initialValue={'PURCHASE_WAREHOUSE'}
             options={INPUT_WAREHOUSE_TYPE_OPTIONS}
           />
         </ProFormGroup>
