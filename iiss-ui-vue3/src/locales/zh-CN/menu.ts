@@ -78,4 +78,5 @@ export default {
   'menu.title.warehousing': '入仓',
   'menu.title.exwarehouse': '出仓',
   'menu.title.adjustment': '转仓',
+  'menu.title.map': '仓库地图',
 };

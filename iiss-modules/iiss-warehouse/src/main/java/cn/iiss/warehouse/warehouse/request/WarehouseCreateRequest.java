@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 public class WarehouseCreateRequest {
@@ -23,6 +24,8 @@ public class WarehouseCreateRequest {
     private String code;
     @FieldDesc(name = "仓库管理员id")
     private Long warehouseAdminId;
+    @FieldDesc(name = "定位")
+    private List<Integer> lang;
     private String phone;
 
     public Warehouse translationWarehouse(Integer warehouseLevel) {
@@ -36,6 +39,7 @@ public class WarehouseCreateRequest {
                 .isDataInfo(ValidStatus.VALID)
                 .validStatus(ValidStatus.VALID)
                 .wareHouseLevel(warehouseLevel)
+                .lang(lang)
                 .build();
     }
 

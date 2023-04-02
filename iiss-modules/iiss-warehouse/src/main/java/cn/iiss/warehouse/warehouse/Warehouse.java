@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -46,6 +47,8 @@ public class Warehouse implements Serializable {
     private String phone;
     @FieldDesc(name = "仓库级别")
     private Integer wareHouseLevel;
+    @FieldDesc(name="定位")
+    private List<Integer> lang;
 
 
     /**

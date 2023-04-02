@@ -371,7 +371,16 @@ export default [
     routes: [
       {
         path: '/',
-        redirect: '/warehouse/warehouse',
+        redirect: '/warehouse',
+      },
+      {
+        name: 'Map',
+        icon: 'PartitionOutlined',
+        path: '/warehouse',
+        component: 'warehouse/map',
+        wrappers: ['@/components/KeepAlive'],
+        KeepAlive: true,
+        title: 'menu.title.map',
       },
       {
         name: 'Warehouseasset',

@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 public class WarehouseUpdateRequest {
@@ -22,6 +23,8 @@ public class WarehouseUpdateRequest {
     private String code;
     @ApiModelProperty("仓库管理员id")
     private Long warehouseAdminId;
+    @FieldDesc(name = "定位")
+    private List<Integer> lang;
     private String phone;
 
     public Warehouse translationWarehouse(Integer warehouseLevel) {
@@ -32,6 +35,7 @@ public class WarehouseUpdateRequest {
                 .code(code)
                 .warehouseAdminId(warehouseAdminId)
                 .phone(phone)
+                .lang(lang)
                 .wareHouseLevel(warehouseLevel)
                 .build();
     }

@@ -36,6 +36,7 @@ public class WarehouseDTO implements Serializable {
     @FieldDesc(name = "是否有数据")
     private ValidStatus isDataInfo;
     private ValidStatus validStatus;
+    private List<Integer> lang;
 
     private List<WarehouseDTO> children;
 
