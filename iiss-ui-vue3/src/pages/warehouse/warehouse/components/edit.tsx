@@ -61,16 +61,6 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
     return data;
   };
   useEffect(() => {
-  // ac.search("上海曹路", (status: string, result) => {
-  //   if (status === 'complete' && result.tips) {
-  //     const uniq = new Set(result.tips.map((tip: { name: any; }) => tip.name));
-  //     console.info(result);
-  //     console.info(uniq);
-  //     // setOptions(Array.from(uniq));
-  //   } else {
-  //     // setOptions([]);
-  //   }
-  // });
     form.resetFields();
     form.setFieldsValue({
       id: props.values.id,
