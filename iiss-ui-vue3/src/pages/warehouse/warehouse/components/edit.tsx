@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   ProFormDigit,
   ProFormText,
@@ -11,6 +11,7 @@ import { useIntl, FormattedMessage } from 'umi';
 import { getPOISearch } from '@/services/map/mapController';
 import { result } from 'lodash';
 import { Amap, Marker, loadAmap, loadPlugins, usePlugins } from '@amap/amap-react';
+import { useBoolean } from 'ahooks';
 
 /* *
  *
@@ -32,19 +33,37 @@ export type DeptFormProps = {
 
 const DeptForm: React.FC<DeptFormProps> = (props) => {
   const [form] = Form.useForm();
+  const [options, setOptions] = useState([]);
+  const [searchload,setSearchload]=useState(false);
 
   const { statusOptions, deptTree } = props;
-  const AMap = loadPlugins(['AMap.AutoComplete', 'AMap.DistrictSearch']);
-  console.info(AMap)
-  // const ac = useMemo(() => {
-  //   if (AMap) return new AMap.AutoComplete();
-  //   else return null;
-  // }, [AMap]);
+  const AMap = usePlugins(['AMap.AutoComplete']);
+  const ac = useMemo(() => {
+    if (AMap) return new AMap.AutoComplete();
+    else return null;
+  }, [AMap]);
+  const handleSearch = async (kw: any) => {
+    if (!ac) return;
+    if (kw===null|| kw.keyWords==undefined ) {
+      return;
+    }
 
+    const data= await ac.search(kw.keyWords, (status: string, result: any) => {
+      setSearchload(true);
+      if (status === "1" && result.tips) {
+        console.info("ok");
+        return result.tips;
+      } else {
+        setOptions([]);
+        return [];
+      }
+    });
+    return data;
+  };
   useEffect(() => {
-  // ac.search('上海曹路', (status: string, result: { tips: any[] }) => {
+  // ac.search("上海曹路", (status: string, result) => {
   //   if (status === 'complete' && result.tips) {
-  //     const uniq = new Set(result.tips.map((tip) => tip.name));
+  //     const uniq = new Set(result.tips.map((tip: { name: any; }) => tip.name));
   //     console.info(result);
   //     console.info(uniq);
   //     // setOptions(Array.from(uniq));
@@ -191,10 +210,19 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
         <Row gutter={[16, 16]}>
           <Col span={24} order={1}>
             <ProFormSelect
+            showSearch
               name="warehouseAddress"
               label="仓库地址"
               width="xl"
               placeholder="请输入仓库地址"
+              request={handleSearch}
+              debounceTime={1000}
+              fieldProps={{
+                fieldNames:{label:"district",value:"district"},
+                loading: searchload
+              }
+              }
+              // options={options}
               rules={[
                 {
                   required: false,

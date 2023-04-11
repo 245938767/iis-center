@@ -138,5 +138,7 @@
   },
   "gitHooks": {
     "commit-msg": "fabric verify-commit"
-  }
+  },
+  "proxy": "http://175.24.167.229:80"   
+
 }
