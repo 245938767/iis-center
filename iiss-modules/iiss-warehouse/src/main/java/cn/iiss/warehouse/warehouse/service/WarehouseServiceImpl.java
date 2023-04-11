@@ -6,6 +6,7 @@ import cn.iiss.common.core.exception.ServiceException;
 import cn.iiss.warehouse.warehouseasset.WarehouseAsset;
 import cn.iiss.warehouse.warehouseasset.mapper.WarehouseAssetMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.iiss.commons.constants.ValidStatus;
@@ -68,7 +69,21 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
     @Override
     public List<WarehouseDTO> getTreeData() {
         List<Warehouse> list = list();
-        return translationTree(list);
+        Map<Long, Long> collect = warehouseAssetMapper.selectList(new QueryWrapper<WarehouseAsset>()
+                        .select("warehouse_id", "sum(product_num) as product_num")
+                        .groupBy("warehouse_id"))
+                .stream().collect(Collectors.toMap(WarehouseAsset::getWarehouseId, WarehouseAsset::getProductNum));
+        return translationTree(list,collect);
+    }
+
+    @Override
+    public List<WarehouseDTO> getChildData() {
+        List<Warehouse> list = list(new LambdaQueryWrapper<Warehouse>().eq(Warehouse::getIsDataInfo,ValidStatus.VALID));
+        Map<Long, Long> collect = warehouseAssetMapper.selectList(new QueryWrapper<WarehouseAsset>()
+                        .select("warehouse_id", "sum(product_num) as product_num")
+                        .groupBy("warehouse_id"))
+                .stream().collect(Collectors.toMap(WarehouseAsset::getWarehouseId, WarehouseAsset::getProductNum));
+        return translationChildTree(list,collect);
     }
 
     @Override
@@ -83,14 +98,45 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
         return getById(id).warehouse2DTO();
     }
 
-    private List<WarehouseDTO> translationTree(List<Warehouse> warehouses) {
+    private List<WarehouseDTO> translationChildTree(List<Warehouse> warehouses,Map<Long,Long> map) {
         Map<Long, WarehouseDTO> collect = warehouses.stream().map(Warehouse::warehouse2DTO).collect(Collectors.toMap(WarehouseDTO::getId, Function.identity()));
         List<WarehouseDTO> warehouseDTOList = new ArrayList<>();
         collect.forEach((id, data) -> {
+            if (!map.isEmpty()){
+                Long aLong = map.get(data.getId());
+                if (aLong!=null){
+                    data.setProductNum(aLong);
+                }else{
+                    data.setProductNum(0L);
+                }
+            }else{
+                data.setProductNum(0L);
+            }
+                warehouseDTOList.add(data);
+        });
+        return warehouseDTOList;
+    }
+    private List<WarehouseDTO> translationTree(List<Warehouse> warehouses,Map<Long,Long> map) {
+        Map<Long, WarehouseDTO> collect = warehouses.stream().map(Warehouse::warehouse2DTO).collect(Collectors.toMap(WarehouseDTO::getId, Function.identity()));
+        List<WarehouseDTO> warehouseDTOList = new ArrayList<>();
+        collect.forEach((id, data) -> {
+            if (!map.isEmpty()){
+                Long aLong = map.get(data.getId());
+                if (aLong!=null){
+                    data.setProductNum(aLong);
+                }else{
+                    data.setProductNum(0L);
+                }
+            }else{
+                data.setProductNum(0L);
+            }
             if (data.getParentId() == null || data.getParentId() == 0) {
                 warehouseDTOList.add(data);
             } else {
-                collect.get(data.getParentId()).setList(data);
+                WarehouseDTO warehouseDTO = collect.get(data.getParentId());
+                if (warehouseDTO!=null){
+                    warehouseDTO.setList(data);
+                }
             }
         });
         return warehouseDTOList;

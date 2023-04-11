@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -25,7 +26,7 @@ public class WarehouseCreateRequest {
     @FieldDesc(name = "仓库管理员id")
     private Long warehouseAdminId;
     @FieldDesc(name = "定位")
-    private List<Integer> lang;
+    private List<BigDecimal> lang;
     private String phone;
 
     public Warehouse translationWarehouse(Integer warehouseLevel) {

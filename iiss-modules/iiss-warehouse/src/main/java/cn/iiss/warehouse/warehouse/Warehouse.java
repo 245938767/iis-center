@@ -2,15 +2,20 @@ package cn.iiss.warehouse.warehouse;
 
 import cn.iiss.common.core.utils.bean.BeanUtils;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.constants.ValidStatus;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -21,6 +26,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Accessors(chain = true)
+@TableName(autoResultMap = true)
 public class Warehouse implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -48,7 +55,8 @@ public class Warehouse implements Serializable {
     @FieldDesc(name = "仓库级别")
     private Integer wareHouseLevel;
     @FieldDesc(name="定位")
-    private List<Integer> lang;
+    @TableField(typeHandler = FastjsonTypeHandler.class)
+    private List<BigDecimal> lang;
 
 
     /**

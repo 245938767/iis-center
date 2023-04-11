@@ -59,6 +59,14 @@ export async function getById(
 }
 
 /** 获得树形列表 POST /warehouse/v1/getTreeList */
+export async function getChildList(options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/warehouse/warehouse/v1/getChildList', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
+/** 获得树形列表 POST /warehouse/v1/getTreeList */
 export async function getTreeList(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/warehouse/warehouse/v1/getTreeList', {
     method: 'POST',

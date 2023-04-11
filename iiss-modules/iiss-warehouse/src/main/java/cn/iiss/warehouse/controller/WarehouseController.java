@@ -46,6 +46,12 @@ public class WarehouseController {
         List<WarehouseDTO> treeData = warehouseService.getTreeData();
         return AjaxResult.success(treeData);
     }
+    @PostMapping("/getChildList")
+    @ApiOperation(value = "获得树形列表", nickname = "getChildList")
+    public AjaxResult getChildList() {
+        List<WarehouseDTO> treeData = warehouseService.getChildData();
+        return AjaxResult.success(treeData);
+    }
 
     @PostMapping("/getParentOneList/{id}")
     @ApiOperation(value = "获得列表", nickname = "getTreeList")

@@ -53,6 +53,12 @@ public interface IWarehouseService extends IService<Warehouse> {
     public List<WarehouseDTO> getTreeData();
 
     /**
+     * 获得子数据
+     * @return
+     */
+    public List<WarehouseDTO> getChildData();
+
+    /**
      * 获得某个数据子列表
      *
      * @return

@@ -1,7 +1,16 @@
-import React, { useEffect } from 'react';
-import { ProFormDigit, ProFormText, ProFormRadio, ProFormTreeSelect } from '@ant-design/pro-form';
+import React, { useEffect, useMemo } from 'react';
+import {
+  ProFormDigit,
+  ProFormText,
+  ProFormRadio,
+  ProFormTreeSelect,
+  ProFormSelect,
+} from '@ant-design/pro-form';
 import { Form, Modal, Row, Col } from 'antd';
 import { useIntl, FormattedMessage } from 'umi';
+import { getPOISearch } from '@/services/map/mapController';
+import { result } from 'lodash';
+import { Amap, Marker, loadAmap, loadPlugins, usePlugins } from '@amap/amap-react';
 
 /* *
  *
@@ -25,8 +34,24 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
   const [form] = Form.useForm();
 
   const { statusOptions, deptTree } = props;
+  const AMap = loadPlugins(['AMap.AutoComplete', 'AMap.DistrictSearch']);
+  console.info(AMap)
+  // const ac = useMemo(() => {
+  //   if (AMap) return new AMap.AutoComplete();
+  //   else return null;
+  // }, [AMap]);
 
   useEffect(() => {
+  // ac.search('上海曹路', (status: string, result: { tips: any[] }) => {
+  //   if (status === 'complete' && result.tips) {
+  //     const uniq = new Set(result.tips.map((tip) => tip.name));
+  //     console.info(result);
+  //     console.info(uniq);
+  //     // setOptions(Array.from(uniq));
+  //   } else {
+  //     // setOptions([]);
+  //   }
+  // });
     form.resetFields();
     form.setFieldsValue({
       id: props.values.id,
@@ -89,19 +114,19 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
           <Col span={24} order={1}>
             <ProFormTreeSelect
               name="parentId"
-              label='上级仓库:'
+              label="上级仓库:"
               request={async () => {
                 return deptTree;
               }}
-              fieldProps={{fieldNames:{label:'warehouseName',value:'id',children:'children'}}}
+              fieldProps={{
+                fieldNames: { label: 'warehouseName', value: 'id', children: 'children' },
+              }}
               width="xl"
               placeholder="请选择上级仓库"
               rules={[
                 {
                   required: true,
-                  message: (
-                    "请选择上级部门!"
-                  ),
+                  message: '请选择上级部门!',
                 },
               ]}
             />
@@ -165,7 +190,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
         </Row>
         <Row gutter={[16, 16]}>
           <Col span={24} order={1}>
-            <ProFormText
+            <ProFormSelect
               name="warehouseAddress"
               label="仓库地址"
               width="xl"

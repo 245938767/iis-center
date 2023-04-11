@@ -12,6 +12,7 @@ AmapReactConfig.key = 'ae6d6658a2f94a3d0ed6a1c88ea51453';
 AmapReactConfig.plugins = [
   'AMap.ToolBar',
   'AMap.MoveAnimation',
+  'AMap.PlaceSearch'
   // 在此配置你需要预加载的插件，如果不配置，在使用到的时候会自动异步加载
 ];
 const clearCache = () => {

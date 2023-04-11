@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,9 @@ public class WarehouseDTO implements Serializable {
     @FieldDesc(name = "是否有数据")
     private ValidStatus isDataInfo;
     private ValidStatus validStatus;
-    private List<Integer> lang;
+    private List<BigDecimal> lang;
+    @FieldDesc(name = "仓库中的商品数量")
+    private Long productNum;
 
     private List<WarehouseDTO> children;
 
