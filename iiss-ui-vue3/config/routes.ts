@@ -464,6 +464,49 @@ export default [
       },
     ],
   },
+
+  {
+    name: 'BOT',
+    icon: 'BugOutlined',
+    path: '/bot',
+    component: '@/layouts/TabsLayout',
+    routes: [
+      {
+        path: '/',
+        redirect: '/bot',
+      },
+      {
+        name: 'bot',
+        icon: 'PartitionOutlined',
+        path: '/bot',
+        component: 'gpt',
+        wrappers: ['@/components/KeepAlive'],
+        KeepAlive: true,
+        title: 'menu.title.ai',
+      },
+    ],
+  },
+  {
+    name: 'Logistics',
+    icon: 'BugOutlined',
+    path: '/logistics',
+    component: '@/layouts/TabsLayout',
+    routes: [
+      {
+        path: '/',
+        redirect: '/logistics',
+      },
+      {
+        name: 'logistics',
+        icon: 'PartitionOutlined',
+        path: '/logistics',
+        component: 'gpt',
+        wrappers: ['@/components/KeepAlive'],
+        KeepAlive: true,
+        title: 'menu.title.logistics',
+      },
+    ],
+  },
   { path: '/social-login', layout: false, name: 'sociallogin', component: './user/auth' },
   {
     path: '/',

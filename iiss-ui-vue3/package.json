@@ -73,6 +73,7 @@
     "btoa": "^1.2.1",
     "captchapng3": "^1.0.7",
     "classnames": "^2.2.6",
+    "emoji-picker-react": "^4.4.8",
     "g2": "^2.3.13",
     "gg-editor": "^2.0.2",
     "lodash": "^4.17.11",
@@ -81,16 +82,25 @@
     "numeral": "^2.0.6",
     "nzh": "^1.0.3",
     "omit.js": "^2.0.2",
+    "package": "^1.0.1",
     "qs": "^6.9.0",
+    "rc-virtual-list": "^3.4.13",
     "react": "^17.0.0",
     "react-cropper": "^2.1.8",
     "react-dev-inspector": "^1.1.1",
     "react-dom": "^17.0.0",
     "react-fittext": "^1.0.0",
     "react-helmet-async": "^1.0.4",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-intl": "^5.24.6",
+    "react-markdown": "^8.0.6",
     "react-router": "^4.3.1",
     "react-sortable-hoc": "^2.0.0",
+    "rehype-highlight": "^6.0.0",
+    "rehype-katex": "^6.0.2",
+    "remark-breaks": "^3.0.2",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
     "umi": "^3.5.0",
     "umi-plugin-keep-alive": "^0.0.1-beta.18",
     "umi-request": "^1.0.8",
@@ -138,7 +148,5 @@
   },
   "gitHooks": {
     "commit-msg": "fabric verify-commit"
-  },
-  "proxy": "http://175.24.167.229:80"   
-
+  }
 }

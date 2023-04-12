@@ -79,4 +79,7 @@ export default {
   'menu.title.exwarehouse': '出仓',
   'menu.title.adjustment': '转仓',
   'menu.title.map': '仓库地图',
+  'menu.title.ai': '系统机器人',
+  'menu.title.logistics': '物流模块',
+  'menu.title.order': '订单模块',
 };

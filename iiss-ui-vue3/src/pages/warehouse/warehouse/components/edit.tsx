@@ -8,10 +8,7 @@ import {
 } from '@ant-design/pro-form';
 import { Form, Modal, Row, Col } from 'antd';
 import { useIntl, FormattedMessage } from 'umi';
-import { getPOISearch } from '@/services/map/mapController';
-import { result } from 'lodash';
-import { Amap, Marker, loadAmap, loadPlugins, usePlugins } from '@amap/amap-react';
-import { useBoolean } from 'ahooks';
+import { usePlugins } from '@amap/amap-react';
 
 /* *
  *

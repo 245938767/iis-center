@@ -1,6 +1,5 @@
 package cn.iiss.openAI;
 
-import cn.hutool.core.date.DateTime;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
@@ -11,9 +10,9 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class OpenAIUserInfo {
     private Long id;
-    private Long user_id;
+    private Long userId;
     private String userInputInfo;
-    private String aioutInfo;
+    private String aiOutInfo;
     private Date createTime;
 
 }
