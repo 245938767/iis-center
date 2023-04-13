@@ -212,7 +212,35 @@ const OpenAI: React.FC = () => {
           </InfiniteScroll>
         </div>
         <div>
-          <ProFormText width='xl'></ProFormText>
+ <div className={styles['chat-input-panel']}>
+            {/* <PromptHints prompts={promptHints} onPromptSelect={onPromptSelect} /> */}
+            <div className={styles['chat-input-panel-inner']}>
+            {/* <ProFormText width="xl" name="name" label="name" /> */}
+
+              <textarea
+                // ref={inputRef}
+                className={styles['chat-input']}
+                placeholder={'输入'}
+                // onInput={(e) => onInput(e.currentTarget.value)}
+                // value={userInput}
+                // onKeyDown={onInputKeyDown}
+                // onFocus={() => setAutoScroll(true)}
+                onBlur={() => {
+                  // setAutoScroll(false);
+                  //   setTimeout(() => setPromptHints([]), 500);
+                }}
+                // autoFocus={!props?.sideBarShowing}
+                // rows={inputRows}
+              />
+              <Button
+                // icon={<SendWhiteIcon />}
+                // text={"发送"}
+                className={styles['chat-input-send']}
+                // noDark
+                // onClick={onUserSubmit}
+              >send</Button>
+            </div>
+          </div>
         </div>
       </WrapContent>
     </>
