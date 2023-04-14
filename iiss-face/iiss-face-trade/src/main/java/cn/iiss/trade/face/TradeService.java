@@ -18,28 +18,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(contextId = "tradeService", value = ServiceNameConstants.TRADE_SERVICE, fallbackFactory = TradeFallbackFactory.class)
 public interface TradeService {
 
-    @PostMapping("createOrderBase")
+    @PostMapping("/orderBase/v1/createOrderBase")
     @ApiOperation(value = "创建订单", nickname = "createorder")
     public JsonObject<Long> createOrderBase(@RequestBody OrderBaseCreateRequest request);
 
     /**
      * update request
      */
-    @PostMapping("updateOrderBase")
+    @PostMapping("/orderBase/v1/updateOrderBase")
     @ApiOperation(value = "更新订单", nickname = "updateOrder")
     public JsonObject<String> updateOrderBase(@RequestBody OrderBaseUpdateRequest request);
 
     /**
      * valid
      */
-    @PostMapping("valid/{id}")
+    @PostMapping("/orderBase/v1/valid/{id}")
     @ApiOperation(value = "校验订单", nickname = "validOrder")
     public JsonObject<String> validOrderBase(@PathVariable Long id);
 
     /**
      * invalid
      */
-    @PostMapping("invalid/{id}")
+    @PostMapping("/orderBase/v1/invalid/{id}")
     @ApiOperation(value = "取消订单", nickname = "invalidOrder")
     public JsonObject<String> invalidOrderBase(@PathVariable Long id);
 
@@ -47,13 +47,13 @@ public interface TradeService {
      * findById
      */
     @ApiOperation(value = "查询订单", nickname = "findByIdOrder")
-    @GetMapping("findById/{id}")
+    @GetMapping("/orderBase/v1/findById/{id}")
     public JsonObject<OrderBaseResponse> findById(@PathVariable Long id);
 
     /**
      * findByPage request
      */
-    @PostMapping("findByPage")
+    @PostMapping("/orderBase/v1/findByPage")
     @ApiOperation(value = "分页查询订单", nickname = "findByPageOrder")
     public JsonObject<TableDataInfo> findByPage(
             @RequestBody OrderBaseQueryRequest request);
@@ -62,14 +62,14 @@ public interface TradeService {
      * orderComplete
      */
     @ApiOperation(value = "订单完成", nickname = "orderComplete")
-    @GetMapping("orderComplete/{id}")
+    @GetMapping("/orderBase/v1/orderComplete/{id}")
     public JsonObject orderComplete(@PathVariable Long id);
 
     /**
      * orderComplete
      */
     @ApiOperation(value = "订单取消", nickname = "orderCancle")
-    @GetMapping("orderCancle/{id}")
+    @GetMapping("/orderBase/v1/orderCancle/{id}")
     public JsonObject orderCancle(@PathVariable Long id);
 
 }
