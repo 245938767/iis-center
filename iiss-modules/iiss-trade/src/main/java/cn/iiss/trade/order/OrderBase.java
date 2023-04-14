@@ -19,8 +19,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -29,7 +27,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @TableName(autoResultMap = true)
 @Data
 public class OrderBase extends BaseMybatisAggregate {
