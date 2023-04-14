@@ -1,7 +1,9 @@
 package cn.iiss.warehouse.assetrecord;
 
 import cn.iiss.commons.annotation.FieldDesc;
-import cn.iiss.warehouse.asset.InOutType;
+import cn.iiss.warehouse.face.model.AssetRecord;
+import cn.iiss.warehouse.face.model.InOutType;
+import cn.iiss.warehouse.face.model.WarehouseAssetBizType;
 import lombok.Builder;
 import lombok.Data;
 

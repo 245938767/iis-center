@@ -1,6 +1,6 @@
 package cn.iiss.warehouse.asset.events;
 
-import cn.iiss.warehouse.asset.Asset;
+import cn.iiss.warehouse.face.model.Asset;
 import cn.iiss.warehouse.asset.domainservice.model.BatchInOutModel;
 import lombok.Value;
 

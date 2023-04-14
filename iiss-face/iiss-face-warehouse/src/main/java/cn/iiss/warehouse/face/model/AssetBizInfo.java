@@ -1,7 +1,5 @@
-package cn.iiss.warehouse.asset.domainservice.model;
+package cn.iiss.warehouse.face.model;
 
-import cn.iiss.warehouse.asset.InOutBizType;
-import cn.iiss.warehouse.asset.InOutType;
 import cn.iiss.commons.annotation.FieldDesc;
 import lombok.Builder;
 import lombok.Getter;

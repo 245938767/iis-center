@@ -1,10 +1,9 @@
-package cn.iiss.warehouse.asset;
+package cn.iiss.warehouse.face.model;
 
 import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.commons.annotation.FieldDesc;
-import cn.iiss.warehouse.asset.domainservice.model.AssetBizInfo;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;

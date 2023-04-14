@@ -1,9 +1,9 @@
 package cn.iiss.warehouse.assetlifecycle;
 
 import cn.iiss.commons.annotation.FieldDesc;
-import cn.iiss.warehouse.asset.InOutBizType;
-import cn.iiss.warehouse.asset.InOutType;
-import cn.iiss.warehouse.assetrecord.WarehouseAssetBizType;
+import cn.iiss.warehouse.face.model.InOutBizType;
+import cn.iiss.warehouse.face.model.InOutType;
+import cn.iiss.warehouse.face.model.WarehouseAssetBizType;
 import lombok.Builder;
 import lombok.Getter;
 

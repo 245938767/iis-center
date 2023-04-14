@@ -1,9 +1,9 @@
-package cn.iiss.warehouse.asset.response;
+package cn.iiss.warehouse.face.response;
 
-import cn.iiss.warehouse.asset.Asset;
-import cn.iiss.warehouse.asset.InOutBizType;
-import cn.iiss.warehouse.asset.InOutType;
-import cn.iiss.warehouse.assetrecord.AssetRecord;
+import cn.iiss.warehouse.face.model.Asset;
+import cn.iiss.warehouse.face.model.AssetRecord;
+import cn.iiss.warehouse.face.model.InOutBizType;
+import cn.iiss.warehouse.face.model.InOutType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;

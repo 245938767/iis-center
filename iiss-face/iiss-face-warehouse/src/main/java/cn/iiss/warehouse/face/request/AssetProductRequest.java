@@ -1,7 +1,7 @@
-package cn.iiss.warehouse.asset.request;
+package cn.iiss.warehouse.face.request;
 
 import cn.iiss.commons.model.Request;
-import cn.iiss.warehouse.assetrecord.WarehouseAssetBizType;
+import cn.iiss.warehouse.face.model.WarehouseAssetBizType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

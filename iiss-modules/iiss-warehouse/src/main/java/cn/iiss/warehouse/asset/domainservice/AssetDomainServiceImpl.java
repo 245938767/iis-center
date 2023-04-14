@@ -1,9 +1,8 @@
 package cn.iiss.warehouse.asset.domainservice;
 
 import cn.hutool.core.lang.Assert;
-import cn.iiss.warehouse.asset.Asset;
-import cn.iiss.warehouse.asset.InOutType;
-import cn.iiss.warehouse.asset.domainservice.model.AssetBizInfo;
+import cn.iiss.warehouse.face.model.Asset;
+import cn.iiss.warehouse.face.model.AssetBizInfo;
 import cn.iiss.warehouse.asset.domainservice.model.BatchInOutModel;
 import cn.iiss.warehouse.asset.domainservice.model.TransferModel;
 import cn.iiss.warehouse.asset.mapper.AssetMapper;
@@ -11,8 +10,9 @@ import cn.iiss.warehouse.asset.AssetErrorCode;
 import cn.iiss.common.core.exception.ServiceException;
 import cn.iiss.mybatis.support.EntityOperations;
 import cn.iiss.commons.constants.ValidStatus;
-import cn.iiss.warehouse.asset.InOutBizType;
 import cn.iiss.warehouse.asset.events.AssetEvents;
+import cn.iiss.warehouse.face.model.InOutBizType;
+import cn.iiss.warehouse.face.model.InOutType;
 import cn.iiss.warehouse.warehouse.Warehouse;
 import cn.iiss.warehouse.warehouse.mapper.WarehouseMapper;
 import lombok.RequiredArgsConstructor;

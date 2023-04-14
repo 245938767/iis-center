@@ -3,10 +3,11 @@ package cn.iiss.warehouse.controller;
 import cn.iiss.common.core.web.controller.BaseController;
 import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.common.core.web.page.TableDataInfo;
-import cn.iiss.warehouse.asset.request.AssetCreateRequest;
-import cn.iiss.warehouse.asset.request.AssetQueryRequest;
-import cn.iiss.warehouse.asset.request.AssetTranslationRequest;
-import cn.iiss.warehouse.asset.response.AssetResponse;
+import cn.iiss.commons.model.JsonObject;
+import cn.iiss.warehouse.face.request.AssetCreateRequest;
+import cn.iiss.warehouse.face.request.AssetQueryRequest;
+import cn.iiss.warehouse.face.request.AssetTranslationRequest;
+import cn.iiss.warehouse.face.response.AssetResponse;
 import cn.iiss.warehouse.asset.service.IAssetService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -42,12 +43,11 @@ public class AssetController extends BaseController {
     }
 
 
-
     @GetMapping("get/{batchNo}")
     @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
-    public AjaxResult assetGetByBatchNo(@PathVariable String batchNo) {
+    public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable String batchNo) {
         AssetResponse assetByBatchNo = assetService.getAssetByBatchNo(batchNo);
-        return AjaxResult.success(assetByBatchNo);
+        return JsonObject.success(assetByBatchNo);
     }
 
     @PostMapping("/getPage")

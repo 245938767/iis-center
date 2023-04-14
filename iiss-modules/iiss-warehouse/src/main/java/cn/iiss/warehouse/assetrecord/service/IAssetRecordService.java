@@ -1,9 +1,9 @@
 package cn.iiss.warehouse.assetrecord.service;
 
-import cn.iiss.warehouse.asset.Asset;
+import cn.iiss.warehouse.face.model.Asset;
 import cn.iiss.warehouse.assetrecord.AssetRecordUpdate;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.iiss.warehouse.assetrecord.AssetRecord;
+import cn.iiss.warehouse.face.model.AssetRecord;
 import cn.iiss.warehouse.assetrecord.AssetRecordDTO;
 
 import java.util.List;

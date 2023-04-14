@@ -16,5 +16,27 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+<dependencies>
+    <dependency>
+        <groupId>cn.iiss</groupId>
+        <artifactId>iiss-commons</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>cn.iiss</groupId>
+        <artifactId>iiss-common-core</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>cn.iiss</groupId>
+        <artifactId>iiss-common-swagger</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>cn.iiss</groupId>
+        <artifactId>iiss-mybatisplus-spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+    </dependency>
 
+</dependencies>
 </project>

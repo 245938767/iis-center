@@ -101,6 +101,11 @@
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-face-product</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.iiss</groupId>
+            <artifactId>iiss-face-warehouse</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
 
     </dependencies>

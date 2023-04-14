@@ -1,9 +1,11 @@
 package cn.iiss.warehouse.assetrecord;
 
-import cn.iiss.warehouse.asset.InOutType;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.constants.ValidStatus;
 
+import cn.iiss.warehouse.face.model.AssetRecord;
+import cn.iiss.warehouse.face.model.InOutType;
+import cn.iiss.warehouse.face.model.WarehouseAssetBizType;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -44,7 +46,7 @@ public class AssetRecordDTO implements Serializable {
     @FieldDesc(name = "订单号")
     private String orderNo;
 
-    public AssetRecord transAssetRecord(String batchNo,Long assetId,Long houseId,String houseName, InOutType inOutType){
+    public AssetRecord transAssetRecord(String batchNo, Long assetId, Long houseId, String houseName, InOutType inOutType){
         return AssetRecord.builder()
                 .inOutType(inOutType)
                 .assetId(assetId)

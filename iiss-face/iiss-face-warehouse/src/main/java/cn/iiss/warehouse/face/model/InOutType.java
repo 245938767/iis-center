@@ -1,4 +1,4 @@
-package cn.iiss.warehouse.asset;
+package cn.iiss.warehouse.face.model;
 
 import cn.iiss.commons.constants.BaseEnum;
 

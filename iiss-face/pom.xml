@@ -14,6 +14,7 @@
         <module>iiss-face-openAI</module>
         <module>iiss-face-flowNo</module>
         <module>iiss-face-trade</module>
+        <module>iiss-face-warehouse</module>
     </modules>
 
     <artifactId>iiss-face</artifactId>

@@ -1,25 +1,26 @@
 package cn.iiss.warehouse.asset.service;
 
 import cn.iiss.product.face.model.Product;
-import cn.iiss.warehouse.asset.Asset;
+import cn.iiss.warehouse.face.model.Asset;
 import cn.iiss.warehouse.asset.domainservice.IAssetDomainService;
 import cn.iiss.warehouse.asset.domainservice.model.TransferModel;
 import cn.iiss.warehouse.asset.mapper.AssetMapper;
-import cn.iiss.warehouse.asset.request.AssetCreateRequest;
-import cn.iiss.warehouse.asset.request.AssetProductRequest;
-import cn.iiss.warehouse.asset.request.AssetQueryRequest;
-import cn.iiss.warehouse.asset.request.AssetTranslationRequest;
 import cn.iiss.warehouse.asset.AssetErrorCode;
 import cn.iiss.common.core.exception.ServiceException;
 import cn.iiss.common.security.utils.SecurityUtils;
 import cn.iiss.product.face.ProductService;
+import cn.iiss.warehouse.face.model.InOutBizType;
+import cn.iiss.warehouse.face.model.InOutType;
+import cn.iiss.warehouse.face.request.AssetCreateRequest;
+import cn.iiss.warehouse.face.request.AssetProductRequest;
+import cn.iiss.warehouse.face.request.AssetQueryRequest;
+import cn.iiss.warehouse.face.request.AssetTranslationRequest;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.iiss.commons.constants.ValidStatus;
-import cn.iiss.warehouse.asset.InOutType;
 import cn.iiss.warehouse.asset.domainservice.model.BatchInOutModel;
-import cn.iiss.warehouse.asset.response.AssetResponse;
-import cn.iiss.warehouse.assetrecord.AssetRecord;
+import cn.iiss.warehouse.face.response.AssetResponse;
+import cn.iiss.warehouse.face.model.AssetRecord;
 import cn.iiss.warehouse.assetrecord.AssetRecordDTO;
 import cn.iiss.warehouse.assetrecord.service.IAssetRecordService;
 import cn.iiss.warehouse.warehouse.Warehouse;
@@ -112,7 +113,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     @Override
     public List<AssetResponse> getAssetByPage(AssetQueryRequest queryRequest) {
 
-        return list(queryRequest.getQueryWrapper()).stream().map(x -> {
+        return list(getQueryWrapper(queryRequest)).stream().map(x -> {
             //获得数据
             List<AssetRecord> list = assetRecordService.list(
                     new LambdaQueryWrapper<AssetRecord>().eq(AssetRecord::getAssetId, x.getId()));
@@ -177,4 +178,31 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     private BigDecimal getForRecordListPrice(List<AssetRecordDTO> assetRecordDTOList) {
         return assetRecordDTOList.stream().map(price -> Optional.ofNullable(price.getAmount()).orElse(BigDecimal.ZERO)).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+    private LambdaQueryWrapper<Asset> getQueryWrapper(AssetQueryRequest assetQueryRequest) {
+
+        LambdaQueryWrapper<Asset> assetLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        switch (assetQueryRequest.getWarehouseRecordStatus()) {
+
+            case 2:
+                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.OUT);
+                break;
+            case 3:
+                assetLambdaQueryWrapper.eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_IN).or().eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_OUT);
+                break;
+            default:
+                //入库
+                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.IN);
+        }
+        if (assetQueryRequest.getWarehouseId() != null) {
+            assetLambdaQueryWrapper.eq(Asset::getWarehouseId, assetQueryRequest.getWarehouseId());
+        }
+        if (assetQueryRequest.getInOutBizType() != null) {
+            assetLambdaQueryWrapper.eq(Asset::getInOutBizType, assetQueryRequest.getInOutType());
+        }
+        if (assetQueryRequest.getInOutType() != null) {
+            assetLambdaQueryWrapper.eq(Asset::getInOutType, assetQueryRequest.getInOutType());
+        }
+        return assetLambdaQueryWrapper;
+    }
+
 }

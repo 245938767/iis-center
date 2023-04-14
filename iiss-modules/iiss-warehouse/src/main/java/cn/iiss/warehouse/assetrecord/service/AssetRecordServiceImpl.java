@@ -1,10 +1,10 @@
 package cn.iiss.warehouse.assetrecord.service;
 
+import cn.iiss.warehouse.face.model.InOutType;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.iiss.warehouse.asset.Asset;
-import cn.iiss.warehouse.asset.InOutType;
-import cn.iiss.warehouse.assetrecord.AssetRecord;
+import cn.iiss.warehouse.face.model.Asset;
+import cn.iiss.warehouse.face.model.AssetRecord;
 import cn.iiss.warehouse.assetrecord.AssetRecordDTO;
 import cn.iiss.warehouse.assetrecord.AssetRecordUpdate;
 import cn.iiss.warehouse.assetrecord.mapper.AssetRecordMapper;

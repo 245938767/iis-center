@@ -1,9 +1,9 @@
 package cn.iiss.warehouse.asset.domainservice.model;
 
-import cn.iiss.warehouse.asset.InOutBizType;
-import cn.iiss.warehouse.asset.InOutType;
 import cn.iiss.warehouse.assetrecord.AssetRecordDTO;
 import cn.iiss.commons.annotation.FieldDesc;
+import cn.iiss.warehouse.face.model.InOutBizType;
+import cn.iiss.warehouse.face.model.InOutType;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -1,6 +1,5 @@
-package cn.iiss.warehouse.assetrecord;
+package cn.iiss.warehouse.face.model;
 
-import cn.iiss.warehouse.asset.InOutType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.commons.annotation.FieldDesc;

@@ -1,11 +1,11 @@
 package cn.iiss.warehouse.asset.service;
 
-import cn.iiss.warehouse.asset.Asset;
-import cn.iiss.warehouse.asset.request.AssetCreateRequest;
-import cn.iiss.warehouse.asset.response.AssetResponse;
+import cn.iiss.warehouse.face.model.Asset;
+import cn.iiss.warehouse.face.response.AssetResponse;
+import cn.iiss.warehouse.face.request.AssetCreateRequest;
+import cn.iiss.warehouse.face.request.AssetQueryRequest;
+import cn.iiss.warehouse.face.request.AssetTranslationRequest;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.iiss.warehouse.asset.request.AssetQueryRequest;
-import cn.iiss.warehouse.asset.request.AssetTranslationRequest;
 
 import java.util.List;
 

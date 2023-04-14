@@ -1,10 +1,8 @@
 package cn.iiss.warehouse.asset.events;
 
-import cn.iiss.commons.constants.ValidStatus;
-import cn.iiss.warehouse.asset.Asset;
+import cn.iiss.warehouse.face.model.Asset;
 import cn.iiss.warehouse.asset.domainservice.model.BatchInOutModel;
 import cn.iiss.warehouse.assetlifecycle.AssetLifecycleDTO;
-import cn.iiss.warehouse.assetrecord.AssetRecord;
 import cn.iiss.warehouse.assetrecord.AssetRecordDTO;
 import cn.iiss.warehouse.assetrecord.service.IAssetRecordService;
 import cn.iiss.warehouse.warehouseasset.WarehouseAssetDTO;
@@ -13,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 
 @Component
