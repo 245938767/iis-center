@@ -10,10 +10,6 @@ import java.util.List;
 
 @Schema
 public class OrderBaseCreateRequest implements Request {
-    @Schema(
-            title = "唯一流水号"
-    )
-    private Long flowNo;
 
     @Schema(
             title = "订单金额"
@@ -40,17 +36,10 @@ public class OrderBaseCreateRequest implements Request {
     )
     private List<CodeValue> attrs;
 
-    public Long getFlowNo() {
-        return flowNo;
-    }
-
-    public void setFlowNo(Long flowNo) {
-        this.flowNo = flowNo;
-    }
-
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
+
 
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;

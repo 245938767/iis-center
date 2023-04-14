@@ -37,4 +37,16 @@ public interface IOrderBaseService {
      * findByPage
      */
     TableDataInfo findByPage(OrderBaseQuery query);
+
+    /**
+     * 完成支付虚拟方法
+     */
+    boolean completePay(Long flowNo);
+
+    /**
+     * 取消订单
+     * @param flowNo
+     * @return
+     */
+    boolean cancle(Long flowNo);
 }

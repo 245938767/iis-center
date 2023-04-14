@@ -1,6 +1,7 @@
 package cn.iiss.trade.order.dto;
 
 import cn.iiss.common.core.domain.CodeValue;
+import cn.iiss.trade.order.domainservice.model.OrderItemModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -34,6 +35,10 @@ public class OrderBaseCreator {
             title = "订单信息"
     )
     private List<CodeValue> attrs;
+    @Schema(
+            title = "订单项信息"
+    )
+    private List<OrderItemModel> orderItemModelList;
 
 
 }

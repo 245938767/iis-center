@@ -7,6 +7,8 @@ import cn.iiss.common.security.utils.SecurityUtils;
 import cn.iiss.commons.constants.CodeEnum;
 import cn.iiss.commons.exception.BusinessException;
 import cn.iiss.mybatis.support.EntityOperations;
+import cn.iiss.trade.order.domainservice.IOrderDomainService;
+import cn.iiss.trade.order.domainservice.model.OrderCompleteModel;
 import cn.iiss.trade.order.domainservice.model.OrderCreateModel;
 import cn.iiss.trade.order.domainservice.model.OrderType;
 import cn.iiss.trade.order.OrderBase;
@@ -23,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +36,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OrderBaseServiceImpl implements IOrderBaseService {
     private final OrderBaseRepository orderBaseRepository;
+    private final IOrderDomainService orderDomainService;
 
     /**
      * createImpl
@@ -41,13 +45,13 @@ public class OrderBaseServiceImpl implements IOrderBaseService {
     public Long createOrderBase(OrderBaseCreator creator) {
         OrderCreateModel orderCreateModel = new OrderCreateModel();
         orderCreateModel.setOperateUser(SecurityUtils.getUsername());
-        orderCreateModel.setPayList(List.of(new IsPayItem(creator.getRealAmount())));
         orderCreateModel.setAccountId(SecurityUtils.getUserId());
         orderCreateModel.setOrderType(OrderType.of(creator.getOrderType()).orElse(OrderType.LOGISTICS));
         orderCreateModel.setAttrs(creator.getAttrs());
         //订单商品信息
-//        orderCreateModel.setItemInfoList();
-        return 0L;
+        orderCreateModel.setItemInfoList(creator.getOrderItemModelList());
+        boolean b = orderDomainService.orderCreate(orderCreateModel);
+        return b ? 1L : 0L;
     }
 
     /**
@@ -113,5 +117,23 @@ public class OrderBaseServiceImpl implements IOrderBaseService {
         rspData.setMsg("查询成功");
         rspData.setTotal(new PageInfo(orderBases).getTotal());
         return rspData;
+    }
+
+    @Override
+    public boolean completePay(Long flowNo) {
+        Optional<OrderBase> orderBase = Optional.of(orderBaseRepository.selectOne(new LambdaQueryWrapper<OrderBase>().eq(OrderBase::getFlowNo, flowNo)));
+        if (orderBase.isEmpty()) {
+            throw new BusinessException(CodeEnum.Fail);
+        }
+        OrderCompleteModel orderCompleteModel = new OrderCompleteModel();
+        orderCompleteModel.setFlowNo(flowNo);
+        orderCompleteModel.setPayTime(Instant.now().getEpochSecond());
+        orderCompleteModel.setPayItemList(List.of(new IsPayItem(orderBase.get().getWaitPay())));
+        return orderDomainService.orderComplete(orderCompleteModel);
+    }
+
+    @Override
+    public boolean cancle(Long flowNo) {
+        return orderDomainService.orderCancel(flowNo);
     }
 }

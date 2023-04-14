@@ -92,4 +92,32 @@ public class OrderBaseController extends BaseController {
                 byPage
         );
     }
+
+    /**
+     * orderComplete
+     */
+    @ApiOperation(value = "订单完成", nickname = "orderComplete")
+    @GetMapping("orderComplete/{id}")
+    public JsonObject orderComplete(@PathVariable Long id) {
+        boolean b = orderBaseService.completePay(id);
+        if (b) {
+            return JsonObject.success("完成");
+        } else {
+            return JsonObject.fail("订单信息异常");
+        }
+    }
+
+    /**
+     * orderComplete
+     */
+    @ApiOperation(value = "订单取消", nickname = "orderCancle")
+    @GetMapping("orderCancle/{id}")
+    public JsonObject orderCancle(@PathVariable Long id) {
+        boolean b = orderBaseService.cancle(id);
+        if (b) {
+            return JsonObject.success("完成");
+        } else {
+            return JsonObject.fail("订单信息异常");
+        }
+    }
 }
