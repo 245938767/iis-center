@@ -25,6 +25,6 @@ public class OrderItemQuery {
     private String itemUnit;
 
     @FieldDesc(name = "商品名称")
-    private String goodsName;
+    private String productName;
 
 }

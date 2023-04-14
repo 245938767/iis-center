@@ -46,7 +46,7 @@ public class OrderItemUpdateRequest implements Request {
     @Schema(
             title = "商品名称"
     )
-    private String goodsName;
+    private String productName;
 
     @Schema(
             title = "费用描述"
@@ -111,12 +111,12 @@ public class OrderItemUpdateRequest implements Request {
         this.goodsCode = goodsCode;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getFeeRemark() {

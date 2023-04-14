@@ -29,7 +29,7 @@ public class OrderItemUpdater {
     private String itemUnit;
 
     @FieldDesc(name = "商品名称")
-    private String goodsName;
+    private String productName;
 
     @FieldDesc(name = "费用描述")
     private String feeRemark;
@@ -101,12 +101,12 @@ public class OrderItemUpdater {
         return this;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public String getProductName() {
+        return productName;
     }
 
-    public OrderItemUpdater setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public OrderItemUpdater setProductName(String productName) {
+        this.productName = productName;
         return this;
     }
 

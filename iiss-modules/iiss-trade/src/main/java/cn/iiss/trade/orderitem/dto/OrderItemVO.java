@@ -28,7 +28,7 @@ public class OrderItemVO {
     private String itemUnit;
 
     @FieldDesc(name = "商品名称")
-    private String goodsName;
+    private String productName;
 
     @FieldDesc(name = "费用描述")
     private String feeRemark;

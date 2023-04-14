@@ -18,7 +18,7 @@ public class OrderItemModel {
   private Long skuId;
 
   @FieldDesc(name = "商品名称")
-  private String goodsName;
+  private String productName;
 
   @FieldDesc(name = "费用描述")
   private String feeRemark;
@@ -50,12 +50,12 @@ public class OrderItemModel {
     return this;
   }
 
-  public String getGoodsName() {
-    return goodsName;
+  public String getProductName() {
+    return productName;
   }
 
-  public OrderItemModel setGoodsName(String goodsName) {
-    this.goodsName = goodsName;
+  public OrderItemModel setProductName(String productName) {
+    this.productName = productName;
     return this;
   }
 
