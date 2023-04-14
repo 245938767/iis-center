@@ -1,4 +1,4 @@
-package cn.iiss.trade.order.domainservice.model;
+package cn.iiss.trade.face.model;
 
 import cn.iiss.commons.annotation.FieldDesc;
 import lombok.Data;

@@ -9,7 +9,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>iiss-face-trade</artifactId>
+    <artifactId>iiss-face-warehouse</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -17,23 +17,4 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>cn.iiss</groupId>
-            <artifactId>iiss-commons</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.iiss</groupId>
-            <artifactId>iiss-common-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.iiss</groupId>
-            <artifactId>iiss-order-commons</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.iiss</groupId>
-            <artifactId>iiss-common-swagger</artifactId>
-        </dependency>
-
-    </dependencies>
 </project>

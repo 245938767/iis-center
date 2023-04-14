@@ -3,7 +3,6 @@ package cn.iiss.trade.orderitem.mapper;
 
 import cn.iiss.commons.mapper.DateMapper;
 import cn.iiss.commons.mapper.GenericEnumMapper;
-import cn.iiss.trade.order.domainservice.model.OrderItemModel;
 import cn.iiss.trade.mapper.TradeMapper;
 import cn.iiss.trade.orderitem.dto.OrderItemQuery;
 import cn.iiss.trade.orderitem.dto.OrderItemVO;
@@ -15,6 +14,7 @@ import cn.iiss.trade.orderitem.request.OrderItemQueryRequest;
 import cn.iiss.trade.orderitem.request.OrderItemUpdateRequest;
 import cn.iiss.trade.orderitem.response.OrderItemResponse;
 import org.mapstruct.Mapper;
+import cn.iiss.trade.face.model.OrderItemModel;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(

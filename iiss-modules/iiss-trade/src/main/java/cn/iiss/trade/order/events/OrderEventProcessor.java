@@ -1,7 +1,5 @@
 package cn.iiss.trade.order.events;
 
-import cn.iiss.trade.order.domainservice.model.OrderItemModel;
-import cn.iiss.trade.order.OrderBase;
 import cn.iiss.trade.orderitem.dto.OrderItemCreator;
 import cn.iiss.trade.orderitem.mapper.OrderItemMapper;
 import cn.iiss.trade.orderitem.service.IOrderItemService;
@@ -13,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import cn.iiss.trade.face.model.OrderItemModel;
 import java.util.List;
 
 @Component
