@@ -500,7 +500,7 @@ export default [
         name: 'logistics',
         icon: 'PartitionOutlined',
         path: '/logistics',
-        component: 'gpt',
+        component: 'logistics',
         wrappers: ['@/components/KeepAlive'],
         KeepAlive: true,
         title: 'menu.title.logistics',

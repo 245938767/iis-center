@@ -7,9 +7,8 @@ import cn.iiss.common.security.annotation.EnableRyFeignClients;
 import cn.iiss.common.swagger.annotation.EnableCustomSwagger2;
 
 /**
- * 系统模块
+ * 物流模块
  *
- * @author ruoyi
  */
 @EnableCustomConfig
 @EnableCustomSwagger2

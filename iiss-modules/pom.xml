@@ -16,6 +16,8 @@
         <module>iiss-warehouse</module>
         <module>iiss-product</module>
         <module>iiss-openAI</module>
+        <module>iiss-logistics</module>
+        <module>iiss-trade</module>
     </modules>
 
     <artifactId>iiss-modules</artifactId>

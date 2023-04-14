@@ -169,6 +169,12 @@
                 <artifactId>iiss-common-seata</artifactId>
                 <version>${iiss.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>1.5.3.Final</version>
+            </dependency>
 
             <!-- 日志记录 -->
             <dependency>
@@ -203,7 +209,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.24</version>
+                <version>1.18.26</version>
             </dependency>
 
             <dependency>
@@ -217,6 +223,11 @@
                 <version>${iiss.parent.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>cn.iiss</groupId>
+                <artifactId>iiss-order-commons</artifactId>
+                <version>${iiss.parent.version}</version>
+            </dependency>
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>

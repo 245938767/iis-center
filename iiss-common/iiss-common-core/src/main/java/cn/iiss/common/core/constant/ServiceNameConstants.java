@@ -25,4 +25,7 @@ public class ServiceNameConstants
     public static final String PRODUCT_SERVICE="iiss-product";
 
     public static final String WAREHOUSE="iiss-warehouse";
+    public static final String TRADE_SERVICE="iiss-trade";
+    public static final String OPENAI_SERVICE="iiss-openAI";
+    public static final String LOGISTICS_SERVICE="iiss-logistics";
 }
