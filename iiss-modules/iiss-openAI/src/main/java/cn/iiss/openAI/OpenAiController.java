@@ -1,14 +1,18 @@
 package cn.iiss.openAI;
 
 import cn.iiss.common.core.web.domain.AjaxResult;
+import cn.iiss.commons.model.JsonObject;
 import cn.iiss.openAI.domainservice.IOpenAIService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/openai")
+@RequestMapping("/openai/v1")
 @RequiredArgsConstructor
 public class OpenAiController {
     private final IOpenAIService openAIService;
@@ -18,6 +22,7 @@ public class OpenAiController {
     //发送内容
 
     @GetMapping("/getChat")
+    @ApiOperation(value = "发送问题", nickname = "getChat")
     public AjaxResult getChat(String message) {
         String chat = openAIService.getChat(message);
         if (chat.isEmpty()) {
@@ -25,5 +30,11 @@ public class OpenAiController {
         } else {
             return AjaxResult.success(chat);
         }
+    }
+
+    @GetMapping("/getinfo")
+    @ApiOperation(value = "获得用户聊天记录", nickname = "getInfo")
+    public JsonObject<List<OpenAIUserInfo>> getUserInfo() {
+        return JsonObject.success(openAIService.getUserInfo());
     }
 }
