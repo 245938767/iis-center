@@ -4,7 +4,15 @@ import { Amap, Marker, loadPlugins, usePlugins } from '@amap/amap-react';
 
 import { SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 const GroupMap: React.FC = () => {
-  const [list, setlist] = useState([]);
+  const [list, setlist] = useState<
+    {
+      id: number;
+      lang: number[];
+      warehouseName: string;
+      productnum: number;
+      warehouseAddress: string;
+    }[]
+  >([]);
 
   useEffect(() => {
     const xs = getChildList();
@@ -30,7 +38,7 @@ const GroupMap: React.FC = () => {
     <>
       <div style={{ width: '100%', height: '600px', paddingTop: '10px' }}>
         <Amap zoom={15}>
-          {list.map((item: any, index: any) => {
+          {list?.map((item: any, index: any) => {
             // console.info(comp(item));
             return comp(item);
           })}
