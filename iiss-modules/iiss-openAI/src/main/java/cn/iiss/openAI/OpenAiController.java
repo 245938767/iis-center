@@ -3,6 +3,7 @@ package cn.iiss.openAI;
 import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.commons.model.JsonObject;
 import cn.iiss.openAI.domainservice.IOpenAIService;
+import cn.iiss.openAI.response.OpenAiResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class OpenAiController {
 
     @GetMapping("/getinfo")
     @ApiOperation(value = "获得用户聊天记录", nickname = "getInfo")
-    public JsonObject<List<OpenAIUserInfo>> getUserInfo() {
+    public JsonObject<List<OpenAiResponse>> getUserInfo() {
         return JsonObject.success(openAIService.getUserInfo());
     }
 }

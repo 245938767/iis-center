@@ -6,6 +6,8 @@ import cn.iiss.common.security.annotation.EnableCustomConfig;
 import cn.iiss.common.security.annotation.EnableRyFeignClients;
 import cn.iiss.common.swagger.annotation.EnableCustomSwagger2;
 
+import java.time.Instant;
+
 /**
  * AI模块
  *

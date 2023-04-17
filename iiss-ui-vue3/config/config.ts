@@ -59,8 +59,8 @@ export default defineConfig({
     // },
     {
       requestLibPath: "import { request } from 'umi'",
-      schemaPath: 'http://localhost:9201/v3/api-docs',
-      projectName: 'system',
+      schemaPath: 'http://localhost:9204/v3/api-docs',
+      projectName: 'openAI',
     },
   ],
   nodeModulesTransform: {
