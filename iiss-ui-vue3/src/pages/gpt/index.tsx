@@ -11,17 +11,9 @@ import style from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
 // import { Emoji } from 'emoji-picker-react';
 import List from 'rc-virtual-list';
-import { getInfo } from '@/services/openAI/openAiController';
+import { getChat, getInfo } from '@/services/openAI/openAiController';
 import moment from 'moment';
 
-export type Message = {
-  date: string;
-  streaming?: boolean;
-  isError?: boolean;
-  content: string;
-  role: string;
-  id?: number;
-};
 function useScrollToBottom() {
   // for auto-scroll
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -62,14 +54,13 @@ const OpenAI: React.FC = () => {
   const [message, setMessage] = useState<API.OpenAiResponse[]>([]);
   const loading = !useHasHydrated();
   const [userInput, setUserInput] = useState('');
-  const [beforeInput, setBeforeInput] = useState('');
+  const [Input, setInputs] = useState('');
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const [hitBottom, setHitBottom] = useState(false);
   const [loadingList, setLoadingList] = useState(false);
 
-  useEffect(() => {
+  const loadingInfo = () => {
     getInfo()
       .then((res) => {
         setMessage(res.result);
@@ -77,8 +68,26 @@ const OpenAI: React.FC = () => {
       .catch((x) => {
         setMessage([]);
       });
+  };
+  useEffect(() => {
+    loadingInfo();
     //获得数据
   }, []);
+  const onUserSubmit = () => {
+    //获得input数据
+    setLoadingList(true);
+    getChat({ message: Input })
+      .then((x) => {
+        setLoadingList(false);
+        loadingInfo();
+      })
+      .catch((x) => setLoadingList(false));
+  };
+
+  const onInput = (x: string) => {
+    //设置当前输入
+    setInputs(x);
+  };
   if (loading) {
     return <PageLoading />;
   }
@@ -89,55 +98,6 @@ const OpenAI: React.FC = () => {
   return (
     <>
       <WrapContent>
-        {/* <InfiniteScroll
-          dataLength={messages.length}
-          next={load}
-          hasMore={messages.length < 50}
-          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-          scrollableTarget="scrollableDiv"
-        >
-          {messages.map((messagex, i) => {
-            const isUser = messagex.role === 'user';
-            return (
-              <div
-                key={i}
-                className={isUser ? styles['chat-message-user'] : styles['chat-message']}
-              >
-             
-                        <div
-                          className="markdown-body"
-                          style={{ fontSize: `16px` }}
-                        >
-                          {messagex.content}
-                        </div>
-
-              </div>
-            )
-          })}
-        </InfiniteScroll> */}
-
-        {/* <List data={messages} height={200} itemHeight={30} itemKey="id">
-  {index => {
-
-            const isUser = index.role === 'user';
-            return (
-              <div
-                key={index.id}
-                className={isUser ? styles['chat-message-user'] : styles['chat-message']}
-              >
-             
-                        <div
-                          className="markdown-body"
-                          style={{ fontSize: `16px` }}
-                        >
-                          {index.content}
-                        </div>
-
-              </div>
-            )
-          }}
-</List>; */}
         <div
           id="scrollableDiv"
           className={style['window-container']}
@@ -173,7 +133,7 @@ const OpenAI: React.FC = () => {
                     <div className={styles['chat-message-item']}>
                       {!isUser && !(me.content.length === 0) && (
                         <div className={styles['chat-message-top-actions']}>
-  <div
+                          <div
                             className={styles['chat-message-top-action']}
                             onClick={() => copyToClipboard(me.id.toString())}
                           >
@@ -192,7 +152,6 @@ const OpenAI: React.FC = () => {
                           >
                             {'复制'}
                           </div>
-                        
                         </div>
                       )}
                       {me.content.length === 0 && !isUser ? (
@@ -213,7 +172,7 @@ const OpenAI: React.FC = () => {
                     {!isUser && (
                       <div className={styles['chat-message-actions']}>
                         <div className={styles['chat-message-action-date']}>
-                          {moment(me.createdAt).format("YYYY-MM-DD HH:mm:ss")}
+                          {moment(me.createdAt).format('YYYY-MM-DD HH:mm:ss')}
                         </div>
                       </div>
                     )}
@@ -233,7 +192,7 @@ const OpenAI: React.FC = () => {
                 // ref={inputRef}
                 className={styles['chat-input']}
                 placeholder={'输入'}
-                // onInput={(e) => onInput(e.currentTarget.value)}
+                onInput={(e) => onInput(e.currentTarget.value)}
                 // value={userInput}
                 // onKeyDown={onInputKeyDown}
                 // onFocus={() => setAutoScroll(true)}
@@ -249,7 +208,7 @@ const OpenAI: React.FC = () => {
                 // text={"发送"}
                 className={styles['chat-input-send']}
                 // noDark
-                // onClick={onUserSubmit}
+                onClick={onUserSubmit}
               >
                 send
               </Button>
