@@ -44,7 +44,7 @@ public class OrderBase extends BaseMybatisAggregate {
 
 
     @FieldDesc(name = "订单类型、订单类型创建不同的状态机")
-    @TableField(typeHandler = FastjsonTypeHandler.class)
+    @TableField(typeHandler = OrderTypeConverter.class)
     @TypeConverter(toTypeFullName = "java.lang.Integer")
     private OrderType orderType;
 

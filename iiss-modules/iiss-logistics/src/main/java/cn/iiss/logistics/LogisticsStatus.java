@@ -5,9 +5,9 @@ import cn.iiss.commons.constants.BaseEnum;
 import java.util.Optional;
 
 public enum LogisticsStatus implements BaseEnum<LogisticsStatus> {
-    WAIT_(1, "准备发货"),
-    X(2, "运输中"),
-    y(3, "运输完成"),
+    DELIVERY(1, "准备发货"),
+    TRANSIT(2, "运输中"),
+    COMPLETION(3, "运输完成"),
     ;
     private final Integer code;
     private final String name;

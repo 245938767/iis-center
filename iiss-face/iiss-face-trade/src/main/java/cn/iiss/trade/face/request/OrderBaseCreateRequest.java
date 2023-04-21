@@ -5,11 +5,13 @@ import cn.iiss.common.core.domain.CodeValue;
 import cn.iiss.commons.model.Request;
 import cn.iiss.trade.face.model.OrderItemModel;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Schema
+@Builder
 public class OrderBaseCreateRequest implements Request {
 
     @Schema(

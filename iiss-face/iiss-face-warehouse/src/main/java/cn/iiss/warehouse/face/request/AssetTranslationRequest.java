@@ -2,6 +2,7 @@ package cn.iiss.warehouse.face.request;
 
 import cn.iiss.commons.model.Request;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
+@Builder
 public class AssetTranslationRequest implements Request {
     @ApiModelProperty(value = "仓库唯一ID", required = true)
     @NotNull(message = "请输入仓库号")

@@ -94,9 +94,38 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-face-product</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.iiss</groupId>
+            <artifactId>iiss-face-warehouse</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.iiss</groupId>
+            <artifactId>iiss-face-trade</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.iiss</groupId>
+            <artifactId>iiss-face-product</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.iiss</groupId>
+            <artifactId>iiss-face-flowNo</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
 

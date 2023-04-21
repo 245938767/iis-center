@@ -11,7 +11,7 @@ public interface IAssetDomainService {
      *
      * @param batchInOutModel
      */
-    void handleAssetIn(BatchInOutModel batchInOutModel);
+    Long handleAssetIn(BatchInOutModel batchInOutModel);
 
 
     /**
@@ -26,6 +26,6 @@ public interface IAssetDomainService {
      *
      * @param transferModel
      */
-    void handleAssetTransfer(TransferModel transferModel);
+    Long handleAssetTransfer(TransferModel transferModel);
 
 }

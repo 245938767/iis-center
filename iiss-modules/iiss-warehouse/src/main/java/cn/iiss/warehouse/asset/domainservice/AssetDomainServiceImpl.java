@@ -34,7 +34,7 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
     private final WarehouseMapper warehouseMapper;
 
     @Override
-    public void handleAssetIn(BatchInOutModel batchInOutModel) {
+    public Long handleAssetIn(BatchInOutModel batchInOutModel) {
         Assert.notEmpty(batchInOutModel.getAssetRecordDTOList());
         handleWarehouseForIsDataInfo(batchInOutModel.getWarehouseId());
         AssetBizInfo assetBizInfo = AssetBizInfo
@@ -49,12 +49,14 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
                 .inOutBizType(batchInOutModel.getInOutBizType())
                 .build();
 
+        Asset asset = new Asset();
         EntityOperations
                 .doCreate(assetMapper)
-                .create(Asset::new)
+                .create(() -> asset)
                 .update(a -> a.in(assetBizInfo))
                 .successHook(x -> eventPublisher.publishEvent(new AssetEvents.AssetInEvent(x, batchInOutModel)))
                 .execute();
+        return asset.getId();
     }
 
     @Override
@@ -83,7 +85,7 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
     }
 
     @Override
-    public void handleAssetTransfer(TransferModel transferModel) {
+    public Long handleAssetTransfer(TransferModel transferModel) {
         BatchInOutModel out = BatchInOutModel.builder()
                 .assetRecordDTOList(transferModel.getAssetRecordDTOList())
                 .inOutType(InOutType.OUT)
@@ -110,7 +112,7 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
                 .batchNo(transferModel.getInBatchNo())
                 .assetRecordDTOList(transferModel.getAssetRecordDTOList())
                 .build();
-        handleAssetIn(in);
+        return handleAssetIn(in);
     }
 
 

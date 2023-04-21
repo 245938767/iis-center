@@ -28,7 +28,7 @@ public interface IAssetService extends IService<Asset> {
      * 创建转仓
      * @param assetTranslationRequest
      */
-    public void assetTranslation(AssetTranslationRequest assetTranslationRequest);
+    public Long assetTranslation(AssetTranslationRequest assetTranslationRequest);
 
 
     /**

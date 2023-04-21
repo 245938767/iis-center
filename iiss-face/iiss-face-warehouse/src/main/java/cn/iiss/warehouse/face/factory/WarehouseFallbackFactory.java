@@ -33,7 +33,7 @@ public class WarehouseFallbackFactory implements FallbackFactory<WarehouseServic
             }
 
             @Override
-            public AjaxResult assetTranslation(AssetTranslationRequest assetTranslationRequest) {
+            public JsonObject<Long> assetTranslation(AssetTranslationRequest assetTranslationRequest) {
                 return null;
             }
 

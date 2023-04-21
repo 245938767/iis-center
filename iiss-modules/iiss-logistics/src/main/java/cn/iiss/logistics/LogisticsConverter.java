@@ -20,16 +20,16 @@ public class LogisticsConverter extends BaseTypeHandler<LogisticsStatus> {
 
     @Override
     public LogisticsStatus getNullableResult(ResultSet resultSet, String s) throws SQLException {
-        return LogisticsStatus.of(resultSet.getInt(s)).orElse(LogisticsStatus.WAIT_);
+        return LogisticsStatus.of(resultSet.getInt(s)).orElse(LogisticsStatus.DELIVERY);
     }
 
     @Override
     public LogisticsStatus getNullableResult(ResultSet resultSet, int i) throws SQLException {
-        return LogisticsStatus.of(resultSet.getInt(i)).orElse(LogisticsStatus.WAIT_);
+        return LogisticsStatus.of(resultSet.getInt(i)).orElse(LogisticsStatus.DELIVERY);
     }
 
     @Override
     public LogisticsStatus getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
-        return LogisticsStatus.of(callableStatement.getInt(i)).orElse(LogisticsStatus.WAIT_);
+        return LogisticsStatus.of(callableStatement.getInt(i)).orElse(LogisticsStatus.DELIVERY);
     }
 }

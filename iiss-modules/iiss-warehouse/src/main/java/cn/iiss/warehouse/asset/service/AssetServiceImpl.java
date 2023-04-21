@@ -84,7 +84,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     }
 
     @Override
-    public void assetTranslation(AssetTranslationRequest assetTranslationRequest) {
+    public Long assetTranslation(AssetTranslationRequest assetTranslationRequest) {
         Warehouse warehouse = getWarehouse(assetTranslationRequest.getWarehouseId());
         Warehouse translationWarehouse = getWarehouse(assetTranslationRequest.getTranslationWarehouseId());
         List<AssetRecordDTO> assetRecordDTOS = request2DTO(assetTranslationRequest.getAssetProductRequestList());
@@ -100,7 +100,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                 .outBatchNo(assetTranslationRequest.getBatchNo())
                 .amount(getForRecordListPrice(assetRecordDTOS))
                 .build();
-        assetDomainService.handleAssetTransfer(build);
+        return assetDomainService.handleAssetTransfer(build);
     }
 
     @Override

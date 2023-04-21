@@ -1,11 +1,13 @@
 package cn.iiss.trade.face.model;
 
 import cn.iiss.commons.annotation.FieldDesc;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
+@Builder
 public class OrderItemModel {
 
   @FieldDesc(name = "真实金额")

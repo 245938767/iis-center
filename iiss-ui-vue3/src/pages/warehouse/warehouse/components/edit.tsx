@@ -47,7 +47,10 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
 
     const data= await ac.search(kw.keyWords, (status: string, result: any) => {
       setSearchload(true);
-      if (status === "1" && result.tips) {
+      console.info("message");
+      console.info(status);
+      console.info(result);
+      if (status === "complete" && result.tips) {
         console.info("ok");
         return result.tips;
       } else {

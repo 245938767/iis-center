@@ -31,7 +31,7 @@ public interface WarehouseService {
 
     @PostMapping("/asset/v1/translation")
     @ApiOperation(value = "转仓", nickname = "translationWarehouse")
-    public AjaxResult assetTranslation(@RequestBody @Valid AssetTranslationRequest assetTranslationRequest) ;
+    public JsonObject<Long> assetTranslation(@RequestBody @Valid AssetTranslationRequest assetTranslationRequest) ;
 
     @GetMapping("/asset/v1/get/{batchNo}")
     @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")

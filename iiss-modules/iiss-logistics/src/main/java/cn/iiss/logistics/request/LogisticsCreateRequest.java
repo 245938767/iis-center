@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class LogisticsCreateRequest implements Request {
@@ -19,4 +20,5 @@ public class LogisticsCreateRequest implements Request {
 
     @Schema(name = "费用")
     private BigDecimal freight;
+    List<LogisicsProductRequest> logisicsProductRequests;
 }
