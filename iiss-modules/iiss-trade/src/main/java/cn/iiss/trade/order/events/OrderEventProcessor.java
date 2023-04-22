@@ -1,5 +1,6 @@
 package cn.iiss.trade.order.events;
 
+import cn.iiss.product.face.ProductService;
 import cn.iiss.trade.orderitem.dto.OrderItemCreator;
 import cn.iiss.trade.orderitem.mapper.OrderItemMapper;
 import cn.iiss.trade.orderitem.service.IOrderItemService;
@@ -12,6 +13,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import cn.iiss.trade.face.model.OrderItemModel;
+
 import java.util.List;
 
 @Component
@@ -22,6 +24,8 @@ public class OrderEventProcessor {
     private final IOrderItemService orderItemService;
 
     private final IOrderLifecycleService orderLifecycleService;
+
+    private final ProductService productService;
 
 //  private final OrderDocumentRepository orderDocumentRepository;
 

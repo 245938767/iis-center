@@ -10,34 +10,37 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 
-@TableName(value = "order_lifecycle" ,autoResultMap = true)
+@TableName(value = "order_lifecycle", autoResultMap = true)
 @Data
 public class OrderLifecycle extends BaseMybatisAggregate {
 
-  private Long flowNo;
+    private Long flowNo;
 
-  @FieldDesc(name = "操作类型")
-  @TypeConverter(toTypeFullName = "java.lang.Integer")
-  @TableField(typeHandler = OrderOperateTypeConverter.class)
-  private OrderOperateType operateType;
+    @FieldDesc(name = "操作类型")
+    @TypeConverter(toTypeFullName = "java.lang.Integer")
+    @TableField(typeHandler = OrderOperateTypeConverter.class)
+    private OrderOperateType operateType;
 
-  private String remark;
+    private String remark;
 
-  private String operateUser;
+    private String operateUser;
 
-  @TableField(typeHandler = ValidStatusConverter.class)
-  private ValidStatus validStatus;
+    @TableField(typeHandler = ValidStatusConverter.class)
+    private ValidStatus validStatus;
 
-  public void init() {
-    setValidStatus(ValidStatus.VALID);
-  }
+    public void init() {
+        prePersist();
+        setValidStatus(ValidStatus.VALID);
+    }
 
-  public void valid(){
-    setValidStatus(ValidStatus.VALID);
-  }
+    public void valid() {
+        preUpdate();
+        setValidStatus(ValidStatus.VALID);
+    }
 
-  public void invalid(){
-    setValidStatus(ValidStatus.INVALID);
-  }
+    public void invalid() {
+        setValidStatus(ValidStatus.INVALID);
+        preUpdate();
+    }
 
 }

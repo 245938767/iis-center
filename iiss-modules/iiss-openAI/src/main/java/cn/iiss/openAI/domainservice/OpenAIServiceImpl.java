@@ -37,6 +37,7 @@ public class OpenAIServiceImpl extends ServiceImpl<OpenAIUserInfoMapper, OpenAiU
 
     public List<OpenAiResponse> getUserInfo() {
         Long userId = SecurityUtils.getUserId();
-        return openAIUserInfoMapper.selectList(new LambdaQueryWrapper<OpenAiUserInfo>().eq(OpenAiUserInfo::getUserId, userId).orderByAsc(OpenAiUserInfo::getCreatedAt)).stream().map(x -> OpenAIMapper.INSTANCE.Entity2Response(x)).toList();
+        return openAIUserInfoMapper.selectList(new LambdaQueryWrapper<OpenAiUserInfo>().eq(OpenAiUserInfo::getUserId, userId).orderByAsc(OpenAiUserInfo::getCreatedAt)).stream().map(OpenAIMapper
+                .INSTANCE::Entity2Response).toList();
     }
 }

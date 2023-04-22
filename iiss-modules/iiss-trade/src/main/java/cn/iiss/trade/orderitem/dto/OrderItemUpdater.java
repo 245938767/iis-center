@@ -1,5 +1,6 @@
 package cn.iiss.trade.orderitem.dto;
 
+import cn.iiss.common.core.utils.bean.BeanUtils;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.trade.orderitem.OrderItem;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class OrderItemUpdater {
     private String feeRemark;
 
     public void updateOrderItem(OrderItem e) {
-
+        BeanUtils.copyBeanProp(e, this);
     }
 
     public Long getId() {

@@ -83,6 +83,7 @@ public class OrderBase extends BaseMybatisAggregate {
      * @param createModel
      */
     public void init(OrderCreateModel createModel) {
+        prePersist();
         setValidStatus(ValidStatus.VALID);
         setInvoiceFlag(ValidStatus.INVALID);
         BigDecimal total = getTotalAmount();
@@ -135,6 +136,7 @@ public class OrderBase extends BaseMybatisAggregate {
         payItemList.addAll(completeModel.getPayItemList());
         setPayList(payItemList);
         setOrderState(OrderState.PAY_SUCCESS);
+        preUpdate();
     }
 
     /**
@@ -145,14 +147,17 @@ public class OrderBase extends BaseMybatisAggregate {
             throw new BusinessException(OrderErrorCode.ORDER_NOT_WAIT_PAY);
         }
         setOrderState(OrderState.ABANDON);
+        preUpdate();
     }
 
     public void valid() {
         setValidStatus(ValidStatus.VALID);
+        preUpdate();
     }
 
     public void invalid() {
         setValidStatus(ValidStatus.INVALID);
+        preUpdate();
     }
 
 }
