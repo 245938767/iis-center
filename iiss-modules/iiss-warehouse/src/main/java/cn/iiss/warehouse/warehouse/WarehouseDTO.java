@@ -43,20 +43,22 @@ public class WarehouseDTO implements Serializable {
 
     private List<WarehouseDTO> children;
 
-    public void setList(WarehouseDTO warehouseDTO) {
+    public void addData(WarehouseDTO warehouseDTO) {
         if (children == null) {
             children = new ArrayList<>();
         }
         children.add(warehouseDTO);
     }
 
-    public Warehouse dto2WarehouseCreate(){
-       return toWarehouse(ValidStatus.VALID,ValidStatus.VALID,null);
+    public Warehouse dto2WarehouseCreate() {
+        return toWarehouse(ValidStatus.VALID, ValidStatus.VALID, null);
     }
+
     public Warehouse dto2WarehouseUpdate(Long id) {
-       return toWarehouse(isDataInfo,validStatus,id);
+        return toWarehouse(isDataInfo, validStatus, id);
     }
-    private Warehouse toWarehouse(ValidStatus isDataInfo,ValidStatus validStatus,Long id){
+
+    private Warehouse toWarehouse(ValidStatus isDataInfo, ValidStatus validStatus, Long id) {
 
         return Warehouse
                 .builder()

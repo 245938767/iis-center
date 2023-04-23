@@ -151,6 +151,11 @@ const DeptTableList: React.FC = () => {
       valueType: 'text',
     },
     {
+      title:'商品数量',
+      dataIndex: 'productNum',
+      valueType: 'text',
+    },
+    {
       title: '负责人',
       dataIndex: 'warehouseAdminId',
       valueType: 'select',

@@ -181,6 +181,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     private LambdaQueryWrapper<Asset> getQueryWrapper(AssetQueryRequest assetQueryRequest) {
 
         LambdaQueryWrapper<Asset> assetLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        assetLambdaQueryWrapper.orderByDesc(Asset::getCreateTime);
         switch (assetQueryRequest.getWarehouseRecordStatus()) {
 
             case 2:

@@ -127,7 +127,7 @@ const OutputWarehouse: React.FC<OutputWarehouseProps> = (props) => {
         <ProFormSelect
           label="出库方式"
           width="md"
-          name="warehouseType"
+          name="inOutBizType"
           initialValue={OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.XIAO_SHOU_CHU_KU}
           disabled={isWarehouseAdjustment}
           rules={[{ required: true }]}

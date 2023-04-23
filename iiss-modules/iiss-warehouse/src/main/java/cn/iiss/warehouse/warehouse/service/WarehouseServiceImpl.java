@@ -19,9 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -73,17 +71,17 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
                         .select("warehouse_id", "sum(product_num) as product_num")
                         .groupBy("warehouse_id"))
                 .stream().collect(Collectors.toMap(WarehouseAsset::getWarehouseId, WarehouseAsset::getProductNum));
-        return translationTree(list,collect);
+        return translationTree(list, collect);
     }
 
     @Override
     public List<WarehouseDTO> getChildData() {
-        List<Warehouse> list = list(new LambdaQueryWrapper<Warehouse>().eq(Warehouse::getIsDataInfo,ValidStatus.VALID));
+        List<Warehouse> list = list(new LambdaQueryWrapper<Warehouse>().eq(Warehouse::getIsDataInfo, ValidStatus.VALID));
         Map<Long, Long> collect = warehouseAssetMapper.selectList(new QueryWrapper<WarehouseAsset>()
                         .select("warehouse_id", "sum(product_num) as product_num")
                         .groupBy("warehouse_id"))
                 .stream().collect(Collectors.toMap(WarehouseAsset::getWarehouseId, WarehouseAsset::getProductNum));
-        return translationChildTree(list,collect);
+        return translationChildTree(list, collect);
     }
 
     @Override
@@ -98,44 +96,42 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
         return getById(id).warehouse2DTO();
     }
 
-    private List<WarehouseDTO> translationChildTree(List<Warehouse> warehouses,Map<Long,Long> map) {
+    private List<WarehouseDTO> translationChildTree(List<Warehouse> warehouses, Map<Long, Long> map) {
         Map<Long, WarehouseDTO> collect = warehouses.stream().map(Warehouse::warehouse2DTO).collect(Collectors.toMap(WarehouseDTO::getId, Function.identity()));
         List<WarehouseDTO> warehouseDTOList = new ArrayList<>();
         collect.forEach((id, data) -> {
-            if (!map.isEmpty()){
+            if (!map.isEmpty()) {
                 Long aLong = map.get(data.getId());
-                if (aLong!=null){
+                if (aLong != null) {
                     data.setProductNum(aLong);
-                }else{
+                } else {
                     data.setProductNum(0L);
                 }
-            }else{
+            } else {
                 data.setProductNum(0L);
             }
-                warehouseDTOList.add(data);
+            warehouseDTOList.add(data);
         });
         return warehouseDTOList;
     }
-    private List<WarehouseDTO> translationTree(List<Warehouse> warehouses,Map<Long,Long> map) {
+
+    private List<WarehouseDTO> translationTree(List<Warehouse> warehouses, Map<Long, Long> map) {
         Map<Long, WarehouseDTO> collect = warehouses.stream().map(Warehouse::warehouse2DTO).collect(Collectors.toMap(WarehouseDTO::getId, Function.identity()));
         List<WarehouseDTO> warehouseDTOList = new ArrayList<>();
         collect.forEach((id, data) -> {
-            if (!map.isEmpty()){
+            if (!map.isEmpty()) {
                 Long aLong = map.get(data.getId());
-                if (aLong!=null){
-                    data.setProductNum(aLong);
-                }else{
-                    data.setProductNum(0L);
-                }
-            }else{
+                data.setProductNum(Optional.ofNullable(aLong).orElse(0L));
+            } else {
                 data.setProductNum(0L);
             }
             if (data.getParentId() == null || data.getParentId() == 0) {
                 warehouseDTOList.add(data);
             } else {
                 WarehouseDTO warehouseDTO = collect.get(data.getParentId());
-                if (warehouseDTO!=null){
-                    warehouseDTO.setList(data);
+                if (warehouseDTO != null) {
+                    warehouseDTO.setProductNum(warehouseDTO.getProductNum() + data.getProductNum());
+                    warehouseDTO.addData(data);
                 }
             }
         });
