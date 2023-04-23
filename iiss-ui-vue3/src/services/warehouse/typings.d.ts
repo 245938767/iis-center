@@ -2,8 +2,12 @@ declare namespace API {
   type AssetCreateRequest = {
     /** 商品信息列表 */
     assetProductRequestList: AssetProductRequest[];
+    /** 转仓仓库ID */
+    translationWarehouseId: number;
+    /** 批次号 */
+    batchNo: string;
     /** 仓库唯一ID */
-    houseId: number;
+    warehouseId: number;
     /** 出入库业务类型 */
     inOutBizType:
       | 'PRODUCT_WAREHOUSE'

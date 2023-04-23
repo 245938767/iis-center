@@ -105,7 +105,7 @@ public class AssetDomainServiceImpl implements IAssetDomainService {
                 .inOutType(InOutType.IN)
                 .inOutBizType(InOutBizType.WAREHOUSE_ADJUST_IN)
                 .warehouseId(transferModel.getTranslationWarehouseId())
-                .warehouseName(transferModel.getWarehouseName())
+                .warehouseName(transferModel.getTranslationWarehouseName())
                 .createUserName(transferModel.getCreateUserName())
                 .createUserId(transferModel.getCreateUserId())
                 .amount(transferModel.getAmount())

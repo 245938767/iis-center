@@ -26,13 +26,15 @@ public interface IAssetService extends IService<Asset> {
 
     /**
      * 创建转仓
+     *
      * @param assetTranslationRequest
      */
     public Long assetTranslation(AssetTranslationRequest assetTranslationRequest);
 
 
+    public AssetResponse getAssetById(Long assetId);
+
     /**
-     *
      * @param batchNo
      * @return
      */
@@ -46,6 +48,7 @@ public interface IAssetService extends IService<Asset> {
 
     /**
      * 检查当前资产是否有数据
+     *
      * @param hosueId
      * @return
      */

@@ -1,5 +1,5 @@
 import notice from '@/locales/en-US/notice';
-import { getByBatchNo } from '@/services/warehouse/assetController';
+import { getByAssetId, getByBatchNo } from '@/services/warehouse/assetController';
 import type { ModalBaseProps } from '@/types';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import type { ProFormInstance } from '@ant-design/pro-form';
@@ -35,7 +35,7 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
       setLoading(true);
       return;
     }
-    getByBatchNo({ batchNo: props.recordId } as API.getByBatchNoParams).then((resp) => {
+    getByAssetId({ batchNo: props.recordId } as API.getByBatchNoParams).then((resp) => {
       if (!resp) return;
       setDataSource(resp.result);
       formRef.current?.setFieldsValue({ [TABLE_NAME]: resp.result.assetRecordList });
@@ -103,13 +103,8 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
               />
               <ProDescriptions.Item
                 label="商品属性"
-                dataIndex={'inOutBizType'}
+                dataIndex={'inOutBizTypeName'}
                 valueType="text"
-                valueEnum={
-                  dataSource.inOutType==="IN"
-                    ? INPUT_WAREHOUSE_TYPE_MAP
-                    : OUTPUT_WAREHOUSE_PRODUCT_TYPE_MAP
-                }
               />
               {/* {dataSource.warehouseProductAdjustName && (
                 <ProDescriptions.Item

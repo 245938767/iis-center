@@ -43,6 +43,13 @@ public class AssetController extends BaseController {
     }
 
 
+    @GetMapping("getAssetId/{assetId}")
+    @ApiOperation(value = "获得编号信息", nickname = "getByAssetId")
+    public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable Long assetId) {
+        AssetResponse assetByBatchNo = assetService.getAssetById(assetId);
+        return JsonObject.success(assetByBatchNo);
+    }
+
     @GetMapping("get/{batchNo}")
     @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
     public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable String batchNo) {

@@ -37,7 +37,7 @@ const Warehousing: React.FC = () => {
         render(dom, entity) {
           return (
             <Space>
-              {entity.warehouseProductImgList.map((item, index) => {
+              {entity.productImgs.map((item, index) => {
                 // eslint-disable-next-line react/no-array-index-key
                 return <Avatar shape="square" key={index} src={item} size="large" />;
               })}
@@ -47,29 +47,39 @@ const Warehousing: React.FC = () => {
       },
       {
         title: '调仓单号',
-        dataIndex: 'warehouseOrder',
+        dataIndex: 'batchNo',
         valueType: 'text',
       },
       {
-        title: '调仓',
-        dataIndex: 'warehouseName',
-        render: (_, row) => (
-          <WarehouseDireciton
-            from={row.warehouseProductAdjustName.from}
-            to={row.warehouseProductAdjustName.to}
-          />
-        ),
-        search: false,
+        title: '出入方式',
+        dataIndex: 'inOutBizTypeName',
+        valueType: 'text',
       },
       {
+        title: '仓库',
+        dataIndex: 'warehouseName',
+        valueType: 'text',
+      },
+      // {
+      //   title: '调仓',
+      //   dataIndex: 'warehouseName',
+      //   render: (_, row) => (
+      //     <WarehouseDireciton
+      //       from={row.warehouseProductAdjustName.from}
+      //       to={row.warehouseProductAdjustName.to}
+      //     />
+      //   ),
+      //   search: false,
+      // },
+      {
         title: '库存总金额',
-        dataIndex: 'warehouseAmount',
+        dataIndex: 'amount',
         valueType: 'money',
         align: 'right',
       },
       {
         title: '调仓时间',
-        dataIndex: 'updateTime',
+        dataIndex: 'createTime',
         valueType: 'dateTime',
         search: false,
       },
@@ -87,7 +97,7 @@ const Warehousing: React.FC = () => {
             <a
               key={'key3'}
               onClick={() => {
-                setRecordId(entity.warehouseProductRecordId);
+                setRecordId(entity.assetId);
                 setSheetVisible(true);
               }}
             >
@@ -100,7 +110,6 @@ const Warehousing: React.FC = () => {
   }, []);
 
   return (
-
     <WrapContent>
       <ProTable<WarehousingRowType>
         actionRef={actionRef}

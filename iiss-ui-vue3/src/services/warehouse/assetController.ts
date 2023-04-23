@@ -15,6 +15,19 @@ export async function getByBatchNo(
     ...(options || {}),
   });
 }
+/** 获得编号信息 GET /asset/v1/getAssetId/${param0} */
+export async function getByAssetId(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getByBatchNoParams,
+  options?: { [key: string]: any },
+) {
+  const { batchNo: param0, ...queryParams } = params;
+  return request<Record<string, any>>(`/warehouse/asset/v1/getAssetId/${param0}`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
 
 /** 获得分页数据 POST /asset/v1/getPage */
 export async function getByPage(body: API.AssetQueryRequest, options?: { [key: string]: any }) {
@@ -60,7 +73,7 @@ export async function assetCreateOut(
 
 /** 转仓 POST /asset/v1/translation */
 export async function translationWarehouse(
-  body: API.AssetTranslationRequest,
+  body: API.AssetCreateRequest,
   options?: { [key: string]: any },
 ) {
   return request<Record<string, any>>('/warehouse/asset/v1/translation', {

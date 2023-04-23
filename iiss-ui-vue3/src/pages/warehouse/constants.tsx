@@ -211,8 +211,8 @@ export const INPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
   },
   {
     title: '入库方式',
-    dataIndex: 'inOutBizType',
-    valueEnum: INPUT_WAREHOUSE_TYPE_MAP,
+    dataIndex: 'inOutBizTypeName',
+    valueType: 'text',
   },
   {
     title: '库存总金额',
@@ -236,7 +236,7 @@ export const OUTPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
   WAREHOUSE_PRODUCT_IMAGE_COLUMNS,
   {
     title: '出库单号',
-    dataIndex: 'warehouseOrder',
+    dataIndex: 'batchNo',
     valueType: 'text',
   },
   {
@@ -246,18 +246,18 @@ export const OUTPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
   },
   {
     title: '出库方式',
-    dataIndex: 'warehouseType',
-    valueEnum: OUTPUT_WAREHOUSE_PRODUCT_TYPE_MAP,
+    dataIndex: 'inOutBizTypeName',
+    valueType: 'text',
   },
   {
     title: '库存总金额',
-    dataIndex: 'warehouseAmount',
+    dataIndex: 'amount',
     valueType: 'money',
     align: 'right',
   },
   {
     title: '出库时间',
-    dataIndex: 'updateTime',
+    dataIndex: 'createTime',
     valueType: 'dateTime',
     search: false,
   },

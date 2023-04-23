@@ -96,11 +96,18 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                 .createUserId(SecurityUtils.getUserId())
                 .createUserName(SecurityUtils.getUsername())
                 .assetRecordDTOList(assetRecordDTOS)
-                .inBatchNo(assetTranslationRequest.getTranslationBatchNo())
+                .inBatchNo(assetTranslationRequest.getBatchNo())
                 .outBatchNo(assetTranslationRequest.getBatchNo())
                 .amount(getForRecordListPrice(assetRecordDTOS))
                 .build();
         return assetDomainService.handleAssetTransfer(build);
+    }
+
+    @Override
+    public AssetResponse getAssetById(Long assetId) {
+        Asset asset = getOne(new LambdaQueryWrapper<Asset>().eq(Asset::getId, assetId));
+        return AssetResponse.builder().build().data2Response(asset, assetRecordService.list(
+                new LambdaQueryWrapper<AssetRecord>().eq(AssetRecord::getAssetId, asset.getId())));
     }
 
     @Override
@@ -178,6 +185,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     private BigDecimal getForRecordListPrice(List<AssetRecordDTO> assetRecordDTOList) {
         return assetRecordDTOList.stream().map(price -> Optional.ofNullable(price.getAmount()).orElse(BigDecimal.ZERO)).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
     private LambdaQueryWrapper<Asset> getQueryWrapper(AssetQueryRequest assetQueryRequest) {
 
         LambdaQueryWrapper<Asset> assetLambdaQueryWrapper = new LambdaQueryWrapper<>();

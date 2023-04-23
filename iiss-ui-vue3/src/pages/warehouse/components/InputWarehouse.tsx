@@ -27,7 +27,7 @@ export const productFiledMap = {
 };
 
 type InputWarehouseProps = ModalBaseProps;
-
+//转换数据
 const convertToProduct = partialRight(objectMap, productFiledMap);
 const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
   const { visible, onVisibleChange, onDone, onClose } = props;
@@ -75,7 +75,7 @@ const InputWarehouse: React.FC<InputWarehouseProps> = (props) => {
         onFinish={handleFinish}
       >
         <ProFormGroup>
-        <ProFormText name="batchNo" label="批次号" />
+          <ProFormText name="batchNo" rules={[{ required: true }]} label="批次号" />
           <WarehouseSelectro
             name={'warehouseId'}
             label="入库仓"
