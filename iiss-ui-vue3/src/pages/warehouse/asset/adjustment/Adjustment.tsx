@@ -54,6 +54,7 @@ const Warehousing: React.FC = () => {
         title: '出入方式',
         dataIndex: 'inOutBizTypeName',
         valueType: 'text',
+        search: false,
       },
       {
         title: '仓库',
@@ -76,6 +77,7 @@ const Warehousing: React.FC = () => {
         dataIndex: 'amount',
         valueType: 'money',
         align: 'right',
+        search: false,
       },
       {
         title: '调仓时间',
@@ -113,7 +115,7 @@ const Warehousing: React.FC = () => {
     <WrapContent>
       <ProTable<WarehousingRowType>
         actionRef={actionRef}
-        rowKey="warehouseProductRecordId"
+        rowKey="assetId"
         params={{ warehouseRecordStatus: WAREHOUSE_RECORD_STATUS_ENUM.TIAO_CANG }}
         request={getWarehouseTableData}
         columns={columns}

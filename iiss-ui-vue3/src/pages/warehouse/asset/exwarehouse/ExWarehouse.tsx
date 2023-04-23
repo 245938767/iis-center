@@ -48,7 +48,7 @@ const Warehousing: React.FC = () => {
     <WrapContent>
       <ProTable<WarehousingRowType>
         actionRef={actionRef}
-        rowKey="warehouseProductRecordId"
+        rowKey="assetId"
         columns={columns}
         params={{ warehouseRecordStatus: WAREHOUSE_RECORD_STATUS_ENUM.CHU_KU }}
         request={getWarehouseTableData}

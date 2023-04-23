@@ -206,10 +206,18 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
             assetLambdaQueryWrapper.eq(Asset::getWarehouseId, assetQueryRequest.getWarehouseId());
         }
         if (assetQueryRequest.getInOutBizType() != null) {
-            assetLambdaQueryWrapper.eq(Asset::getInOutBizType, assetQueryRequest.getInOutType());
+            assetLambdaQueryWrapper.eq(Asset::getInOutBizType, assetQueryRequest.getInOutBizType());
         }
         if (assetQueryRequest.getInOutType() != null) {
             assetLambdaQueryWrapper.eq(Asset::getInOutType, assetQueryRequest.getInOutType());
+        }
+        if (assetQueryRequest.getCreateUserName() != null) {
+
+            assetLambdaQueryWrapper.like(Asset::getCreateUserName, assetQueryRequest.getCreateUserName());
+        }
+        if (assetQueryRequest.getWarehouseName() != null) {
+
+            assetLambdaQueryWrapper.like(Asset::getWarehouseName, assetQueryRequest.getWarehouseName());
         }
         return assetLambdaQueryWrapper;
     }

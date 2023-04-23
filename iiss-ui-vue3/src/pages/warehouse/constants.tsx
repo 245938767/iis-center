@@ -4,10 +4,12 @@ import type { ReactChild, ReactFragment, ReactPortal, Key } from 'react';
 
 export enum INPUT_WAREHOUSE_TYPE_ENUM {
   PURCHASE_RECEIPT = 'PURCHASE_WAREHOUSE',
+  WAREHOUSE_ADJUST_IN = 'WAREHOUSE_ADJUST_IN',
   PRODUCTION_WAREHOUSING = 'PRODUCT_WAREHOUSE',
 }
 
 export const INPUT_WAREHOUSE_TYPE_MAP = new Map([
+  [INPUT_WAREHOUSE_TYPE_ENUM.WAREHOUSE_ADJUST_IN, '调拨入库'],
   [INPUT_WAREHOUSE_TYPE_ENUM.PURCHASE_RECEIPT, '外购入库'],
   [INPUT_WAREHOUSE_TYPE_ENUM.PRODUCTION_WAREHOUSING, '生产入库'],
 ]);
@@ -47,6 +49,7 @@ export enum OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM {
   SHENG_CHAN_LING_YONG = 'WAREHOUSE_REVIEW',
   TIAO_CANG = 'WAREHOUSE_ADJUST_POSiTION',
   WAI_FA_JIA_GONG = 'WAREHOUSE_OUTSOURCING',
+  WAREHOUSE_ADJUST_OUT = 'WAREHOUSE_ADJUST_OUT',
 }
 
 export const OUTPUT_WAREHOUSE_PRODUCT_TYPE_MAP = new Map([
@@ -54,6 +57,7 @@ export const OUTPUT_WAREHOUSE_PRODUCT_TYPE_MAP = new Map([
   [OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.SHENG_CHAN_LING_YONG, '生产领用'],
   [OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.TIAO_CANG, '调仓'],
   [OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.WAI_FA_JIA_GONG, '外发加工'],
+  [OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.WAREHOUSE_ADJUST_OUT, '调拨出库'],
 ]);
 
 export const OUTPUT_WAREHOUSE_PRODUCT_TYPE_OPTIONS = Array.from(
@@ -211,14 +215,15 @@ export const INPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
   },
   {
     title: '入库方式',
-    dataIndex: 'inOutBizTypeName',
-    valueType: 'text',
+    dataIndex: 'inOutBizType',
+    valueEnum: INPUT_WAREHOUSE_TYPE_MAP,
   },
   {
     title: '库存总金额',
     dataIndex: 'amount',
     valueType: 'money',
     align: 'right',
+    search: false,
   },
   {
     title: '入库时间',
@@ -246,14 +251,15 @@ export const OUTPUT_WAREHOUSE_COLUMNS: ProColumns[] = [
   },
   {
     title: '出库方式',
-    dataIndex: 'inOutBizTypeName',
-    valueType: 'text',
+    dataIndex: 'inOutBizType',
+    valueEnum: OUTPUT_WAREHOUSE_PRODUCT_TYPE_MAP,
   },
   {
     title: '库存总金额',
     dataIndex: 'amount',
     valueType: 'money',
     align: 'right',
+    search: false,
   },
   {
     title: '出库时间',
