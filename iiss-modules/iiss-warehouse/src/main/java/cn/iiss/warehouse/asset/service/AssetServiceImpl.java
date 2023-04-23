@@ -189,18 +189,8 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     private LambdaQueryWrapper<Asset> getQueryWrapper(AssetQueryRequest assetQueryRequest) {
 
         LambdaQueryWrapper<Asset> assetLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        assetLambdaQueryWrapper.orderByDesc(Asset::getCreateTime);
-        switch (assetQueryRequest.getWarehouseRecordStatus()) {
-
-            case 2:
-                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.OUT);
-                break;
-            case 3:
-                assetLambdaQueryWrapper.eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_IN).or().eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_OUT);
-                break;
-            default:
-                //入库
-                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.IN);
+        if (assetQueryRequest.getBatchNo() != null) {
+            assetLambdaQueryWrapper.like(Asset::getBatchNo, assetQueryRequest.getBatchNo());
         }
         if (assetQueryRequest.getWarehouseId() != null) {
             assetLambdaQueryWrapper.eq(Asset::getWarehouseId, assetQueryRequest.getWarehouseId());
@@ -219,6 +209,20 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
 
             assetLambdaQueryWrapper.like(Asset::getWarehouseName, assetQueryRequest.getWarehouseName());
         }
+        assetLambdaQueryWrapper.orderByDesc(Asset::getCreateTime);
+        switch (assetQueryRequest.getWarehouseRecordStatus()) {
+
+            case 2:
+                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.OUT);
+                break;
+            case 3:
+                assetLambdaQueryWrapper.eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_IN).or().eq(Asset::getInOutBizType, InOutBizType.WAREHOUSE_ADJUST_OUT);
+                break;
+            default:
+                //入库
+                assetLambdaQueryWrapper.eq(Asset::getInOutType, InOutType.IN);
+        }
+
         return assetLambdaQueryWrapper;
     }
 
