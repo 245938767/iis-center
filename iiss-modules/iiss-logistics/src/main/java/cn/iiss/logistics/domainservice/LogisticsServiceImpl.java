@@ -69,7 +69,6 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                         .amount(BigDecimal.ZERO)
                         .productSpecification(x.getProductSpecification())
                         .build()).toList())
-                .translationBatchNo(flowNoFacade.getNextId().toString())
                 .batchNo(flowNoFacade.getNextId().toString())
                 .translationWarehouseId(logisticsCreateRequest.getShipWarehouseId())
                 .warehouseId(logisticsCreateRequest.getConsigneeWarehouseId())
