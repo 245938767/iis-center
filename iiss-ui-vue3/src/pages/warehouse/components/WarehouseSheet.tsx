@@ -37,8 +37,8 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
     }
     getByBatchNo({ batchNo: props.recordId } as API.getByBatchNoParams).then((resp) => {
       if (!resp) return;
-      setDataSource(resp.data);
-      formRef.current?.setFieldsValue({ [TABLE_NAME]: resp.data.assetRecordList });
+      setDataSource(resp.result);
+      formRef.current?.setFieldsValue({ [TABLE_NAME]: resp.result.assetRecordList });
       setLoading(false);
     });
   }, [props.recordId, props.visible]);
@@ -91,44 +91,38 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
         <Skeleton type="descriptions" />
       ) : (
         <>
-          {notice}
+          {/* {notice} */}
           <Card>
             <ProDescriptions column={4} title="仓库信息" dataSource={dataSource}>
-              <ProDescriptions.Item label="单号" dataIndex={'batchOn'} valueType="text" />
+              <ProDescriptions.Item label="单号" dataIndex={'batchNo'} valueType="text" />
               <ProDescriptions.Item label="仓库名称" dataIndex={'warehouseName'} valueType="text" />
               <ProDescriptions.Item
                 label="商品来源"
-                dataIndex={'direction'}
-                valueType="select"
-                fieldProps={{
-                  options: [
-                    { label: '入库', value: true },
-                    { label: '出库', value: false },
-                  ],
-                }}
+                dataIndex={'inOutTypeName'}
+                valueType="text"
               />
               <ProDescriptions.Item
                 label="商品属性"
-                dataIndex={'warehouseAssetBizType'}
+                dataIndex={'inOutBizType'}
                 valueType="text"
                 valueEnum={
-                  dataSource.direction
+                  dataSource.inOutType==="IN"
                     ? INPUT_WAREHOUSE_TYPE_MAP
                     : OUTPUT_WAREHOUSE_PRODUCT_TYPE_MAP
                 }
               />
-              {dataSource.warehouseProductAdjustName && (
+              {/* {dataSource.warehouseProductAdjustName && (
                 <ProDescriptions.Item
                   label="调往仓库"
                   dataIndex={['warehouseProductAdjustName', 'to']}
                   valueType="text"
                 />
-              )}
+              )} */}
             </ProDescriptions>
           </Card>
           <br />
           <Card title={<TableHeader title="商品表" tableName={[TABLE_NAME]} />}>
-            {dataSource.direction ? (
+            {dataSource.inOutType==="IN" ? (
               <InputWarehouseTable
                 name={TABLE_NAME}
                 recordCreatorProps={false}
@@ -139,7 +133,7 @@ const WarehouseSheet: React.FC<InputWarehouseSheetProps> = (props) => {
               <OutputWarehouseTable
                 name={TABLE_NAME}
                 recordCreatorProps={false}
-                warehouseType={dataSource.warehouseAssetBizType}
+                warehouseType={dataSource.inOutBizType}
                 optionClomuns={false}
                 rowSelection={rowSelectionProps}
               />
