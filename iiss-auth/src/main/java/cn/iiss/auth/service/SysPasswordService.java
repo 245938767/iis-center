@@ -13,7 +13,6 @@ import cn.iiss.system.face.domain.SysUser;
 /**
  * 登录密码方法
  * 
- * @author ruoyi
  */
 @Component
 

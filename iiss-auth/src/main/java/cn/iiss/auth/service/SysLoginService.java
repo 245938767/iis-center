@@ -17,7 +17,6 @@ import cn.iiss.system.face.model.LoginUser;
 /**
  * 登录校验方法
  * 
- * @author ruoyi
  */
 @Component
 public class SysLoginService

@@ -3,7 +3,6 @@ package cn.iiss.common.core.constant;
 /**
  * Token的Key常量
  * 
- * @author ruoyi
  */
 public class TokenConstants
 {

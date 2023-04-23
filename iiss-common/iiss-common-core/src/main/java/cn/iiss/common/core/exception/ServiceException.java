@@ -5,7 +5,6 @@ import cn.iiss.commons.constants.BaseEnum;
 /**
  * 业务异常
  * 
- * @author ruoyi
  */
 public final class ServiceException extends RuntimeException
 {

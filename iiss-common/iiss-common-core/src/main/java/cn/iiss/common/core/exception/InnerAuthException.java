@@ -3,7 +3,6 @@ package cn.iiss.common.core.exception;
 /**
  * 内部认证异常
  * 
- * @author ruoyi
  */
 public class InnerAuthException extends RuntimeException
 {

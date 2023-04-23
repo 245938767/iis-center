@@ -21,7 +21,6 @@ import cn.iiss.system.face.model.LoginUser;
 /**
  * token 控制
  *
- * @author ruoyi
  */
 @RestController
 @RequiredArgsConstructor

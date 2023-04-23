@@ -3,7 +3,6 @@ package cn.iiss.common.core.constant;
 /**
  * 缓存常量信息
  * 
- * @author ruoyi
  */
 public class CacheConstants
 {

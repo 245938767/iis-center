@@ -122,14 +122,16 @@
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-commons</artifactId>
         </dependency>
-        <dependency>
-            <groupId>cn.iiss</groupId>
-            <artifactId>iiss-mybatisplus-spring-boot-starter</artifactId>
-        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>cn.iiss</groupId>-->
+<!--            <artifactId>iiss-mybatisplus-spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 

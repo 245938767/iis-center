@@ -11,7 +11,6 @@ import java.time.Instant;
 /**
  * AI模块
  *
- * @author ruoyi
  */
 @EnableCustomConfig
 @EnableCustomSwagger2

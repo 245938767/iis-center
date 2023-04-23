@@ -13,7 +13,6 @@ import cn.iiss.system.face.domain.SysLogininfor;
 /**
  * 记录日志方法
  * 
- * @author ruoyi
  */
 @Component
 public class SysRecordLogService
