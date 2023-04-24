@@ -11,6 +11,7 @@ import org.mapstruct.factory.Mappers;
         uses = {
                 GenericEnumMapper.class,
                 DateMapper.class,
+                LogisticsMappers.class
         }
 )
 public interface LogisticsMapperd {
