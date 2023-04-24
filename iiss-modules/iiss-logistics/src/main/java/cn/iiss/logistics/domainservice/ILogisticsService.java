@@ -3,7 +3,10 @@ package cn.iiss.logistics.domainservice;
 import cn.iiss.logistics.LogisticsInfo;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
+import cn.iiss.logistics.response.LogisticsResponse;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 public interface ILogisticsService extends IService<LogisticsInfo> {
 
@@ -22,4 +25,6 @@ public interface ILogisticsService extends IService<LogisticsInfo> {
      * @return
      */
     boolean complete(LogisticsUpdateRequest logisticsUpdateRequest);
+
+    List<LogisticsResponse> getPageList();
 }

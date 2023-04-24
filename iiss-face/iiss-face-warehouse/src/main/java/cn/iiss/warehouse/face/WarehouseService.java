@@ -33,6 +33,10 @@ public interface WarehouseService {
     @ApiOperation(value = "转仓", nickname = "translationWarehouse")
     public JsonObject<Long> assetTranslation(@RequestBody @Valid AssetTranslationRequest assetTranslationRequest);
 
+    @GetMapping("/asset/v1/getAssetId/{assetId}")
+    @ApiOperation(value = "获得ID信息", nickname = "getByAssetId")
+    public JsonObject<AssetResponse> assetGetByAssetId(@PathVariable Long assetId);
+
     @GetMapping("/asset/v1/get/{batchNo}")
     @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
     public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable String batchNo);

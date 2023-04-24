@@ -38,6 +38,12 @@ public class WarehouseFallbackFactory implements FallbackFactory<WarehouseServic
             }
 
             @Override
+            public JsonObject<AssetResponse> assetGetByAssetId(Long assetId) {
+                return null;
+            }
+
+
+            @Override
             public JsonObject<AssetResponse> assetGetByBatchNo(String batchNo) {
                 return JsonObject.fail(CodeEnum.Fail);
             }

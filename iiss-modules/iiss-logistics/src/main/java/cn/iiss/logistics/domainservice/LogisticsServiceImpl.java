@@ -1,15 +1,18 @@
 package cn.iiss.logistics.domainservice;
 
 import cn.iiss.common.core.domain.R;
-import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.common.security.utils.SecurityUtils;
+import cn.iiss.commons.constants.CodeEnum;
+import cn.iiss.commons.exception.BusinessException;
 import cn.iiss.commons.model.JsonObject;
 import cn.iiss.flowNo.face.service.IFlowNoFacade;
 import cn.iiss.logistics.LogisticsInfo;
 import cn.iiss.logistics.LogisticsStatus;
 import cn.iiss.logistics.mapper.LogisticsMapper;
+import cn.iiss.logistics.mapper.LogisticsMapperd;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
+import cn.iiss.logistics.response.LogisticsResponse;
 import cn.iiss.product.face.ProductService;
 import cn.iiss.product.face.model.Product;
 import cn.iiss.trade.face.TradeService;
@@ -19,6 +22,8 @@ import cn.iiss.warehouse.face.WarehouseService;
 import cn.iiss.warehouse.face.model.WarehouseAssetBizType;
 import cn.iiss.warehouse.face.request.AssetProductRequest;
 import cn.iiss.warehouse.face.request.AssetTranslationRequest;
+import cn.iiss.warehouse.face.response.AssetResponse;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -41,6 +45,11 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
 
     @Override
     public boolean createBase(LogisticsCreateRequest logisticsCreateRequest) {
+        JsonObject<AssetResponse> consignee = warehouseService.assetGetByAssetId(logisticsCreateRequest.getConsigneeWarehouseId());
+        JsonObject<AssetResponse> ship = warehouseService.assetGetByAssetId(logisticsCreateRequest.getShipWarehouseId());
+        if (!(consignee.isSuccess() || ship.isSuccess())) {
+            throw new BusinessException(CodeEnum.Fail);
+        }
         //获得商品数据
         Stream<Product> productStream = logisticsCreateRequest.getLogisicsProductRequests().stream().map(x -> {
             R<Product> byId = productService.getById(x.getProductId());
@@ -75,13 +84,33 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                 .build();
         Long ajaxResult = warehouseService.assetTranslation(build).getResult();
         LogisticsInfo logisticsInfo = new LogisticsInfo();
-        logisticsInfo.init(flowNoFacade.getNextId(),LogisticsStatus.DELIVERY,logisticsCreateRequest.getFreight(),logisticsCreateRequest.getShipWarehouseId(),logisticsCreateRequest.getConsigneeWarehouseId(),orderBase.getResult(),ajaxResult);
-        boolean save = save(logisticsInfo);
-        return true;
+        logisticsInfo.init(flowNoFacade.getNextId(),
+                LogisticsStatus.DELIVERY,
+                logisticsCreateRequest.getFreight(),
+                logisticsCreateRequest.getShipWarehouseId(),
+                logisticsCreateRequest.getConsigneeWarehouseId(),
+                orderBase.getResult(),
+                ajaxResult,
+                ship.getResult().getWarehouseName(),
+                consignee.getResult().getWarehouseName(),
+                logisticsCreateRequest.getLogisicsProductRequests()
+        );
+
+        return save(logisticsInfo);
     }
 
     @Override
     public boolean complete(LogisticsUpdateRequest logisticsUpdateRequest) {
+        Long flowNo = logisticsUpdateRequest.getFlowNo();
+        LogisticsInfo one = getOne(new LambdaQueryWrapper<LogisticsInfo>().eq(LogisticsInfo::getFlowNo, flowNo));
+        JsonObject jsonObject = tradeService.orderComplete(flowNo);
+        one.complete();
         return false;
+    }
+
+    @Override
+    public List<LogisticsResponse> getPageList() {
+        List<LogisticsInfo> list = list();
+        return list.stream().map(LogisticsMapperd.INSTANCE::Entity2Response).toList();
     }
 }
