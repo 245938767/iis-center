@@ -9,6 +9,7 @@ import cn.iiss.mybatis.converter.InstantLongConverter;
 import cn.iiss.mybatis.support.BaseMybatisAggregate;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -47,6 +48,7 @@ public class LogisticsInfo extends BaseMybatisAggregate {
     private Long consigneeWarehouseId;
     @FieldDesc(name = "收货仓名称")
     private String consigneeWarehouseName;
+    @TableField(typeHandler = FastjsonTypeHandler.class)
     private List<CodeValue> products;
 
     public void init(Long flowNo, LogisticsStatus logisticsStatus, BigDecimal freight, Long shipWarehouseId, Long consigneeWarehouseId, Long orderId, Long assetId, String shipWarehouseName, String consigneeWarehouseName, List<LogisicsProductRequest> logisicsProductRequests

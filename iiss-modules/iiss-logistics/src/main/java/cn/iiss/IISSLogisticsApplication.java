@@ -16,7 +16,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableCustomSwagger2
 @EnableRyFeignClients
 @SpringBootApplication
-@MapperScan("cn.iiss.logistics.mapper")
 public class IISSLogisticsApplication {
     public static void main(String[] args) {
         SpringApplication.run(IISSLogisticsApplication.class, args);
