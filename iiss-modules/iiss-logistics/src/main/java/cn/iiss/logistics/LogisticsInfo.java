@@ -51,6 +51,19 @@ public class LogisticsInfo extends BaseMybatisAggregate {
     @TableField(typeHandler = FastjsonTypeHandler.class)
     private List<CodeValue> products;
 
+    /**
+     * 初始化
+     * @param flowNo
+     * @param logisticsStatus
+     * @param freight
+     * @param shipWarehouseId
+     * @param consigneeWarehouseId
+     * @param orderId
+     * @param assetId
+     * @param shipWarehouseName
+     * @param consigneeWarehouseName
+     * @param logisicsProductRequests
+     */
     public void init(Long flowNo, LogisticsStatus logisticsStatus, BigDecimal freight, Long shipWarehouseId, Long consigneeWarehouseId, Long orderId, Long assetId, String shipWarehouseName, String consigneeWarehouseName, List<LogisicsProductRequest> logisicsProductRequests
     ) {
         this.assetId = assetId;
