@@ -170,11 +170,11 @@
             </dependency>
 
             <!-- 分布式事务 -->
-            <dependency>
-                <groupId>cn.iiss</groupId>
-                <artifactId>iiss-common-seata</artifactId>
-                <version>${iiss.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>cn.iiss</groupId>-->
+<!--                <artifactId>iiss-common-seata</artifactId>-->
+<!--                <version>${iiss.version}</version>-->
+<!--            </dependency>-->
             <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
@@ -227,12 +227,6 @@
             <dependency>
                 <groupId>cn.iiss</groupId>
                 <artifactId>iiss-face-trade</artifactId>
-                <version>${iiss.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.iiss</groupId>
-                <artifactId>iiss-face-warehouse</artifactId>
                 <version>${iiss.version}</version>
             </dependency>
 

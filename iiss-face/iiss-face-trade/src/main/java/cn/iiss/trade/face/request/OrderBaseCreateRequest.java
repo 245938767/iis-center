@@ -2,40 +2,39 @@
 package cn.iiss.trade.face.request;
 
 import cn.iiss.common.core.domain.CodeValue;
+import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.model.Request;
 import cn.iiss.trade.face.model.OrderItemModel;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Schema
 @Builder
 public class OrderBaseCreateRequest implements Request {
 
-    @Schema(
-            title = "订单金额"
+    @FieldDesc(
+            name = "订单金额"
     )
     private BigDecimal totalAmount;
 
-    @Schema(
-            title = "真实金额"
+    @FieldDesc(
+            name = "真实金额"
     )
     private BigDecimal realAmount;
 
-    @Schema(
-            title = "用户id"
+    @FieldDesc(
+            name = "用户id"
     )
     private Long userId;
 
-    @Schema(
-            title = "订单类型、订单类型创建不同的状态机"
+    @FieldDesc(
+            name = "订单类型、订单类型创建不同的状态机"
     )
     private Integer orderType;
 
-    @Schema(
-            title = "订单信息"
+    @FieldDesc(
+            name = "订单信息"
     )
     private List<CodeValue> attrs;
 

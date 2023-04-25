@@ -5,9 +5,7 @@ import cn.iiss.warehouse.face.model.AssetRecord;
 import cn.iiss.warehouse.face.model.InOutBizType;
 import cn.iiss.warehouse.face.model.InOutType;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,7 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 @Builder
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class AssetResponse {
 

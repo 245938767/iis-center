@@ -1,10 +1,11 @@
 package cn.iiss.warehouse.face.model;
 
-import cn.hutool.core.date.DateTime;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import cn.iiss.common.core.utils.DateUtils;
 import cn.iiss.commons.annotation.FieldDesc;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,9 +15,11 @@ import java.util.Date;
  * 出入库记录表单
  */
 @EqualsAndHashCode(callSuper = false)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Asset implements Serializable {
     private static final long serialVersionUID = 1L;
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     @FieldDesc(name = "仓库唯一ID")
@@ -67,8 +70,8 @@ public class Asset implements Serializable {
         this.createUserName = assetBizInfo.getCreateUserName();
         this.createUserId = assetBizInfo.getCreateUserId();
         //time
-        this.createTime= DateTime.now();
-        this.updateTime=DateTime.now();
+        this.createTime= DateUtils.getNowDate();
+        this.updateTime=DateUtils.getNowDate();
 
     }
 

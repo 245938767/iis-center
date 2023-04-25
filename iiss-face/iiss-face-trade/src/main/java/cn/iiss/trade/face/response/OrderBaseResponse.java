@@ -2,63 +2,63 @@
 package cn.iiss.trade.face.response;
 
 import cn.iiss.common.core.domain.CodeValue;
+import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.constants.ValidStatus;
 import cn.iiss.commons.model.AbstractMybatisResponse;
 import cn.iiss.order.commons.pay.PayItem;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Schema
+@FieldDesc
 public class OrderBaseResponse extends AbstractMybatisResponse {
-    @Schema(
-            title = "唯一流水号"
+    @FieldDesc(
+            name = "唯一流水号"
     )
     private Long flowNo;
 
-    @Schema(
-            title = "订单金额"
+    @FieldDesc(
+            name = "订单金额"
     )
     private BigDecimal totalAmount;
 
-    @Schema(
-            title = "真实金额"
+    @FieldDesc(
+            name = "真实金额"
     )
     private BigDecimal realAmount;
 
-    @Schema(
-            title = "用户id"
+    @FieldDesc(
+            name = "用户id"
     )
     private Long userId;
 
-    @Schema(
-            title = "订单类型、订单类型创建不同的状态机"
+    @FieldDesc(
+            name = "订单类型、订单类型创建不同的状态机"
     )
     private Integer orderType;
 
-    @Schema(
-            title = "支付详情"
+    @FieldDesc(
+            name = "支付详情"
     )
     private List<PayItem> payList;
 
-    @Schema(
-            title = "支付时间"
+    @FieldDesc(
+            name = "支付时间"
     )
     private Long payTime;
 
-    @Schema(
-            title = "订单状态"
+    @FieldDesc(
+            name = "订单状态"
     )
     private Integer orderState;
 
-    @Schema(
-            title = "validStatus"
+    @FieldDesc(
+            name = "validStatus"
     )
     private ValidStatus validStatus;
 
-    @Schema(
-            title = "订单信息"
+    @FieldDesc(
+            name = "订单信息"
     )
     private List<CodeValue> attrs;
 

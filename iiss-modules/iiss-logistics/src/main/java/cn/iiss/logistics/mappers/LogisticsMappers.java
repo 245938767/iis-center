@@ -1,4 +1,4 @@
-package cn.iiss.logistics.mapper;
+package cn.iiss.logistics.mappers;
 
 import cn.iiss.logistics.LogisticsStatus;
 

@@ -2,7 +2,7 @@ package cn.iiss.trade.order.dto;
 
 import cn.iiss.common.core.domain.CodeValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import cn.iiss.trade.face.model.OrderItemModel;
+import cn.iiss.trade.order.domainservice.model.OrderItemModel;
 import lombok.Data;
 
 import java.math.BigDecimal;

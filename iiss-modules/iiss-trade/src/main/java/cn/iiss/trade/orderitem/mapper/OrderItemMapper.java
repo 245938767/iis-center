@@ -14,7 +14,7 @@ import cn.iiss.trade.orderitem.request.OrderItemQueryRequest;
 import cn.iiss.trade.orderitem.request.OrderItemUpdateRequest;
 import cn.iiss.trade.orderitem.response.OrderItemResponse;
 import org.mapstruct.Mapper;
-import cn.iiss.trade.face.model.OrderItemModel;
+import cn.iiss.trade.order.domainservice.model.OrderItemModel;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(

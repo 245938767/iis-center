@@ -22,17 +22,15 @@
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-commons</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-common-core</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-order-commons</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.iiss</groupId>
-            <artifactId>iiss-common-swagger</artifactId>
         </dependency>
 
     </dependencies>

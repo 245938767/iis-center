@@ -117,13 +117,6 @@
         <dependency>
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-face-flowNo</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.iiss</groupId>
-            <artifactId>iiss-face-trade</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
         <dependency>

@@ -1,20 +1,23 @@
 package cn.iiss.warehouse.face.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.constants.ValidStatus;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AssetRecord implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-    @TableId(type = IdType.AUTO)
     private Long id;
     @FieldDesc(name = "状态")
     private ValidStatus validStatus;

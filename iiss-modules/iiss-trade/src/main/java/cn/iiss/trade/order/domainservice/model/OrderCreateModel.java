@@ -3,7 +3,6 @@ package cn.iiss.trade.order.domainservice.model;
 import cn.iiss.common.core.domain.CodeValue;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.order.commons.pay.PayItem;
-import cn.iiss.trade.face.model.OrderItemModel;
 import lombok.Data;
 
 import java.util.List;

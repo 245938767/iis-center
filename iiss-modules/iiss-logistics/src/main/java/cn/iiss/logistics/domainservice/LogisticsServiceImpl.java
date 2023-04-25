@@ -9,7 +9,7 @@ import cn.iiss.flowNo.face.service.IFlowNoFacade;
 import cn.iiss.logistics.LogisticsInfo;
 import cn.iiss.logistics.LogisticsStatus;
 import cn.iiss.logistics.mapper.LogisticsMapper;
-import cn.iiss.logistics.mapper.LogisticsMapperd;
+import cn.iiss.logistics.mappers.LogisticsMapperd;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
 import cn.iiss.logistics.response.LogisticsResponse;
@@ -37,11 +37,10 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 @Transactional
 public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, LogisticsInfo> implements ILogisticsService {
-    private final LogisticsMapper logisticsMapper;
-    private final WarehouseService warehouseService;
-    private final TradeService tradeService;
-    private final ProductService productService;
     private final IFlowNoFacade flowNoFacade;
+    private final ProductService productService;
+    private final TradeService tradeService;
+    private final WarehouseService warehouseService;
 
     @Override
     public boolean createBase(LogisticsCreateRequest logisticsCreateRequest) {
@@ -104,7 +103,10 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
         Long flowNo = logisticsUpdateRequest.getFlowNo();
         LogisticsInfo one = getOne(new LambdaQueryWrapper<LogisticsInfo>().eq(LogisticsInfo::getFlowNo, flowNo));
         JsonObject jsonObject = tradeService.orderComplete(flowNo);
-        one.complete();
+        if (jsonObject.isSuccess()) {
+            one.complete();
+            return updateById(one);
+        }
         return false;
     }
 

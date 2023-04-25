@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import cn.iiss.trade.face.model.OrderItemModel;
+import cn.iiss.trade.order.domainservice.model.OrderItemModel;
 
 import java.util.List;
 

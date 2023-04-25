@@ -1,8 +1,7 @@
 package cn.iiss.warehouse.face.model;
 
 import cn.iiss.commons.annotation.FieldDesc;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -11,7 +10,9 @@ import java.math.BigDecimal;
  * 资产业务信息
  */
 @Builder
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AssetBizInfo {
     @FieldDesc(name = "仓库唯一ID")
     private Long warehouseId;
