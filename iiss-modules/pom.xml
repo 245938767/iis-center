@@ -10,7 +10,6 @@
 
     <modules>
         <module>iiss-system</module>
-        <module>iiss-gen</module>
         <module>iiss-job</module>
         <module>iiss-file</module>
         <module>iiss-warehouse</module>
