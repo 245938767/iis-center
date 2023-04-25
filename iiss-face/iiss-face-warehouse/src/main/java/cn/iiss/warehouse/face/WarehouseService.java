@@ -16,32 +16,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 
 @FeignClient(contextId = "warehouseService", value = ServiceNameConstants.WAREHOUSE, fallbackFactory = WarehouseFallbackFactory.class)
 public interface WarehouseService {
 
     @PostMapping("/asset/v1/saveIn")
     @ApiOperation(value = "创建入库", nickname = "assetCreateIn")
-    public AjaxResult assetCreateIn(@RequestBody @Valid AssetCreateRequest assetCreateRequest);
+    public AjaxResult assetCreateIn(@RequestBody AssetCreateRequest assetCreateRequest);
 
     @PostMapping("/asset/v1/saveOut")
     @ApiOperation(value = "创建出库", nickname = "assetCreateOut")
-    public AjaxResult assetCreateOut(@RequestBody @Valid AssetCreateRequest assetCreateRequest);
+    public AjaxResult assetCreateOut(@RequestBody AssetCreateRequest assetCreateRequest);
 
     @PostMapping("/asset/v1/translation")
     @ApiOperation(value = "转仓", nickname = "translationWarehouse")
-    public JsonObject<Long> assetTranslation(@RequestBody @Valid AssetTranslationRequest assetTranslationRequest);
+    public JsonObject<Long> assetTranslation(@RequestBody AssetTranslationRequest assetTranslationRequest);
 
     @GetMapping("/asset/v1/getAssetId/{assetId}")
     @ApiOperation(value = "获得ID信息", nickname = "getByAssetId")
-    public JsonObject<AssetResponse> assetGetByAssetId(@PathVariable Long assetId);
+    public JsonObject<AssetResponse> assetGetByAssetId(@PathVariable("assetId") Long assetId);
 
     @GetMapping("/asset/v1/get/{batchNo}")
     @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
-    public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable String batchNo);
+    public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable("batchNo") String batchNo);
 
     @PostMapping("/asset/v1/getPage")
     @ApiOperation(value = "获得分页数据", nickname = "getByPage")
-    public TableDataInfo assetGetPageList(@RequestBody @Valid AssetQueryRequest assetQueryRequest);
+    public TableDataInfo assetGetPageList(@RequestBody AssetQueryRequest assetQueryRequest);
 }

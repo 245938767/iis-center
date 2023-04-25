@@ -34,21 +34,21 @@ public interface TradeService {
      */
     @PostMapping("/orderBase/v1/valid/{id}")
     @ApiOperation(value = "校验订单", nickname = "validOrder")
-    public JsonObject<String> validOrderBase(@PathVariable Long id);
+    public JsonObject<String> validOrderBase(@PathVariable("id") Long id);
 
     /**
      * invalid
      */
     @PostMapping("/orderBase/v1/invalid/{id}")
     @ApiOperation(value = "取消订单", nickname = "invalidOrder")
-    public JsonObject<String> invalidOrderBase(@PathVariable Long id);
+    public JsonObject<String> invalidOrderBase(@PathVariable("id") Long id);
 
     /**
      * findById
      */
     @ApiOperation(value = "查询订单", nickname = "findByIdOrder")
     @GetMapping("/orderBase/v1/findById/{id}")
-    public JsonObject<OrderBaseResponse> findById(@PathVariable Long id);
+    public JsonObject<OrderBaseResponse> findById(@PathVariable("id") Long id);
 
     /**
      * findByPage request
@@ -63,13 +63,13 @@ public interface TradeService {
      */
     @ApiOperation(value = "订单完成", nickname = "orderComplete")
     @GetMapping("/orderBase/v1/orderComplete/{id}")
-    public JsonObject orderComplete(@PathVariable Long id);
+    public JsonObject orderComplete(@PathVariable("id") Long id);
 
     /**
      * orderComplete
      */
     @ApiOperation(value = "订单取消", nickname = "orderCancle")
     @GetMapping("/orderBase/v1/orderCancle/{id}")
-    public JsonObject orderCancle(@PathVariable Long id);
+    public JsonObject orderCancle(@PathVariable("id") Long id);
 
 }
