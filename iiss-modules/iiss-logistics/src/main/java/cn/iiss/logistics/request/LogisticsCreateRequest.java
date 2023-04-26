@@ -1,6 +1,5 @@
 package cn.iiss.logistics.request;
 
-import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.model.Request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -16,8 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LogisticsCreateRequest implements Request {
-    @Schema(name = "订单流水号")
-    private Long flowNo;
+//    @Schema(name = "订单流水号")
+//    private Long flowNo;
     @Schema(name = "发货仓")
     private Long shipWarehouseId;
 
@@ -26,5 +25,5 @@ public class LogisticsCreateRequest implements Request {
 
     @Schema(name = "费用")
     private BigDecimal freight;
-    List<LogisicsProductRequest> logisicsProductRequests;
+    List<LogisicsProductRequest> logisticsProductRequests;
 }

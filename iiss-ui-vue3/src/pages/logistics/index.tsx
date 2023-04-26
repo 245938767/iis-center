@@ -1,12 +1,18 @@
 import WrapContent from '@/components/WrapContent';
+import { list } from '@/services/logistics/logisticsController';
 import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
 import { Button } from 'antd';
 import React, { useRef, useState } from 'react';
+import CreateLogistics from './components/CreateLogistics';
+import { useBoolean } from 'ahooks';
 
 const Logistics: React.FC = () => {
+  // const [sheetVisible, { setTrue: openSheet, toggle: setSheetVisible }] = useBoolean(false);
+  const [outputVisible, { setTrue: openInputModal, toggle: setOutputVisible }] = useBoolean(false);
   const actionRef = useRef<ActionType>();
   const [onKeyId, setOnKeyId] = useState('');
 
+  const getLogisticsList = async (params: any) => {};
   const columns: ProColumns[] = [
     {
       title: '流水号',
@@ -52,21 +58,31 @@ const Logistics: React.FC = () => {
   ];
   return (
     <>
-    <WrapContent>
-      <ProTable
-        actionRef={actionRef}
-        rowKey="assetId"
-        columns={columns}
-        params={{}}
-        // request={}
-        toolBarRender={() => {
-          return [
-            <Button key="add" type="primary" >
-              创建物流订单
-            </Button>,
-          ];
-        }}
-      />
+      <WrapContent>
+        <ProTable
+          actionRef={actionRef}
+          rowKey="assetId"
+          columns={columns}
+          // params={{}}
+          request={(params) =>
+            list({ ...params }).then((res) => {
+              if (!res) return { success: false };
+              return { success: res.code === 200, data: res.rows as any, total: res.total };
+            })
+          }
+          toolBarRender={() => {
+            return [
+              <Button key="add" type="primary" onClick={openInputModal}>
+                创建物流订单
+              </Button>,
+            ];
+          }}
+        />
+        <CreateLogistics
+          visible={outputVisible}
+          onVisibleChange={setOutputVisible}
+          onDone={() => actionRef.current?.reload()}
+        />
       </WrapContent>
     </>
   );

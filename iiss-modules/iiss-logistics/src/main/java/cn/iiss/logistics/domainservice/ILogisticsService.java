@@ -1,5 +1,6 @@
 package cn.iiss.logistics.domainservice;
 
+import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.logistics.LogisticsInfo;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
@@ -26,5 +27,5 @@ public interface ILogisticsService extends IService<LogisticsInfo> {
      */
     boolean complete(LogisticsUpdateRequest logisticsUpdateRequest);
 
-    List<LogisticsResponse> getPageList();
+    TableDataInfo getPageList();
 }

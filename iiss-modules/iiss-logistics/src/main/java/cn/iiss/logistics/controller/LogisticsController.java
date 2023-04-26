@@ -1,12 +1,11 @@
 package cn.iiss.logistics.controller;
 
 import cn.iiss.common.core.web.controller.BaseController;
-import cn.iiss.commons.constants.CodeEnum;
+import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.commons.model.JsonObject;
 import cn.iiss.logistics.domainservice.ILogisticsService;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
-import cn.iiss.logistics.response.LogisticsResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,9 +39,9 @@ public class LogisticsController extends BaseController {
 
     @PostMapping("/getPageList")
     @ApiOperation(value = "list", nickname = "list")
-    public JsonObject<List<LogisticsResponse>> getPageList() {
-        List<LogisticsResponse> pageList = logisticsService.getPageList();
-        return JsonObject.success(pageList, CodeEnum.Success.getName());
+    public TableDataInfo getPageList() {
+        startPage();
+        return logisticsService.getPageList();
     }
 
 

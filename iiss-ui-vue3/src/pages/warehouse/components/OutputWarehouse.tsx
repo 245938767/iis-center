@@ -45,10 +45,10 @@ const OutputWarehouse: React.FC<OutputWarehouseProps> = (props) => {
   const [editableKeys, setEditableKeys] = useState<React.Key[]>([]);
   const [tableModalParams, setTableModalParams] = useState<any>({});
   const [selectionModalVisibel, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false);
-  const [warehouseType, setWarehouseType] = useState<number>(1);
+  const [warehouseType, setWarehouseType] = useState<OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM>(OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.SHENG_CHAN_LING_YONG);
   useEffect(() => {
     if (visible === false) {
-      setWarehouseType(1);
+      setWarehouseType(OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM.SHENG_CHAN_LING_YONG);
     }
   }, [visible]);
 

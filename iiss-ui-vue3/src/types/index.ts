@@ -11,4 +11,3 @@ export type ModalBaseProps = {
   onDone?: (...args: any[]) => void;
 };
 
-export type Ledger = API.gongsizhangbenjichuduixiangSysCompanyLedger;

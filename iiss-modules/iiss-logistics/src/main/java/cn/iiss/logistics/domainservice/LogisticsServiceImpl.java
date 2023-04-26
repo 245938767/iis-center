@@ -1,6 +1,8 @@
 package cn.iiss.logistics.domainservice;
 
+import cn.iiss.common.core.constant.HttpStatus;
 import cn.iiss.common.core.domain.R;
+import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.common.security.utils.SecurityUtils;
 import cn.iiss.commons.constants.CodeEnum;
 import cn.iiss.commons.exception.BusinessException;
@@ -12,7 +14,6 @@ import cn.iiss.logistics.mapper.LogisticsMapper;
 import cn.iiss.logistics.mappers.LogisticsMapperd;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
-import cn.iiss.logistics.response.LogisticsResponse;
 import cn.iiss.product.face.ProductService;
 import cn.iiss.product.face.model.Product;
 import cn.iiss.trade.face.TradeService;
@@ -25,6 +26,7 @@ import cn.iiss.warehouse.face.request.AssetTranslationRequest;
 import cn.iiss.warehouse.face.response.AssetResponse;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +52,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
             throw new BusinessException(CodeEnum.Fail);
         }
         //获得商品数据
-        Stream<Product> productStream = logisticsCreateRequest.getLogisicsProductRequests().stream().map(x -> {
+        Stream<Product> productStream = logisticsCreateRequest.getLogisticsProductRequests().stream().map(x -> {
             R<Product> byId = productService.getById(x.getProductId());
             return byId.getData();
         });
@@ -69,7 +71,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                 .assetProductRequestList(productStream.map(x -> AssetProductRequest.builder()
                         .productId(x.getId())
                         .productImg(x.getProductImg())
-                        .productNum(logisticsCreateRequest.getLogisicsProductRequests().stream().filter(f -> f.getProductId() == x.getId()).findFirst().get().getProductId())
+                        .productNum(logisticsCreateRequest.getLogisticsProductRequests().stream().filter(f -> f.getProductId() == x.getId()).findFirst().get().getProductId())
                         .warehouseAssetBizType(WarehouseAssetBizType.PRODUCT_SALES)
                         .tax(BigDecimal.ZERO)
                         .taxRate(0d)
@@ -92,7 +94,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                 ajaxResult,
                 ship.getResult().getWarehouseName(),
                 consignee.getResult().getWarehouseName(),
-                logisticsCreateRequest.getLogisicsProductRequests()
+                logisticsCreateRequest.getLogisticsProductRequests()
         );
 
         return save(logisticsInfo);
@@ -111,8 +113,14 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
     }
 
     @Override
-    public List<LogisticsResponse> getPageList() {
+    public TableDataInfo getPageList() {
         List<LogisticsInfo> list = list();
-        return list.stream().map(LogisticsMapperd.INSTANCE::Entity2Response).toList();
+
+        TableDataInfo rspData = new TableDataInfo();
+        rspData.setCode(HttpStatus.SUCCESS);
+        rspData.setRows(list.stream().map(LogisticsMapperd.INSTANCE::Entity2Response).toList());
+        rspData.setMsg("查询成功");
+        rspData.setTotal(new PageInfo(list).getTotal());
+        return rspData;
     }
 }
