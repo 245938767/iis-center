@@ -3,12 +3,16 @@ package cn.iiss.trade.order.dto;
 import cn.iiss.common.core.domain.CodeValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import cn.iiss.trade.order.domainservice.model.OrderItemModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderBaseCreator {
     @Schema(
             title = "唯一流水号"

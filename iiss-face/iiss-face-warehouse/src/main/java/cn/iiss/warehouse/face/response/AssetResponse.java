@@ -20,7 +20,7 @@ import java.util.List;
 public class AssetResponse {
 
     @ApiModelProperty("资产ID")
-    private Long assetId;
+    private String assetId;
     @ApiModelProperty(value = "仓库唯一ID")
     private Long warehouseId;
     @ApiModelProperty(value = "仓库名称")
@@ -63,7 +63,7 @@ public class AssetResponse {
         inOutTypeName = asset.getInOutType().getName();
         createTime = asset.getCreateTime();
         updateTime = asset.getUpdateTime();
-        assetId = asset.getId();
+        assetId = asset.getId().toString();
         this.assetRecordList = assetRecordList;
         if (assetRecordList != null && !assetRecordList.isEmpty()) {
             productImgs = new ArrayList<>(assetRecordList.size());

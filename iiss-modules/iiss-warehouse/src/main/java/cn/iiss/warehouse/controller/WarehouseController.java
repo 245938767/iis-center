@@ -1,5 +1,6 @@
 package cn.iiss.warehouse.controller;
 
+import cn.iiss.common.core.domain.R;
 import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.warehouse.warehouse.WarehouseDTO;
 import cn.iiss.warehouse.warehouse.request.WarehouseCreateRequest;
@@ -46,6 +47,7 @@ public class WarehouseController {
         List<WarehouseDTO> treeData = warehouseService.getTreeData();
         return AjaxResult.success(treeData);
     }
+
     @PostMapping("/getChildList")
     @ApiOperation(value = "获得树形列表", nickname = "getChildList")
     public AjaxResult getChildList() {
@@ -73,8 +75,15 @@ public class WarehouseController {
 
     @GetMapping("/getByid/{id}")
     @ApiOperation(value = "获得ID数据", nickname = "getById")
-    public AjaxResult getById(@PathVariable Long id) {
+    public R<WarehouseDTO> getById(@PathVariable Long id) {
         WarehouseDTO warehouseById = warehouseService.getWarehouseById(id);
-        return AjaxResult.success(warehouseById);
+        return R.ok(warehouseById);
+    }
+
+    @GetMapping("/getByIdName/{id}")
+    @ApiOperation(value = "获得仓库名称", nickname = "getByIdName")
+    public R<String> getByIdForName(@PathVariable Long id) {
+        WarehouseDTO warehouseById = warehouseService.getWarehouseById(id);
+        return R.ok(warehouseById.getWarehouseName());
     }
 }

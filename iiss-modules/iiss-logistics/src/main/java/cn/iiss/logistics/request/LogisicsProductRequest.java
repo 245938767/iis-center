@@ -8,6 +8,6 @@ public class LogisicsProductRequest implements Request {
 
     private Long productId;
 
-    private Integer num;
+    private Integer productNum;
 
 }

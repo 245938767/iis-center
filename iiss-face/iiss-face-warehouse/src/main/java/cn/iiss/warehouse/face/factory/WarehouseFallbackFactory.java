@@ -1,5 +1,6 @@
 package cn.iiss.warehouse.face.factory;
 
+import cn.iiss.common.core.domain.R;
 import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.commons.constants.CodeEnum;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WarehouseFallbackFactory implements FallbackFactory<WarehouseService> {
     private static final Logger log = LoggerFactory.getLogger(WarehouseFallbackFactory.class);
+
     @Override
     public WarehouseService create(Throwable cause) {
 
@@ -29,17 +31,17 @@ public class WarehouseFallbackFactory implements FallbackFactory<WarehouseServic
 
             @Override
             public AjaxResult assetCreateOut(AssetCreateRequest assetCreateRequest) {
-                return null;
+                return AjaxResult.error();
             }
 
             @Override
             public JsonObject<Long> assetTranslation(AssetTranslationRequest assetTranslationRequest) {
-                return null;
+                return JsonObject.fail(CodeEnum.Fail);
             }
 
             @Override
             public JsonObject<AssetResponse> assetGetByAssetId(Long assetId) {
-                return null;
+                return JsonObject.fail(CodeEnum.Fail);
             }
 
 
@@ -51,6 +53,11 @@ public class WarehouseFallbackFactory implements FallbackFactory<WarehouseServic
             @Override
             public TableDataInfo assetGetPageList(AssetQueryRequest assetQueryRequest) {
                 return null;
+            }
+
+            @Override
+            public R<String> warehouseGetById(Long id) {
+                return R.fail();
             }
         };
     }

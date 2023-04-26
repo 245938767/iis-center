@@ -1,6 +1,7 @@
 package cn.iiss.warehouse.face;
 
 import cn.iiss.common.core.constant.ServiceNameConstants;
+import cn.iiss.common.core.domain.R;
 import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.commons.model.JsonObject;
@@ -43,4 +44,8 @@ public interface WarehouseService {
     @PostMapping("/asset/v1/getPage")
     @ApiOperation(value = "获得分页数据", nickname = "getByPage")
     public TableDataInfo assetGetPageList(@RequestBody AssetQueryRequest assetQueryRequest);
+
+    @GetMapping("/warehouse/v1/getByIdName/{id}")
+    @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
+    public R<String> warehouseGetById(@PathVariable("id") Long id);
 }

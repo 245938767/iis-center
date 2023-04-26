@@ -79,9 +79,10 @@ public class LogisticsInfo extends BaseMybatisAggregate {
             CodeValue codeValue = new CodeValue();
             codeValue.setK("productId");
             codeValue.setV(x.getProductId().toString());
-            codeValue.setL(x.getNum().toString());
+            codeValue.setL(x.getProductNum().toString());
             return codeValue;
         }).toList();
+        prePersist();
     }
 
     public void complete() {

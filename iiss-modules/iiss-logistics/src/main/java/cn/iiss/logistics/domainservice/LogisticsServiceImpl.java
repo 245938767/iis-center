@@ -23,7 +23,6 @@ import cn.iiss.warehouse.face.WarehouseService;
 import cn.iiss.warehouse.face.model.WarehouseAssetBizType;
 import cn.iiss.warehouse.face.request.AssetProductRequest;
 import cn.iiss.warehouse.face.request.AssetTranslationRequest;
-import cn.iiss.warehouse.face.response.AssetResponse;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
@@ -32,7 +31,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 @Service
@@ -46,32 +47,25 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
 
     @Override
     public boolean createBase(LogisticsCreateRequest logisticsCreateRequest) {
-        JsonObject<AssetResponse> consignee = warehouseService.assetGetByAssetId(logisticsCreateRequest.getConsigneeWarehouseId());
-        JsonObject<AssetResponse> ship = warehouseService.assetGetByAssetId(logisticsCreateRequest.getShipWarehouseId());
-        if (!(consignee.isSuccess() || ship.isSuccess())) {
+        R<String> consignee = warehouseService.warehouseGetById(logisticsCreateRequest.getConsigneeWarehouseId());
+        R<String> ship = warehouseService.warehouseGetById(logisticsCreateRequest.getShipWarehouseId());
+        if (!(R.isSuccess(consignee) || R.isSuccess(ship))) {
             throw new BusinessException(CodeEnum.Fail);
         }
         //获得商品数据
         Stream<Product> productStream = logisticsCreateRequest.getLogisticsProductRequests().stream().map(x -> {
             R<Product> byId = productService.getById(x.getProductId());
+            if (byId.getCode() != 200) {
+                throw new BusinessException(CodeEnum.Fail);
+            }
             return byId.getData();
         });
-        //创建订单
-        OrderBaseCreateRequest builder = OrderBaseCreateRequest.builder()
-                .orderType(4)
-                .userId(SecurityUtils.getUserId())
-                .orderItemModelList(List.of(OrderItemModel.builder().itemCount(1).feeRemark("物流转仓费用").skuId(1L).itemCount(1).realAmount(logisticsCreateRequest.getFreight()).productName("物流转仓").build()))
-                .attrs(List.of())
-                .totalAmount(logisticsCreateRequest.getFreight())
-                .realAmount(logisticsCreateRequest.getFreight())
-                .build();
-        JsonObject<Long> orderBase = tradeService.createOrderBase(builder);
         //根据仓库ID进行转仓
         AssetTranslationRequest build = AssetTranslationRequest.builder()
                 .assetProductRequestList(productStream.map(x -> AssetProductRequest.builder()
                         .productId(x.getId())
                         .productImg(x.getProductImg())
-                        .productNum(logisticsCreateRequest.getLogisticsProductRequests().stream().filter(f -> f.getProductId() == x.getId()).findFirst().get().getProductId())
+                        .productNum(Long.valueOf(logisticsCreateRequest.getLogisticsProductRequests().stream().filter(f -> Objects.equals(f.getProductId(), x.getId())).findFirst().get().getProductNum()))
                         .warehouseAssetBizType(WarehouseAssetBizType.PRODUCT_SALES)
                         .tax(BigDecimal.ZERO)
                         .taxRate(0d)
@@ -80,10 +74,30 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                         .productSpecification(x.getProductSpecification())
                         .build()).toList())
                 .batchNo(flowNoFacade.getNextId().toString())
-                .translationWarehouseId(logisticsCreateRequest.getShipWarehouseId())
-                .warehouseId(logisticsCreateRequest.getConsigneeWarehouseId())
+                .translationWarehouseId(logisticsCreateRequest.getConsigneeWarehouseId())
+                .warehouseId(logisticsCreateRequest.getShipWarehouseId())
                 .build();
-        Long ajaxResult = warehouseService.assetTranslation(build).getResult();
+        JsonObject<Long> translation = warehouseService.assetTranslation(build);
+
+        if (!(translation.isSuccess())) {
+            throw new BusinessException(CodeEnum.Fail);
+        }
+        //创建订单
+        OrderItemModel orderItem = OrderItemModel.builder().itemCount(1).feeRemark("物流转仓费用").skuId(1L).itemCount(1).realAmount(logisticsCreateRequest.getFreight()).productName("物流转仓").build();
+        ArrayList<OrderItemModel> objects = new ArrayList<>();
+        objects.add(orderItem);
+        OrderBaseCreateRequest builder = OrderBaseCreateRequest.builder()
+                .orderType(4)
+                .userId(SecurityUtils.getUserId())
+                .orderItemModelList(objects)
+                .attrs(List.of())
+                .totalAmount(logisticsCreateRequest.getFreight())
+                .realAmount(logisticsCreateRequest.getFreight())
+                .build();
+        JsonObject<Long> orderBase = tradeService.createOrderBase(builder);
+        if (!(orderBase.isSuccess())) {
+            throw new BusinessException(CodeEnum.Fail);
+        }
         LogisticsInfo logisticsInfo = new LogisticsInfo();
         logisticsInfo.init(flowNoFacade.getNextId(),
                 LogisticsStatus.DELIVERY,
@@ -91,9 +105,9 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                 logisticsCreateRequest.getShipWarehouseId(),
                 logisticsCreateRequest.getConsigneeWarehouseId(),
                 orderBase.getResult(),
-                ajaxResult,
-                ship.getResult().getWarehouseName(),
-                consignee.getResult().getWarehouseName(),
+                translation.getResult(),
+                ship.getData(),
+                consignee.getData(),
                 logisticsCreateRequest.getLogisticsProductRequests()
         );
 

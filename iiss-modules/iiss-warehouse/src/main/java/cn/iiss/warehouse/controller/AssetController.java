@@ -37,9 +37,9 @@ public class AssetController extends BaseController {
 
     @PostMapping("/translation")
     @ApiOperation(value = "转仓", nickname = "translationWarehouse")
-    public AjaxResult assetTranslation(@RequestBody @Valid AssetTranslationRequest assetTranslationRequest) {
-        assetService.assetTranslation(assetTranslationRequest);
-        return AjaxResult.success();
+    public JsonObject<Long> assetTranslation(@RequestBody @Valid AssetTranslationRequest assetTranslationRequest) {
+        Long aLong = assetService.assetTranslation(assetTranslationRequest);
+        return JsonObject.success(aLong);
     }
 
 

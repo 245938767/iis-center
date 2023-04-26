@@ -3,6 +3,9 @@ package cn.iiss.trade.order.mapper;
 
 import cn.iiss.commons.mapper.DateMapper;
 import cn.iiss.commons.mapper.GenericEnumMapper;
+import cn.iiss.trade.face.request.OrderBaseCreateRequest;
+import cn.iiss.trade.face.request.OrderBaseQueryRequest;
+import cn.iiss.trade.face.request.OrderBaseUpdateRequest;
 import cn.iiss.trade.order.domainservice.model.OrderCreateModel;
 import cn.iiss.trade.mapper.TradeMapper;
 import cn.iiss.trade.order.OrderBase;
@@ -11,9 +14,6 @@ import cn.iiss.trade.order.dto.OrderBaseQuery;
 import cn.iiss.trade.order.dto.OrderBaseUpdater;
 import cn.iiss.trade.order.dto.OrderBaseVO;
 
-import cn.iiss.trade.order.request.OrderBaseCreateRequest;
-import cn.iiss.trade.order.request.OrderBaseQueryRequest;
-import cn.iiss.trade.order.request.OrderBaseUpdateRequest;
 import cn.iiss.trade.order.response.OrderBaseResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

@@ -4,25 +4,17 @@ import TableHeader from '@/pages/warehouse/components/TableHeader';
 import WarehouseSelectro from '@/pages/warehouse/components/WarehouseSelectro';
 import {
   PRODUCT_NUM_COLUMNS,
-  PRODUCT_PRICE_COLUMNS,
-  PRODUCT_PRICE_TAX_COLUMNS,
   WAREHOUSE_PRODUCT_ATTR_VALUE_COLUMNS,
   WAREHOUSE_PRODUCT_BASE_COLUMNS,
 } from '@/pages/warehouse/constants';
+import { create } from '@/services/logistics/logisticsController';
 import { getByWarehouseForGoods } from '@/services/warehouse/warehouseAssetController';
-import { ModalBaseProps } from '@/types';
-import {
-  ModalForm,
-  ProFormDependency,
-  ProFormGroup,
-  ProFormInstance,
-  ProFormMoney,
-  ProFormSelect,
-  ProFormText,
-} from '@ant-design/pro-form';
-import { ProColumns } from '@ant-design/pro-table';
+import type { ModalBaseProps } from '@/types';
+import type { ProFormInstance } from '@ant-design/pro-form';
+import { ModalForm, ProFormGroup, ProFormMoney } from '@ant-design/pro-form';
+import type { ProColumns } from '@ant-design/pro-table';
 import { useBoolean } from 'ahooks';
-import { Card } from 'antd';
+import { Card, message } from 'antd';
 import { map } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -37,7 +29,7 @@ type CreateLogisticsProps = {
 } & ModalBaseProps;
 
 const CreateLogistics: React.FC<CreateLogisticsProps> = (props) => {
-  const { visible, onVisibleChange, onDone, isWarehouseAdjustment } = props;
+  const { visible, onVisibleChange, onDone } = props;
   const formRef = useRef<ProFormInstance>();
   //商品选择数据
   const [editableKeys, setEditableKeys] = useState<React.Key[]>([]);
@@ -59,11 +51,16 @@ const CreateLogistics: React.FC<CreateLogisticsProps> = (props) => {
     };
   }, []);
   const handleFinish = async (formData: any) => {
-    console.info(formData);
-    setTableModalParams(undefined);
-    setEditableKeys([]);
-    formRef.current?.resetFields();
-    onDone?.();
+    create({ ...formData }).then((res) => {
+      if (!res) return;
+      message.success(res.msg);
+      setTableModalParams(undefined);
+      setEditableKeys([]);
+      formRef.current?.resetFields();
+      onDone?.();
+      return true;
+    });
+    return;
   };
   return (
     <>
@@ -77,15 +74,19 @@ const CreateLogistics: React.FC<CreateLogisticsProps> = (props) => {
         onFinish={handleFinish}
       >
         <ProFormGroup>
-          <ProFormMoney name="freight" rules={[{ required: true }]} label="费用" initialValue={10.00}/>
+          <ProFormMoney
+            name="freight"
+            rules={[{ required: true }]}
+            label="费用"
+            initialValue={10.0}
+          />
           <WarehouseSelectro name={'shipWarehouseId'} label="发货仓" fieldProps={{}} />
           <WarehouseSelectro name={'consigneeWarehouseId'} label="收货仓" />
-          <Card title={<TableHeader title="出库商品列表" tableName={[TABLE_NAME]} />}>
+          <Card title={<TableHeader title="商品列表" tableName={[TABLE_NAME]} />}>
             <OutputWarehouseTable
               name={TABLE_NAME}
               editAccess={true}
               optionClomuns
-              //   warehouseType={OUTPUT_WAREHOUSE_PRODUCT_TYPE_ENUM}
               rowKey={'id'}
               editable={{ editableKeys }}
               recordCreatorProps={{
@@ -96,7 +97,7 @@ const CreateLogistics: React.FC<CreateLogisticsProps> = (props) => {
                   formRef.current
                     ?.validateFieldsReturnFormatValue?.(['shipWarehouseId'])
                     .then((res) => {
-                      setTableModalParams(res);
+                      setTableModalParams({ warehouseId: res.shipWarehouseId });
                       openModal();
                     })
                     .catch(() => {});

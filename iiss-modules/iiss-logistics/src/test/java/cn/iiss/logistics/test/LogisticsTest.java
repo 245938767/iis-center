@@ -23,9 +23,8 @@ public class LogisticsTest {
         LogisticsCreateRequest build = LogisticsCreateRequest.builder()
                 .consigneeWarehouseId(1L)
                 .shipWarehouseId(1L)
-                .flowNo(12L)
                 .freight(BigDecimal.TEN)
-                .logisicsProductRequests(List.of())
+                .logisticsProductRequests(List.of())
                 .build();
         boolean base = logisticsService.createBase(build);
 

@@ -123,6 +123,10 @@
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-face-product</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.iiss</groupId>
+            <artifactId>iiss-face-trade</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
