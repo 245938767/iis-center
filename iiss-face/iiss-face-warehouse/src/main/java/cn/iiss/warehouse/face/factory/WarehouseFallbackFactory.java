@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class WarehouseFallbackFactory implements FallbackFactory<WarehouseService> {
     private static final Logger log = LoggerFactory.getLogger(WarehouseFallbackFactory.class);
@@ -46,7 +48,7 @@ public class WarehouseFallbackFactory implements FallbackFactory<WarehouseServic
 
 
             @Override
-            public JsonObject<AssetResponse> assetGetByBatchNo(String batchNo) {
+            public JsonObject<List<AssetResponse>> assetGetByBatchNo(String batchNo) {
                 return JsonObject.fail(CodeEnum.Fail);
             }
 

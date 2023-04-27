@@ -1,5 +1,6 @@
 package cn.iiss.warehouse.face.response;
 
+import cn.iiss.commons.model.Response;
 import cn.iiss.warehouse.face.model.Asset;
 import cn.iiss.warehouse.face.model.AssetRecord;
 import cn.iiss.warehouse.face.model.InOutBizType;
@@ -17,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AssetResponse {
+public class AssetResponse implements Response {
 
     @ApiModelProperty("资产ID")
     private String assetId;

@@ -5,9 +5,10 @@ import { Button } from 'antd';
 import React, { useRef, useState } from 'react';
 import CreateLogistics from './components/CreateLogistics';
 import { useBoolean } from 'ahooks';
+import LogisticsSheet from './components/LogisticsSheet';
 
 const Logistics: React.FC = () => {
-  // const [sheetVisible, { setTrue: openSheet, toggle: setSheetVisible }] = useBoolean(false);
+  const [sheetVisible, { setTrue: openSheet, toggle: setSheetVisible }] = useBoolean(false);
   const [outputVisible, { setTrue: openInputModal, toggle: setOutputVisible }] = useBoolean(false);
   const actionRef = useRef<ActionType>();
   const [onKeyId, setOnKeyId] = useState('');
@@ -48,6 +49,7 @@ const Logistics: React.FC = () => {
             key={'key3'}
             onClick={() => {
               setOnKeyId(entity.id);
+              setSheetVisible(true);
             }}
           >
             查看
@@ -83,6 +85,13 @@ const Logistics: React.FC = () => {
           onVisibleChange={setOutputVisible}
           onDone={() => actionRef.current?.reload()}
         />
+
+      <LogisticsSheet
+        logisticsId={onKeyId}
+        visible={sheetVisible}
+        onDone={() => actionRef.current?.reload()}
+        onVisibleChange={setSheetVisible}
+      />
       </WrapContent>
     </>
   );

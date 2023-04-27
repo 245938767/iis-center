@@ -4,10 +4,8 @@ import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.logistics.LogisticsInfo;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
-import cn.iiss.logistics.response.LogisticsResponse;
+import cn.iiss.logistics.response.LogisticsDetailResponse;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
 
 public interface ILogisticsService extends IService<LogisticsInfo> {
 
@@ -28,4 +26,6 @@ public interface ILogisticsService extends IService<LogisticsInfo> {
     boolean complete(LogisticsUpdateRequest logisticsUpdateRequest);
 
     TableDataInfo getPageList();
+
+    LogisticsDetailResponse getLogisticsDetail(Long id);
 }

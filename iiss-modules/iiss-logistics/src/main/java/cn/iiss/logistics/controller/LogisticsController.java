@@ -6,15 +6,11 @@ import cn.iiss.commons.model.JsonObject;
 import cn.iiss.logistics.domainservice.ILogisticsService;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
+import cn.iiss.logistics.response.LogisticsDetailResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -32,7 +28,7 @@ public class LogisticsController extends BaseController {
 
     @PostMapping("/update")
     @ApiOperation(value = "更新状态", nickname = "update")
-    public JsonObject<Boolean> createLogistics(@RequestBody LogisticsUpdateRequest logisticsUpdateRequest) {
+    public JsonObject<Boolean> updateLogitics(@RequestBody LogisticsUpdateRequest logisticsUpdateRequest) {
         boolean base = logisticsService.complete(logisticsUpdateRequest);
         return JsonObject.success(base);
     }
@@ -42,6 +38,12 @@ public class LogisticsController extends BaseController {
     public TableDataInfo getPageList() {
         startPage();
         return logisticsService.getPageList();
+    }
+
+    @PostMapping("/getLogisticsDetail/{id}")
+    @ApiOperation(value = "详细信息", nickname = "detail")
+    public JsonObject<LogisticsDetailResponse> getLogisticsDetail(@PathVariable("id") long id) {
+        return JsonObject.success(logisticsService.getLogisticsDetail(id));
     }
 
 

@@ -11,4 +11,8 @@ public class LogisticsMappers {
         return date.getName();
     }
 
+    public String LongAsString(Long id) {
+        return id.toString();
+    }
+
 }

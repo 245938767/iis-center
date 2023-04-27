@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/asset/v1")
@@ -44,16 +45,16 @@ public class AssetController extends BaseController {
 
 
     @GetMapping("getAssetId/{assetId}")
-    @ApiOperation(value = "获得编号信息", nickname = "getByAssetId")
+    @ApiOperation(value = "获得信息", nickname = "getByAssetId")
     public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable Long assetId) {
         AssetResponse assetByBatchNo = assetService.getAssetById(assetId);
         return JsonObject.success(assetByBatchNo);
     }
 
     @GetMapping("get/{batchNo}")
-    @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
-    public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable String batchNo) {
-        AssetResponse assetByBatchNo = assetService.getAssetByBatchNo(batchNo);
+    @ApiOperation(value = "获得批次信息", nickname = "getByBatchNo")
+    public JsonObject<List<AssetResponse>> assetGetByBatchNo(@PathVariable String batchNo) {
+        List<AssetResponse> assetByBatchNo = assetService.getAssetByBatchNo(batchNo);
         return JsonObject.success(assetByBatchNo);
     }
 

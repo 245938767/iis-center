@@ -15,8 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LogisticsCreateRequest implements Request {
-//    @Schema(name = "订单流水号")
-//    private Long flowNo;
     @Schema(name = "发货仓")
     private Long shipWarehouseId;
 

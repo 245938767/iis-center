@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 
 @FeignClient(contextId = "warehouseService", value = ServiceNameConstants.WAREHOUSE, fallbackFactory = WarehouseFallbackFactory.class)
 public interface WarehouseService {
@@ -39,13 +41,13 @@ public interface WarehouseService {
 
     @GetMapping("/asset/v1/get/{batchNo}")
     @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
-    public JsonObject<AssetResponse> assetGetByBatchNo(@PathVariable("batchNo") String batchNo);
+    public JsonObject<List<AssetResponse>> assetGetByBatchNo(@PathVariable("batchNo") String batchNo);
 
     @PostMapping("/asset/v1/getPage")
     @ApiOperation(value = "获得分页数据", nickname = "getByPage")
     public TableDataInfo assetGetPageList(@RequestBody AssetQueryRequest assetQueryRequest);
 
     @GetMapping("/warehouse/v1/getByIdName/{id}")
-    @ApiOperation(value = "获得编号信息", nickname = "getByBatchNo")
+    @ApiOperation(value = "获得仓库名称", nickname = "getByIdForName")
     public R<String> warehouseGetById(@PathVariable("id") Long id);
 }

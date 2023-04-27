@@ -38,7 +38,7 @@ public interface IAssetService extends IService<Asset> {
      * @param batchNo
      * @return
      */
-    public AssetResponse getAssetByBatchNo(String batchNo);
+    public List<AssetResponse> getAssetByBatchNo(String batchNo);
 
     /**
      * @param queryRequest

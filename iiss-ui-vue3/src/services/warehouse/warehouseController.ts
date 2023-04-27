@@ -58,6 +58,20 @@ export async function getById(
   });
 }
 
+/** 获得ID数据 GET /warehouse/v1/getByid/${param0} */
+export async function getByIdName(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getByIdParams,
+  options?: { [key: string]: any },
+) {
+  const { id: param0, ...queryParams } = params;
+  return request<Record<string, any>>(`/warehouse/warehouse/v1/getByIdName/${param0}`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
 /** 获得树形列表 POST /warehouse/v1/getTreeList */
 export async function getChildList(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/warehouse/warehouse/v1/getChildList', {

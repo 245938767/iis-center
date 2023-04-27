@@ -14,15 +14,18 @@ import cn.iiss.logistics.mapper.LogisticsMapper;
 import cn.iiss.logistics.mappers.LogisticsMapperd;
 import cn.iiss.logistics.request.LogisticsCreateRequest;
 import cn.iiss.logistics.request.LogisticsUpdateRequest;
+import cn.iiss.logistics.response.LogisticsDetailResponse;
 import cn.iiss.product.face.ProductService;
 import cn.iiss.product.face.model.Product;
 import cn.iiss.trade.face.TradeService;
 import cn.iiss.trade.face.model.OrderItemModel;
 import cn.iiss.trade.face.request.OrderBaseCreateRequest;
+import cn.iiss.trade.face.response.OrderBaseResponse;
 import cn.iiss.warehouse.face.WarehouseService;
 import cn.iiss.warehouse.face.model.WarehouseAssetBizType;
 import cn.iiss.warehouse.face.request.AssetProductRequest;
 import cn.iiss.warehouse.face.request.AssetTranslationRequest;
+import cn.iiss.warehouse.face.response.AssetResponse;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
@@ -47,6 +50,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
 
     @Override
     public boolean createBase(LogisticsCreateRequest logisticsCreateRequest) {
+        Long flowNo = flowNoFacade.getNextId();
         R<String> consignee = warehouseService.warehouseGetById(logisticsCreateRequest.getConsigneeWarehouseId());
         R<String> ship = warehouseService.warehouseGetById(logisticsCreateRequest.getShipWarehouseId());
         if (!(R.isSuccess(consignee) || R.isSuccess(ship))) {
@@ -73,7 +77,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                         .amount(BigDecimal.ZERO)
                         .productSpecification(x.getProductSpecification())
                         .build()).toList())
-                .batchNo(flowNoFacade.getNextId().toString())
+                .batchNo(flowNo.toString())
                 .translationWarehouseId(logisticsCreateRequest.getConsigneeWarehouseId())
                 .warehouseId(logisticsCreateRequest.getShipWarehouseId())
                 .build();
@@ -99,7 +103,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
             throw new BusinessException(CodeEnum.Fail);
         }
         LogisticsInfo logisticsInfo = new LogisticsInfo();
-        logisticsInfo.init(flowNoFacade.getNextId(),
+        logisticsInfo.init(flowNo,
                 LogisticsStatus.DELIVERY,
                 logisticsCreateRequest.getFreight(),
                 logisticsCreateRequest.getShipWarehouseId(),
@@ -136,5 +140,23 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
         rspData.setMsg("查询成功");
         rspData.setTotal(new PageInfo(list).getTotal());
         return rspData;
+    }
+
+    @Override
+    public LogisticsDetailResponse getLogisticsDetail(Long id) {
+        LogisticsInfo byId = getById(id);
+        LogisticsDetailResponse logisticsDetailResponse = LogisticsMapperd.INSTANCE.Entity2Detail(byId);
+        JsonObject<List<AssetResponse>> assetGetByBatchNo = warehouseService.assetGetByBatchNo(byId.getFlowNo().toString());
+        JsonObject<OrderBaseResponse> order = tradeService.findById(byId.getOrderId());
+        if (!(assetGetByBatchNo.isSuccess() && order.isSuccess())) {
+            throw new BusinessException(CodeEnum.Fail, "获取数据失败");
+        }
+        logisticsDetailResponse.initOtherInformation(assetGetByBatchNo.getResult(), order.getResult());
+
+        //获得仓库中入库时的信息
+        //获得订单信息
+        //组装状态信息
+        return logisticsDetailResponse;
+
     }
 }

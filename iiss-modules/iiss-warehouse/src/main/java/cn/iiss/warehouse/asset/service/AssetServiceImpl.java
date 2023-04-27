@@ -111,10 +111,10 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
     }
 
     @Override
-    public AssetResponse getAssetByBatchNo(String batchNo) {
-        Asset asset = getOne(new LambdaQueryWrapper<Asset>().eq(Asset::getBatchNo, batchNo));
-        return AssetResponse.builder().build().data2Response(asset, assetRecordService.list(
-                new LambdaQueryWrapper<AssetRecord>().eq(AssetRecord::getAssetId, asset.getId())));
+    public List<AssetResponse> getAssetByBatchNo(String batchNo) {
+        List<Asset> asset = list(new LambdaQueryWrapper<Asset>().eq(Asset::getBatchNo, batchNo));
+        return asset.stream().map(x -> AssetResponse.builder().build().data2Response(x, assetRecordService.list(
+                new LambdaQueryWrapper<AssetRecord>().eq(AssetRecord::getAssetId, x.getId())))).toList();
     }
 
     @Override
