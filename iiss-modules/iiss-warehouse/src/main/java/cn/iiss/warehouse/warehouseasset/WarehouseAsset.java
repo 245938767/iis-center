@@ -1,5 +1,7 @@
 package cn.iiss.warehouse.warehouseasset;
 
+import cn.iiss.commons.constants.CodeEnum;
+import cn.iiss.commons.exception.BusinessException;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import cn.iiss.commons.annotation.FieldDesc;
@@ -49,6 +51,9 @@ public class WarehouseAsset implements Serializable {
 
     public void updateOut(WarehouseAssetDTO warehouseAssetDTO) {
         this.productNum = this.productNum - warehouseAssetDTO.getProductNum();
+        if(this.productNum<0){
+            throw new BusinessException(CodeEnum.Fail,"商品库存不足");
+        }
     }
 
     public void dto2WarehouseAsset(WarehouseAssetDTO warehouseAssetDTO) {

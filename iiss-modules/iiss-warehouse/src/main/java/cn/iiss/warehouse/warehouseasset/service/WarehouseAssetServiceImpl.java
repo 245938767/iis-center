@@ -1,6 +1,8 @@
 package cn.iiss.warehouse.warehouseasset.service;
 
+import cn.iiss.commons.constants.CodeEnum;
 import cn.iiss.commons.constants.ValidStatus;
+import cn.iiss.commons.exception.BusinessException;
 import cn.iiss.warehouse.assetlifecycle.AssetLifecycleDTO;
 import cn.iiss.warehouse.warehouse.Warehouse;
 import cn.iiss.warehouse.warehouse.mapper.WarehouseMapper;
@@ -75,12 +77,7 @@ public class WarehouseAssetServiceImpl extends ServiceImpl<WarehouseAssetMapper,
                         .execute();
             } else {
                 //创建
-                EntityOperations
-                        .doCreate(baseMapper)
-                        .create(WarehouseAsset::new)
-                        .update(warehouseAsset -> warehouseAsset.dto2WarehouseAsset(warehouseAssetDTO))
-                        .successHook(x -> eventPublisher.publishEvent(new WarehouseAssetEvents.WarehouseAssetOutEvents(x, assetLifecycleDTO)))
-                        .execute();
+                throw new BusinessException(CodeEnum.Fail,"产品不在仓库中");
             }
         } finally {
 
