@@ -59,8 +59,8 @@ export default defineConfig({
     // },
     {
       requestLibPath: "import { request } from 'umi'",
-      schemaPath: 'http://localhost:9206/v3/api-docs',
-      projectName: 'logistics',
+      schemaPath: 'http://localhost:9205/v3/api-docs',
+      projectName: 'trade',
     },
   ],
   nodeModulesTransform: {

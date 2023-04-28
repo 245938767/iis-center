@@ -50,3 +50,15 @@ export async function update(body: API.LogisticsUpdateRequest, options?: { [key:
     ...(options || {}),
   });
 }
+
+/** 更新状态 POST /logistics/v1/update */
+export async function updateOk(body: API.LogisticsUpdateRequest, options?: { [key: string]: any }) {
+  return request<API.JsonObjectboolean>('/logistics/logistics/v1/updateOk', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}

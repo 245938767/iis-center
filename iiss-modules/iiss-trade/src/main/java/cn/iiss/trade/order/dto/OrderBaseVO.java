@@ -5,20 +5,26 @@ import cn.iiss.common.core.utils.bean.BeanUtils;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.annotation.TypeConverter;
 import cn.iiss.commons.constants.ValidStatus;
+import cn.iiss.commons.model.AbstractMybatisResponse;
 import cn.iiss.order.commons.pay.PayItem;
+import cn.iiss.trade.mapper.TradeMapper;
 import cn.iiss.trade.order.domainservice.model.OrderType;
 import cn.iiss.trade.order.OrderBase;
 import cn.iiss.trade.order.OrderState;
+import cn.iiss.trade.order.mapper.OrderBaseMapper;
+import cn.iiss.trade.order.model.IsPayItem;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
-public class OrderBaseVO {
+public class OrderBaseVO extends AbstractMybatisResponse {
 
-    private Long id;
     @FieldDesc(name = "唯一流水号")
     private Long flowNo;
 
@@ -35,7 +41,7 @@ public class OrderBaseVO {
     private OrderType orderType;
 
     @FieldDesc(name = "支付详情")
-    private List<PayItem> payList;
+    private String payInfo;
 
     @FieldDesc(name = "待支付金额")
     private BigDecimal waitPay;
@@ -60,7 +66,28 @@ public class OrderBaseVO {
     private List<CodeValue> attrs;
 
     public OrderBaseVO(OrderBase entity) {
-        BeanUtils.copyBeanProp(this, entity);
+        this.setId(entity.getId());
+        this.orderType = entity.getOrderType();
+        this.orderState = entity.getOrderState();
+        this.invoiceFlag = entity.getInvoiceFlag();
+        this.attrs = entity.getAttrs();
+        this.payTime = entity.getPayTime();
+        this.accountId = entity.getAccountId();
+        if (entity.getPayList() != null && !entity.getPayList().isEmpty()) {
+            this.payInfo = "";
+            for (Object payItem : entity.getPayList()) {
+                IsPayItem isPayItem = JSON.parseObject(String.valueOf(payItem), IsPayItem.class);
+                this.payInfo += isPayItem.getPayType().getName()+" ";
+            }
+        } else {
+            this.payInfo = "等待支付";
+        }
+        this.validStatus = entity.getValidStatus();
+        this.totalAmount = entity.getTotalAmount();
+        this.waitPay = entity.getWaitPay();
+        this.flowNo = entity.getFlowNo();
+        this.setCreatedAt(entity.getCreatedAt().getEpochSecond());
+        this.setUpdatedAt(entity.getUpdatedAt().getEpochSecond());
     }
 
     public Long getFlowNo() {
@@ -99,12 +126,12 @@ public class OrderBaseVO {
         return this;
     }
 
-    public List<PayItem> getPayList() {
-        return payList;
+    public String getPayInfo() {
+        return payInfo;
     }
 
-    public OrderBaseVO setPayList(List<PayItem> payList) {
-        this.payList = payList;
+    public OrderBaseVO setPayInfo(String payInfo) {
+        this.payInfo = payInfo;
         return this;
     }
 

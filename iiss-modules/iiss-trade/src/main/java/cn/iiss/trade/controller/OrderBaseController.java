@@ -8,11 +8,11 @@ import cn.iiss.commons.model.JsonObject;
 import cn.iiss.trade.face.request.OrderBaseCreateRequest;
 import cn.iiss.trade.face.request.OrderBaseQueryRequest;
 import cn.iiss.trade.face.request.OrderBaseUpdateRequest;
+import cn.iiss.trade.face.response.OrderBaseResponse;
 import cn.iiss.trade.order.dto.OrderBaseCreator;
 import cn.iiss.trade.order.dto.OrderBaseUpdater;
 import cn.iiss.trade.order.dto.OrderBaseVO;
 import cn.iiss.trade.order.mapper.OrderBaseMapper;
-import cn.iiss.trade.order.response.OrderBaseResponse;
 import cn.iiss.trade.order.service.IOrderBaseService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -75,7 +75,7 @@ public class OrderBaseController extends BaseController {
     @GetMapping("findById/{id}")
     public JsonObject<OrderBaseResponse> findById(@PathVariable Long id) {
         OrderBaseVO vo = orderBaseService.findById(id);
-        OrderBaseResponse response = OrderBaseMapper.INSTANCE.vo2CustomResponse(vo);
+        OrderBaseResponse response = OrderBaseMapper.INSTANCE.vo2Response(vo);
         return JsonObject.success(response);
     }
 

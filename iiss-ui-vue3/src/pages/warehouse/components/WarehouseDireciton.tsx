@@ -10,7 +10,6 @@ type WarehouseDirecitonProps = {
 
 const WarehouseDireciton: React.FC<WarehouseDirecitonProps> = (props) => {
   const { from, to, ...reset } = props;
-
   return (
     <Space {...reset}>
       <span>{from}</span>

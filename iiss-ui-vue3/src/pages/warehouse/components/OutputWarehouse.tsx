@@ -18,7 +18,8 @@ import {
 import OutputWarehouseTable from './OutputWarehouseTable';
 import TableHeader from './TableHeader';
 import WarehouseSelectro from './WarehouseSelectro';
-import { ProFormGroup, ProFormInstance, ProFormText } from '@ant-design/pro-form';
+import type { ProFormInstance} from '@ant-design/pro-form';
+import { ProFormGroup, ProFormText } from '@ant-design/pro-form';
 import { ModalForm, ProFormDependency, ProFormSelect } from '@ant-design/pro-form';
 import type { ProColumns } from '@ant-design/pro-table';
 import { assetCreateOut, translationWarehouse } from '@/services/warehouse/assetController';

@@ -1,6 +1,7 @@
 package cn.iiss.logistics;
 
 import cn.iiss.common.core.domain.CodeValue;
+import cn.iiss.common.log.annotation.Log;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.constants.CodeEnum;
 import cn.iiss.commons.exception.BusinessException;
@@ -64,7 +65,10 @@ public class LogisticsInfo extends BaseMybatisAggregate {
      * @param consigneeWarehouseName
      * @param logisicsProductRequests
      */
-    public void init(Long flowNo, LogisticsStatus logisticsStatus, BigDecimal freight, Long shipWarehouseId, Long consigneeWarehouseId, Long orderId, Long assetId, String shipWarehouseName, String consigneeWarehouseName, List<LogisicsProductRequest> logisicsProductRequests
+    public void init(Long flowNo, LogisticsStatus logisticsStatus, BigDecimal freight,
+                     Long shipWarehouseId, Long consigneeWarehouseId, Long orderId,
+                     Long assetId, String shipWarehouseName, String consigneeWarehouseName,
+                     List<LogisicsProductRequest> logisicsProductRequests
     ) {
         this.assetId = assetId;
         this.flowNo = flowNo;
@@ -86,7 +90,17 @@ public class LogisticsInfo extends BaseMybatisAggregate {
     }
 
     public void complete() {
-        if (this.logisticsStatus.equals(LogisticsStatus.DELIVERY)) {
+        if (this.logisticsStatus==LogisticsStatus.DELIVERY) {
+            this.logisticsStatus=LogisticsStatus.TRANSIT;
+        }else {
+            throw new BusinessException(CodeEnum.Fail);
+        }
+
+    }
+    public void completeOk(){
+        if(this.logisticsStatus==LogisticsStatus.TRANSIT){
+            this.logisticsStatus=LogisticsStatus.COMPLETION;
+        }else{
             throw new BusinessException(CodeEnum.Fail);
         }
     }

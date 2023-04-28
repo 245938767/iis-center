@@ -24,6 +24,7 @@ public interface ILogisticsService extends IService<LogisticsInfo> {
      * @return
      */
     boolean complete(LogisticsUpdateRequest logisticsUpdateRequest);
+    boolean completeOk(LogisticsUpdateRequest logisticsUpdateRequest);
 
     TableDataInfo getPageList();
 

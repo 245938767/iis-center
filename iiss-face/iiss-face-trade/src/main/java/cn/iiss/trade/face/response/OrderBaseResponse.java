@@ -5,140 +5,51 @@ import cn.iiss.common.core.domain.CodeValue;
 import cn.iiss.commons.annotation.FieldDesc;
 import cn.iiss.commons.constants.ValidStatus;
 import cn.iiss.commons.model.AbstractMybatisResponse;
-import cn.iiss.order.commons.pay.PayItem;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@FieldDesc
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderBaseResponse extends AbstractMybatisResponse {
-    @FieldDesc(
-            name = "唯一流水号"
-    )
-    private Long flowNo;
+    @FieldDesc(name = "唯一流水号")
+    private String flowNo;
 
-    @FieldDesc(
-            name = "订单金额"
-    )
+    @FieldDesc(name = "订单金额")
     private BigDecimal totalAmount;
 
-    @FieldDesc(
-            name = "真实金额"
-    )
-    private BigDecimal realAmount;
+    @FieldDesc(name = "账号Id")
+    private Long accountId;
 
-    @FieldDesc(
-            name = "用户id"
-    )
-    private Long userId;
 
-    @FieldDesc(
-            name = "订单类型、订单类型创建不同的状态机"
-    )
+    @FieldDesc(name = "订单类型、订单类型创建不同的状态机")
     private Integer orderType;
 
-    @FieldDesc(
-            name = "支付详情"
-    )
-    private List<PayItem> payList;
+    @FieldDesc(name = "支付详情")
+    private String payInfo;
 
-    @FieldDesc(
-            name = "支付时间"
-    )
+    @FieldDesc(name = "待支付金额")
+    private BigDecimal waitPay;
+
+    @FieldDesc(name = "支付时间")
     private Long payTime;
 
-    @FieldDesc(
-            name = "订单状态"
-    )
+    @FieldDesc(name = "订单状态")
     private Integer orderState;
 
-    @FieldDesc(
-            name = "validStatus"
-    )
     private ValidStatus validStatus;
 
-    @FieldDesc(
-            name = "订单信息"
-    )
+    /**
+     * 系统压力不大的时候可以这里放，压力大千万不要放这里，额外的表或者es都可以
+     */
+    @FieldDesc(name = "订单信息")
     private List<CodeValue> attrs;
 
-    public Long getFlowNo() {
-        return flowNo;
-    }
+    @FieldDesc(name = "是否开票")
+    private ValidStatus invoiceFlag;
 
-    public void setFlowNo(Long flowNo) {
-        this.flowNo = flowNo;
-    }
-
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public BigDecimal getRealAmount() {
-        return realAmount;
-    }
-
-    public void setRealAmount(BigDecimal realAmount) {
-        this.realAmount = realAmount;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Integer getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(Integer orderType) {
-        this.orderType = orderType;
-    }
-
-    public List<PayItem> getPayList() {
-        return payList;
-    }
-
-    public void setPayList(List<PayItem> payList) {
-        this.payList = payList;
-    }
-
-    public Long getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(Long payTime) {
-        this.payTime = payTime;
-    }
-
-    public Integer getOrderState() {
-        return orderState;
-    }
-
-    public void setOrderState(Integer orderState) {
-        this.orderState = orderState;
-    }
-
-    public ValidStatus getValidStatus() {
-        return validStatus;
-    }
-
-    public void setValidStatus(ValidStatus validStatus) {
-        this.validStatus = validStatus;
-    }
-
-    public List<CodeValue> getAttrs() {
-        return attrs;
-    }
-
-    public void setAttrs(List<CodeValue> attrs) {
-        this.attrs = attrs;
-    }
 }

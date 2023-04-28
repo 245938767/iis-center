@@ -32,6 +32,12 @@ public class LogisticsController extends BaseController {
         boolean base = logisticsService.complete(logisticsUpdateRequest);
         return JsonObject.success(base);
     }
+    @PostMapping("/updateOk")
+    @ApiOperation(value = "更新状态", nickname = "update")
+    public JsonObject<Boolean> updateLogiticsOk(@RequestBody LogisticsUpdateRequest logisticsUpdateRequest) {
+        boolean base = logisticsService.completeOk(logisticsUpdateRequest);
+        return JsonObject.success(base);
+    }
 
     @PostMapping("/getPageList")
     @ApiOperation(value = "list", nickname = "list")

@@ -36,6 +36,7 @@ public class TradeMapper {
     public OrderState state2Int(Integer code) {
         return OrderState.of(code).orElse(OrderState.WAIT_PAY);
     }
+    public String long2string(Long id){return id.toString();}
 
 
 }

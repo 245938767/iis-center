@@ -122,12 +122,20 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
     public boolean complete(LogisticsUpdateRequest logisticsUpdateRequest) {
         Long flowNo = logisticsUpdateRequest.getFlowNo();
         LogisticsInfo one = getOne(new LambdaQueryWrapper<LogisticsInfo>().eq(LogisticsInfo::getFlowNo, flowNo));
-        JsonObject jsonObject = tradeService.orderComplete(flowNo);
-        if (jsonObject.isSuccess()) {
+//        JsonObject jsonObject = tradeService.orderComplete(flowNo);
+//        if (jsonObject.isSuccess()) {
             one.complete();
             return updateById(one);
-        }
-        return false;
+//        }
+//        return false;
+    }
+
+    @Override
+    public boolean completeOk(LogisticsUpdateRequest logisticsUpdateRequest) {
+        Long flowNo = logisticsUpdateRequest.getFlowNo();
+        LogisticsInfo one = getOne(new LambdaQueryWrapper<LogisticsInfo>().eq(LogisticsInfo::getFlowNo, flowNo));
+        one.completeOk();
+        return updateById(one);
     }
 
     @Override
@@ -152,10 +160,6 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
             throw new BusinessException(CodeEnum.Fail, "获取数据失败");
         }
         logisticsDetailResponse.initOtherInformation(assetGetByBatchNo.getResult(), order.getResult());
-
-        //获得仓库中入库时的信息
-        //获得订单信息
-        //组装状态信息
         return logisticsDetailResponse;
 
     }

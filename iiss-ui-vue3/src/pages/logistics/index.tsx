@@ -6,6 +6,7 @@ import React, { useRef, useState } from 'react';
 import CreateLogistics from './components/CreateLogistics';
 import { useBoolean } from 'ahooks';
 import LogisticsSheet from './components/LogisticsSheet';
+import WarehouseDireciton from '../warehouse/components/WarehouseDireciton';
 
 const Logistics: React.FC = () => {
   const [sheetVisible, { setTrue: openSheet, toggle: setSheetVisible }] = useBoolean(false);
@@ -13,17 +14,27 @@ const Logistics: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [onKeyId, setOnKeyId] = useState('');
 
-  const getLogisticsList = async (params: any) => {};
   const columns: ProColumns[] = [
     {
       title: '流水号',
       dataIndex: 'flowNo',
       valueType: 'text',
     },
+    // {
+    //   title: '物流状态',
+    //   dataIndex: 'logisticsStatus',
+    //   valueType: 'text',
+    // },
     {
-      title: '物流状态',
-      dataIndex: 'logisticsStatus',
-      valueType: 'text',
+      title: '调仓',
+      dataIndex: 'warehouse',
+      render: (_, row) => <WarehouseDireciton
+                from={row.shipWarehouseName}
+                to={row.consigneeWarehouseName}
+                style={{ display: 'flex' }}
+              />
+,
+      search: false,
     },
     {
       title: '费用',
@@ -33,8 +44,8 @@ const Logistics: React.FC = () => {
       search: false,
     },
     {
-      title: '到达时间',
-      dataIndex: 'arriveTime',
+      title: '创建时间',
+      dataIndex: 'createdAt',
       valueType: 'dateTime',
       search: false,
     },
@@ -86,12 +97,12 @@ const Logistics: React.FC = () => {
           onDone={() => actionRef.current?.reload()}
         />
 
-      <LogisticsSheet
-        logisticsId={onKeyId}
-        visible={sheetVisible}
-        onDone={() => actionRef.current?.reload()}
-        onVisibleChange={setSheetVisible}
-      />
+        <LogisticsSheet
+          logisticsId={onKeyId}
+          visible={sheetVisible}
+          onDone={() => actionRef.current?.reload()}
+          onVisibleChange={setSheetVisible}
+        />
       </WrapContent>
     </>
   );
