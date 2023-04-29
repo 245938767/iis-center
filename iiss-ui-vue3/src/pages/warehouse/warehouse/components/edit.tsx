@@ -30,8 +30,9 @@ export type DeptFormProps = {
 
 const DeptForm: React.FC<DeptFormProps> = (props) => {
   const [form] = Form.useForm();
-  const [options, setOptions] = useState([]);
-  const [searchload,setSearchload]=useState(false);
+  const [options, setOptions] = useState<[]>([]);
+  const [searchload, setSearchload] = useState(false);
+  const [searCity, setSearCity] = useState<[]>([]);
 
   const { statusOptions, deptTree } = props;
   const AMap = usePlugins(['AMap.AutoComplete']);
@@ -41,24 +42,30 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
   }, [AMap]);
   const handleSearch = async (kw: any) => {
     if (!ac) return;
-    if (kw===null|| kw.keyWords==undefined ) {
+    if (kw === null || kw.keyWords == undefined) {
       return;
     }
-
-    const data= await ac.search(kw.keyWords, (status: string, result: any) => {
+let datt
+    await ac.search(kw.keyWords, (status: string, result: any) => {
       setSearchload(true);
-      console.info("message");
+      console.info('message');
       console.info(status);
       console.info(result);
-      if (status === "complete" && result.tips) {
-        console.info("ok");
+      if (status === 'complete' && result.tips) {
+        console.info('ok');
+        setOptions(result.tips);
+        datt=result.tips;
         return result.tips;
       } else {
         setOptions([]);
         return [];
       }
     });
-    return data;
+    // console.info("data");
+    // console.info(data);
+    // console.info(options);
+    //  data;
+    return datt;
   };
   useEffect(() => {
     form.resetFields();
@@ -73,6 +80,10 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
     });
   }, [form, props]);
 
+  const handleOnChange = (value: any) => {
+    console.info("changene")
+    console.info(value);
+  };
   const intl = useIntl();
   const handleOk = () => {
     form.submit();
@@ -98,27 +109,6 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
       onCancel={handleCancel}
     >
       <Form form={form} onFinish={handleFinish} initialValues={props.values}>
-        <Row gutter={[16, 16]}>
-          <Col span={24} order={1}>
-            {/* <ProFormDigit
-              name="deptId"
-              label={intl.formatMessage({
-                id: 'system.Dept.dept_id',
-                defaultMessage: '部门id',
-              })}
-              width="xl"
-              placeholder="请输入部门id"
-              disabled
-              hidden={!props.values.deptId}
-              rules={[
-                {
-                  required: false,
-                  message: <FormattedMessage id="请输入部门id！" defaultMessage="请输入部门id！" />,
-                },
-              ]}
-            /> */}
-          </Col>
-        </Row>
         <Row gutter={[16, 16]}>
           <Col span={24} order={1}>
             <ProFormTreeSelect
@@ -172,7 +162,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
               placeholder="请输入code代码"
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: <FormattedMessage id="请输入Code！" defaultMessage="请输入Code！" />,
                 },
               ]}
@@ -188,7 +178,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
               placeholder="请输入部门名称"
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: (
                     <FormattedMessage id="请输入仓库名称！" defaultMessage="请输入仓库名称！" />
                   ),
@@ -200,22 +190,22 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
         <Row gutter={[16, 16]}>
           <Col span={24} order={1}>
             <ProFormSelect
-            showSearch
+              showSearch
               name="warehouseAddress"
               label="仓库地址"
               width="xl"
               placeholder="请输入仓库地址"
               request={handleSearch}
+              options={options}
               debounceTime={1000}
               fieldProps={{
-                fieldNames:{label:"district",value:"district"},
-                loading: searchload
-              }
-              }
-              // options={options}
+                onChange: handleOnChange,
+                fieldNames: { label: 'district', value: 'district' },
+                loading: searchload,
+              }}
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: (
                     <FormattedMessage id="请输入仓库地址！" defaultMessage="请输入仓库地址！" />
                   ),
@@ -236,7 +226,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
               placeholder="请输入联系电话"
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: (
                     <FormattedMessage id="请输入联系电话！" defaultMessage="请输入联系电话！" />
                   ),
@@ -247,7 +237,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
         </Row>
         <Row gutter={[16, 16]}>
           <Col span={24} order={1}>
-            <ProFormRadio.Group
+            {/* <ProFormRadio.Group
               valueEnum={statusOptions}
               name="warehouseAdminId"
               label="负责人"
@@ -262,7 +252,7 @@ const DeptForm: React.FC<DeptFormProps> = (props) => {
                   ),
                 },
               ]}
-            />
+            /> */}
           </Col>
         </Row>
       </Form>
