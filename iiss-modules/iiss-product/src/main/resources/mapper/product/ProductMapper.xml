@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="productCode"    column="product_code"    />
         <result property="productName"    column="product_name"    />
         <result property="categoryId"    column="category_id"    />
+        <result property="categoryName"    column="category_name"    />
         <result property="brand"    column="brand"    />
         <result property="note"    column="note"    />
         <result property="productSpecification"    column="product_specification"    />
@@ -18,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectGoodsVo">
-        select id, product_code, product_name, category_id, brand, note, product_specification, model, unit,  product_img from product
+        select id, product_code, product_name, category_id, brand, note, product_specification,category_name, model, unit,  product_img from product
     </sql>
 
     <select id="selectGoodsList" parameterType="cn.iiss.product.face.domain.ProductQueryRequest" resultMap="GoodsResult">
@@ -47,10 +48,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productCode != null">product_code,</if>
             <if test="productName != null">product_name,</if>
             <if test="categoryId != null">category_id,</if>
+            <if test="categoryName != null">category_name,</if>
             <if test="brand != null">brand,</if>
             <if test="note != null">note,</if>
             <if test="productSpecification != null">product_specification,</if>
             <if test="model != null">model,</if>
+            <if test="categoryName != null">model,</if>
             <if test="unit != null">unit,</if>
             <if test="productImg != null">product_img,</if>
          </trim>
@@ -59,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productCode != null">#{productCode},</if>
             <if test="productName != null">#{productName},</if>
             <if test="categoryId != null">#{categoryId},</if>
+            <if test="categoryName != null">#{categoryName},</if>
             <if test="brand != null">#{brand},</if>
             <if test="note != null">#{note},</if>
             <if test="productSpecification != null">#{productSpecification},</if>
@@ -74,6 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productCode != null">product_code = #{productCode},</if>
             <if test="productName != null">product_name = #{productName},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="categoryName != null">category_name= #{categoryName},</if>
             <if test="brand != null">brand = #{brand},</if>
             <if test="note != null">note = #{note},</if>
             <if test="productSpecification != null">product_specification = #{productSpecification},</if>

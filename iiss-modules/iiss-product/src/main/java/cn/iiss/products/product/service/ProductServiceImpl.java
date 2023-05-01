@@ -3,6 +3,8 @@ package cn.iiss.products.product.service;
 import cn.iiss.product.face.domain.ProductQueryRequest;
 import cn.iiss.common.core.exception.ServiceException;
 import cn.iiss.product.face.model.Product;
+import cn.iiss.products.category.Category;
+import cn.iiss.products.category.mapper.CategoryMapper;
 import cn.iiss.products.product.mapper.ProductMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements IProductService {
     private final ProductMapper productMapper;
+    private final CategoryMapper categoryMapper;
 
     /**
      * 查询商品管理
@@ -50,6 +53,8 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public int insertGoods(Product product) {
         validateGood(product);
+        Category category = categoryMapper.selectById(product.getCategoryId());
+        product.setCategoryName(category.getName());
         return productMapper.insertGoods(product);
     }
 

@@ -37,6 +37,7 @@ public class Product implements Serializable {
     @ApiModelProperty("分类id")
     @NotNull(message = "请选择所属分类")
     private Long categoryId;
+    private String categoryName;
 
     /**
      * 品牌
@@ -159,8 +160,18 @@ public class Product implements Serializable {
         return this;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public Product setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+        return this;
+    }
+
     public Product setProductImg(String productImg) {
         this.productImg = productImg;
+
         return this;
     }
 }
