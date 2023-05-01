@@ -130,7 +130,7 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
             } else {
                 WarehouseDTO warehouseDTO = collect.get(data.getParentId());
                 if (warehouseDTO != null) {
-                    warehouseDTO.setProductNum(warehouseDTO.getProductNum() + data.getProductNum());
+//                    warehouseDTO.setProductNum(warehouseDTO.getProductNum() + data.getProductNum());
                     warehouseDTO.addData(data);
                 }
             }
@@ -146,6 +146,11 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
         Warehouse warehouse = getById(warehouseId);
         if (Boolean.TRUE.equals(hasWarehouseAssetData(warehouseId))) {
             throw new ServiceException(WarehouseErrorCode.WAREHOUSE_CREATE_PARENT_IS_EXIT.getName());
+        }
+        //更新父类状态为不可存入数据
+        if(warehouse.getIsDataInfo()==ValidStatus.VALID) {
+            warehouse.setIsDataInfo(ValidStatus.INVALID);
+            updateById(warehouse);
         }
         return warehouse;
     }

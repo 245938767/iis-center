@@ -161,7 +161,7 @@ public class AssetServiceImpl extends ServiceImpl<AssetMapper, Asset> implements
                             .productName(goodInfo.getProductName())
                             .productImg(goodInfo.getProductImg())
                             .productSpecification(goodInfo.getProductSpecification())
-                            .productId(goodInfo.getId())
+                            .productId(Long.valueOf(goodInfo.getId()))
 
                             .operateUser(SecurityUtils.getUsername())
                             .warehouseAssetBizType(x.getWarehouseAssetBizType())

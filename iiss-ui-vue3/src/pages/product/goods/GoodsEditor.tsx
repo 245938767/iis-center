@@ -5,7 +5,7 @@ import { ModalForm } from '@ant-design/pro-form';
 import { message } from 'antd';
 import { lastIndexOf } from 'lodash';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { GoodsType } from '.';
+import type { GoodsType } from '.';
 import GoodsFields from './GoodsFields';
 
 type GoodsEditorProps = {
@@ -21,18 +21,18 @@ const GoodsEditor: React.FC<GoodsEditorProps> = (props) => {
     if (props.visible === true && props.goodsId) {
       getGoodsInfo({ id: props.goodsId }).then((res) => {
         if (!res) return;
-        const imgUrl = res.data.goodsImg;
+        // const imgUrl = res.data.productImg;
         formRef.current?.setFieldsValue({
           ...res?.data,
-          goodsImg: [
-            {
-              uid: '-1',
-              name: (imgUrl as string).substring(lastIndexOf(imgUrl, '/') + 1) || 'image.png',
-              status: 'done',
-              url: res.data.goodsImg,
-            },
-          ],
-          parentId: res?.data?.parentId == 0 ? undefined : res?.data?.parentId,
+          // productImg: [
+          //   {
+          //     uid: '-1',
+          //     name: (imgUrl as string).substring(lastIndexOf(imgUrl, '/') + 1) || 'image.png',
+          //     status: 'done',
+          //     url: res.data.productImg,
+          //   },
+          // ],
+          // parentId: res?.data?.parentId == 0 ? undefined : res?.data?.parentId,
         });
         setDataSource(res.data);
       });

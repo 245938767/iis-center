@@ -2,27 +2,39 @@ package cn.iiss.product.face.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 商品管理对象 goods
  */
 @ApiModel
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
      * $column.columnComment
      */
-    private Long id;
+    private String id;
     /**
      * 商品代码
      */
     @ApiModelProperty("商品代码")
     private String productCode;
+
+    @ApiModelProperty("采购价格")
+    private BigDecimal purchasePrice;
+    @ApiModelProperty("销售价格")
+    private BigDecimal sellingPrice;
 
     /**
      * 商品名
@@ -75,103 +87,5 @@ public class Product implements Serializable {
     @ApiModelProperty("商品图片")
     private String productImg;
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public String getProductSpecification() {
-        return productSpecification;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public String getProductImg() {
-        return productImg;
-    }
-
-    public Product setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public Product setProductCode(String productCode) {
-        this.productCode = productCode;
-        return this;
-    }
-
-    public Product setProductName(String productName) {
-        this.productName = productName;
-        return this;
-    }
-
-    public Product setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-        return this;
-    }
-
-    public Product setBrand(String brand) {
-        this.brand = brand;
-        return this;
-    }
-
-    public Product setNote(String note) {
-        this.note = note;
-        return this;
-    }
-
-    public Product setProductSpecification(String productSpecification) {
-        this.productSpecification = productSpecification;
-        return this;
-    }
-
-    public Product setModel(String model) {
-        this.model = model;
-        return this;
-    }
-
-    public Product setUnit(String unit) {
-        this.unit = unit;
-        return this;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public Product setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-        return this;
-    }
-
-    public Product setProductImg(String productImg) {
-        this.productImg = productImg;
-
-        return this;
-    }
 }

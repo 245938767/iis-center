@@ -5,6 +5,8 @@ import cn.iiss.common.core.exception.ServiceException;
 import cn.iiss.openAI.face.model.OpenAIErrorCode;
 
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
 import java.rmi.ServerException;
 
@@ -15,6 +17,8 @@ public abstract class BaseOpenAIOperation implements OpenAIOperation {
     private static final int CONNECT_TIMEOUT = 60000;
     // 接收数据超时(豪秒)
     private static final int RECEIVE_TIMEOUT = 60000;
+    private static final String PROXY_HOST = "127.0.0.1";
+    private static final Integer PROXY_PORT = 7890;
 
     protected BaseOpenAIOperation(String url) {
         try {
@@ -22,7 +26,8 @@ public abstract class BaseOpenAIOperation implements OpenAIOperation {
                 throw new ServerException(OpenAIErrorCode.OPEN_AI_API_URL_NOTFOUND.getName());
             }
             this.url = url;
-            con = (HttpURLConnection) new URL(url).openConnection();
+            Proxy proxy = new Proxy(java.net.Proxy.Type.HTTP, new InetSocketAddress(PROXY_HOST, PROXY_PORT));
+            con = (HttpURLConnection) new URL(url).openConnection(proxy);
             con.setConnectTimeout(CONNECT_TIMEOUT);
             con.setReadTimeout(RECEIVE_TIMEOUT);
         } catch (Exception e) {

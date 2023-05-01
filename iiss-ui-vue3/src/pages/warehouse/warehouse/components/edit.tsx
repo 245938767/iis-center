@@ -6,9 +6,12 @@ import {
   ProFormTreeSelect,
   ProFormSelect,
 } from '@ant-design/pro-form';
-import { Form, Modal, Row, Col } from 'antd';
+import { Form, Modal, Row, Col, SelectProps } from 'antd';
 import { useIntl, FormattedMessage } from 'umi';
 import { usePlugins } from '@amap/amap-react';
+import { DefaultOptionType } from 'antd/lib/cascader';
+import SearchInput from './ditu';
+
 
 /* *
  *
@@ -18,6 +21,7 @@ import { usePlugins } from '@amap/amap-react';
  * */
 
 export type DeptFormValueType = Record<string, unknown> & Partial<API.WarehouseUpdateRequest>;
+const options: SelectProps['options'] = [];
 
 export type DeptFormProps = {
   onCancel: (flag?: boolean, formVals?: DeptFormValueType) => void;
@@ -30,43 +34,50 @@ export type DeptFormProps = {
 
 const DeptForm: React.FC<DeptFormProps> = (props) => {
   const [form] = Form.useForm();
-  const [options, setOptions] = useState<[]>([]);
+  //选中的
+  // const [options, setOptions] = useState<DefaultOptionType[]>([]);
+  //正在搜索的
+  const [newoptions, setnewOptions] = useState<[]>([]);
   const [searchload, setSearchload] = useState(false);
   const [searCity, setSearCity] = useState<[]>([]);
 
   const { statusOptions, deptTree } = props;
-  const AMap = usePlugins(['AMap.AutoComplete']);
-  const ac = useMemo(() => {
-    if (AMap) return new AMap.AutoComplete();
-    else return null;
-  }, [AMap]);
-  const handleSearch = async (kw: any) => {
-    if (!ac) return;
-    if (kw === null || kw.keyWords == undefined) {
-      return;
-    }
-let datt
-    await ac.search(kw.keyWords, (status: string, result: any) => {
-      setSearchload(true);
-      console.info('message');
-      console.info(status);
-      console.info(result);
-      if (status === 'complete' && result.tips) {
-        console.info('ok');
-        setOptions(result.tips);
-        datt=result.tips;
-        return result.tips;
-      } else {
-        setOptions([]);
-        return [];
-      }
-    });
-    // console.info("data");
-    // console.info(data);
-    // console.info(options);
-    //  data;
-    return datt;
-  };
+  // const AMap = usePlugins(['AMap.AutoComplete']);
+  // const ac = useMemo(() => {
+  //   if (AMap) return new AMap.AutoComplete();
+  //   else return null;
+  // }, [AMap]);
+  // const handleSearch = async (kw: any) => {
+  //   if (!ac) return;
+  //   if (kw === null || kw.keyWords == undefined) {
+  //     return;
+  //   }
+  //   return await ac.search(kw.keyWords, (status: string, result: any) => {
+  //     setSearchload(true);
+  //     console.info('message');
+  //     console.info(status);
+  //     console.info(result);
+  //     if (status === 'complete' && result.tips) {
+  //       console.info('ok');
+  //       //数据转换
+  //       const data=[{ label: kw.keyWords, value: kw.keyWords }].concat(result.tips
+  //         .map((x: { district: any }) => {
+  //           return { label: x.district, value: x.district };
+  //         }));
+  //         setOptions(data);
+  //         console.info(data)
+  //         return data;
+  //       // return result.tips;
+  //     } else {
+  //       setOptions([{ label: kw.keyWords, value: kw.keyWords }]);
+  //       return [{ label: kw.keyWords, value: kw.keyWords }];
+  //     }
+  //   });
+  //   // console.info("data");
+  //   // console.info(data);
+  //   // console.info(options);
+  //   //  data;
+  // };
   useEffect(() => {
     form.resetFields();
     form.setFieldsValue({
@@ -81,7 +92,7 @@ let datt
   }, [form, props]);
 
   const handleOnChange = (value: any) => {
-    console.info("changene")
+    console.info('changene');
     console.info(value);
   };
   const intl = useIntl();
@@ -189,25 +200,67 @@ let datt
         </Row>
         <Row gutter={[16, 16]}>
           <Col span={24} order={1}>
-            <ProFormSelect
+          <ProFormText
+              name="warehouseAddress"
+              label="仓库地址"
+              width="xl"
+              placeholder="请输入仓库地址"
+              rules={[
+                {
+                  required: true,
+                  message: (
+                    <FormattedMessage id="请输入仓库地址！" defaultMessage="请输入仓库地址！" />
+                  ),
+                },
+              ]}
+            />
+            {/* <ProFormSelect
               showSearch
               name="warehouseAddress"
               label="仓库地址"
               width="xl"
               placeholder="请输入仓库地址"
-              request={handleSearch}
-              options={options}
+              // request={handleSearch}
               debounceTime={1000}
               fieldProps={{
-                onChange: handleOnChange,
-                fieldNames: { label: 'district', value: 'district' },
-                loading: searchload,
+                options: options,
+                onChange: handleSearch,
+                // fieldNames: { label: 'district', value: 'district' },
+                // loading: searchload,
               }}
               rules={[
                 {
                   required: true,
                   message: (
                     <FormattedMessage id="请输入仓库地址！" defaultMessage="请输入仓库地址！" />
+                  ),
+                },
+              ]}
+            />
+            <SearchInput placeholder="input search text" style={{ width: 200 }}/> */}
+          </Col>
+        </Row>
+
+        <Row gutter={[16, 16]}>
+          <Col span={24} order={1}>
+            <ProFormSelect
+              name="lang"
+              label="输入经纬度"
+              width="xl"
+              options={options}
+              
+              fieldProps={
+                {mode: "tags",
+                tokenSeparators: [',']
+
+                }
+              }
+              placeholder="请输入经纬度"
+              rules={[
+                {
+                  required: false,
+                  message: (
+                    <FormattedMessage id="请输入经纬度" defaultMessage="请输入经纬度" />
                   ),
                 },
               ]}

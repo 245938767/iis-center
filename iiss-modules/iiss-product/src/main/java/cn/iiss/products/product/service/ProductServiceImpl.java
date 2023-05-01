@@ -55,7 +55,7 @@ public class ProductServiceImpl implements IProductService {
         validateGood(product);
         Category category = categoryMapper.selectById(product.getCategoryId());
         product.setCategoryName(category.getName());
-        return productMapper.insertGoods(product);
+        return productMapper.insert(product);
     }
 
     /**

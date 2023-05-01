@@ -48,7 +48,7 @@ const GoodsFields: React.FC = () => {
       />
       <ProForm.Group>
         <ProFormText width="xs" name={'brand'} label="品牌" placeholder="请输入" />
-        <ProFormText width="xs" name={'standard'} label="规格" placeholder="请输入" />
+        <ProFormText width="xs" name={'productSpecification'} label="规格" placeholder="请输入" />
         <ProFormText width="xs" name={'model'} label="型号" placeholder="请输入" />
         <ProFormText width="xs" name={'unit'} label="单位" placeholder="请输入" />
       </ProForm.Group>
