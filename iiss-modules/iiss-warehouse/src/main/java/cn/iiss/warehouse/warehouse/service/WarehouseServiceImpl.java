@@ -162,7 +162,7 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
      * @return
      */
     private boolean hasWarehouseAssetData(Long warehouseId) {
-        WarehouseAsset warehouseAsset = warehouseAssetMapper.selectOne(new LambdaQueryWrapper<WarehouseAsset>().eq(WarehouseAsset::getWarehouseId, warehouseId));
-        return warehouseAsset != null;
+        List<WarehouseAsset> warehouseAssets = warehouseAssetMapper.selectList(new LambdaQueryWrapper<WarehouseAsset>().eq(WarehouseAsset::getWarehouseId, warehouseId));
+        return warehouseAssets != null && !warehouseAssets.isEmpty();
     }
 }

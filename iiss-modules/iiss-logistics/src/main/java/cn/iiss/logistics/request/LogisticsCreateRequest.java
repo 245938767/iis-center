@@ -1,5 +1,7 @@
 package cn.iiss.logistics.request;
 
+import cn.iiss.commons.constants.CodeEnum;
+import cn.iiss.commons.exception.BusinessException;
 import cn.iiss.commons.model.Request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Builder
@@ -24,4 +27,15 @@ public class LogisticsCreateRequest implements Request {
     @Schema(name = "费用")
     private BigDecimal freight;
     List<LogisicsProductRequest> logisticsProductRequests;
+
+
+    public Integer getProductNum(Long productId) {
+
+        for (LogisicsProductRequest logisticsProductRequest : logisticsProductRequests) {
+            if (Objects.equals(logisticsProductRequest.getProductId(), productId)) {
+                return logisticsProductRequest.getProductNum();
+            }
+        }
+        throw new BusinessException(CodeEnum.Fail);
+    }
 }

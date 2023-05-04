@@ -1,4 +1,4 @@
-package cn.iiss.openAI;
+package cn.iiss.openAI.controller;
 
 import cn.iiss.common.core.web.domain.AjaxResult;
 import cn.iiss.commons.model.JsonObject;

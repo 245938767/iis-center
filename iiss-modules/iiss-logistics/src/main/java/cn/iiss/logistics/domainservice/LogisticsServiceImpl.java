@@ -67,9 +67,9 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
         //根据仓库ID进行转仓
         AssetTranslationRequest build = AssetTranslationRequest.builder()
                 .assetProductRequestList(productStream.map(x -> AssetProductRequest.builder()
-                        .productId(x.getId())
+                        .productId(Long.valueOf(x.getId()))
                         .productImg(x.getProductImg())
-                        .productNum(Long.valueOf(logisticsCreateRequest.getLogisticsProductRequests().stream().filter(f -> Objects.equals(f.getProductId(), x.getId())).findFirst().get().getProductNum()))
+                        .productNum(Long.valueOf(logisticsCreateRequest.getProductNum(Long.valueOf(x.getId()))))
                         .warehouseAssetBizType(WarehouseAssetBizType.PRODUCT_SALES)
                         .tax(BigDecimal.ZERO)
                         .taxRate(0d)

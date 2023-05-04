@@ -53,6 +53,10 @@ const CreateLogistics: React.FC<CreateLogisticsProps> = (props) => {
   const handleFinish = async (formData: any) => {
     create({ ...formData }).then((res) => {
       if (!res) return;
+      if(res.code!=200){
+      message.error(res.msg);
+        return false;
+      }
       message.success(res.msg);
       setTableModalParams(undefined);
       setEditableKeys([]);
