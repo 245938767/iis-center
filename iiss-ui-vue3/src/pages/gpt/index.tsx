@@ -1,29 +1,26 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './components/home.module.less';
-import { AndroidFilled, GithubFilled, UsbFilled } from '@ant-design/icons';
-import { Markdown } from './components/markdown';
-import { copyToClipboard, getEmojiUrl, selectOrCopy } from './components/utils';
-import { Avatar, Button, Divider, Skeleton } from 'antd';
-import { ProFormText } from '@ant-design/pro-form';
+import { Button, Skeleton } from 'antd';
+
 import { PageLoading } from '@ant-design/pro-layout';
 import WrapContent from '@/components/WrapContent';
 import style from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
-// import { Emoji } from 'emoji-picker-react';
-import List from 'rc-virtual-list';
-import { getChat, getInfo } from '@/services/openAI/openAiController';
-import moment from 'moment';
+import { getInfo } from '@/services/openAI/openAiController';
+import { getUserInfo } from '@/services/session';
+import LineData from './LineData';
+import { sseChatUsingPOST } from '@/services/openAI/aisseController';
 
 function useScrollToBottom() {
   // for auto-scroll
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<InfiniteScroll>(null);
   const [autoScroll, setAutoScroll] = useState(true);
 
   // auto scroll
   useLayoutEffect(() => {
     const dom = scrollRef.current;
     if (dom && autoScroll) {
-      setTimeout(() => (dom.scrollTop = dom.scrollHeight), 1);
+      setTimeout(() => (dom.getScrollableTarget.scrollTop = dom.getScrollableTarget.scrollHeight), 1);
     }
   });
 
@@ -56,10 +53,12 @@ const OpenAI: React.FC = () => {
   const [userInput, setUserInput] = useState('');
   const [Input, setInputs] = useState('');
 
+  const { scrollRef, setAutoScroll } = useScrollToBottom();
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [loadingList, setLoadingList] = useState(false);
-
+  const [dataLine, setDataLine] = useState<string>('');
+  const [userId, setUserId] = useState<string>();
   const loadingInfo = () => {
     getInfo()
       .then((res) => {
@@ -70,13 +69,60 @@ const OpenAI: React.FC = () => {
       });
   };
   useEffect(() => {
-    loadingInfo();
+ loadingInfo();
+setAutoScroll(true)
     //获得数据
   }, []);
-  const onUserSubmit = () => {
+  useEffect(() => {
+    console.info('dataLine');
+    console.info(dataLine);
+  }, [dataLine]);
+  const onUserSubmit = async () => {
+    // const accessToken = getAccessToken();
+    const userInfomation = await getUserInfo();
+    if (userInfomation.user == null || userInfomation.user.userId == null) {
+      return;
+    }
+    const sse = new EventSource(
+      'api/openAI/openai/sse/v1/createSse/' + userInfomation.user?.userId,
+      {
+        // Headers:{
+        //  'Authorization':`Bearer ${accessToken}`
+        // }
+      },
+    );
+    function handleData(datainfo: string) {
+      setDataLine(datainfo);
+    }
+    //接收数据
+    sse!.onmessage = (e: { lastEventId: string; data: string }) => {
+      // console.info(e);
+      if (e.lastEventId == '[TOKENS]') {
+        handleData(dataLine + e.data);
+        return;
+      }
+      if (e.data == '[DONE]') {
+        if (sse) {
+          sse.close();
+          //清空data，设置到主要数据中去
+          handleData('');
+          //设置到主要数据中
+          loadingInfo();
+        }
+        return;
+      }
+      const json_data = JSON.parse(e.data);
+      if (json_data.content == null || json_data.content == 'null') {
+        return;
+      }
+      handleData(dataLine + json_data.content);
+    };
+    sse!.onerror = (event) => {
+      console.error('EventSource error:', event);
+    };
     //获得input数据
     setLoadingList(true);
-    getChat({ message: Input })
+    await sseChatUsingPOST({ msg: Input })
       .then((x) => {
         setLoadingList(false);
         loadingInfo();
@@ -94,129 +140,82 @@ const OpenAI: React.FC = () => {
   const load = () => {
     console.info('load');
   };
-
   return (
-    <>
-      <WrapContent>
-        <div
-          id="scrollableDiv"
-          className={style['window-container']}
-          style={{
-            height: 400,
-            overflow: 'auto',
-            padding: '0 16px',
-            border: '1px solid rgba(140, 140, 140, 0.35)',
-          }}
+    <WrapContent>
+      <div
+        id="scrollableDiv"
+        className={style['window-container']}
+        style={{
+          height: 400,
+          overflow: 'auto',
+          padding: '0 16px',
+          border: '1px solid rgba(140, 140, 140, 0.35)',
+        }}
+      >
+        <InfiniteScroll
+          dataLength={message.length}
+          ref={scrollRef}
+          next={load}
+          hasMore={false}
+          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+          endMessage={<div />}
+          scrollableTarget="scrollableDiv"
         >
-          <InfiniteScroll
-            dataLength={message.length}
-            next={load}
-            hasMore={false}
-            loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-            endMessage={<div></div>}
-            scrollableTarget="scrollableDiv"
-          >
-            {message?.map((me, i) => {
-              const isUser = me.user;
-              return (
-                <div
-                  key={i}
-                  className={isUser ? styles['chat-message-user'] : styles['chat-message']}
-                >
-                  <div className={styles['chat-message-container']}>
-                    <div className={styles['chat-message-avatar']}>
-                      <Avatar />
-                    </div>
-                    {/* {me.streaming && (
-                      <div className={styles['chat-message-status']}>{'正在输入...'}</div>
-                    )} */}
-                    <div className={styles['chat-message-item']}>
-                      {!isUser && !(me.content.length === 0) && (
-                        <div className={styles['chat-message-top-actions']}>
-                          <div
-                            className={styles['chat-message-top-action']}
-                            onClick={() => copyToClipboard(me.id.toString())}
-                          >
-                            {'删除'}
-                          </div>
-                          <div
-                            className={styles['chat-message-top-action']}
-                            // onClick={() => onResend(i)}
-                          >
-                            {'重试'}
-                          </div>
+          {message?.map((me, i) => (
+            <LineData key={i} me={me} />
+          ))}
+          {/* 加载正在运行中的数据 */}
+          {dataLine != '' ? (
+            <LineData
+              key={99999}
+              me={{
+                content: dataLine,
+                createdAt: Date.parse(new Date().toString()),
+                id: 99999,
+                updatedAt: Date.parse(new Date().toString()),
+                user: false,
+                userId: 1,
+              }}
+            />
+          ) : (
+            <></>
+          )}
+        </InfiniteScroll>
+      </div>
+      <div>
+        <div className={styles['chat-input-panel']}>
+          {/* <PromptHints prompts={promptHints} onPromptSelect={onPromptSelect} /> */}
+          <div className={styles['chat-input-panel-inner']}>
+            {/* <ProFormText width="xl" name="name" label="name" /> */}
 
-                          <div
-                            className={styles['chat-message-top-action']}
-                            onClick={() => copyToClipboard(me.content)}
-                          >
-                            {'复制'}
-                          </div>
-                        </div>
-                      )}
-                      {me.content.length === 0 && !isUser ? (
-                        <Avatar />
-                      ) : (
-                        <div
-                          className="markdown-body"
-                          style={{ fontSize: `16px` }}
-                          // onContextMenu={(e) => onRightClick(e, message)}
-                          onDoubleClickCapture={() => {
-                            setUserInput(me.content);
-                          }}
-                        >
-                          <Markdown content={me.content} />
-                        </div>
-                      )}
-                    </div>
-                    {!isUser && (
-                      <div className={styles['chat-message-actions']}>
-                        <div className={styles['chat-message-action-date']}>
-                          {moment(me.createdAt).format('YYYY-MM-DD HH:mm:ss')}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </InfiniteScroll>
-        </div>
-        <div>
-          <div className={styles['chat-input-panel']}>
-            {/* <PromptHints prompts={promptHints} onPromptSelect={onPromptSelect} /> */}
-            <div className={styles['chat-input-panel-inner']}>
-              {/* <ProFormText width="xl" name="name" label="name" /> */}
-
-              <textarea
-                // ref={inputRef}
-                className={styles['chat-input']}
-                placeholder={'输入'}
-                onInput={(e) => onInput(e.currentTarget.value)}
-                // value={userInput}
-                // onKeyDown={onInputKeyDown}
-                // onFocus={() => setAutoScroll(true)}
-                onBlur={() => {
-                  // setAutoScroll(false);
-                  //   setTimeout(() => setPromptHints([]), 500);
-                }}
-                // autoFocus={!props?.sideBarShowing}
-                // rows={inputRows}
-              />
-              <Button
-                // icon={<SendWhiteIcon />}
-                // text={"发送"}
-                className={styles['chat-input-send']}
-                // noDark
-                onClick={onUserSubmit}
-              >
-                send
-              </Button>
-            </div>
+            <textarea
+              // ref={inputRef}
+              className={styles['chat-input']}
+              placeholder={'输入'}
+              onInput={(e) => onInput(e.currentTarget.value)}
+              // value={userInput}
+              // onKeyDown={onInputKeyDown}
+              // onFocus={() => setAutoScroll(true)}
+              onBlur={() => {
+                // setAutoScroll(false);
+                //   setTimeout(() => setPromptHints([]), 500);
+              }}
+              // autoFocus={!props?.sideBarShowing}
+              // rows={inputRows}
+            />
+            <Button
+              // icon={<SendWhiteIcon />}
+              // text={"发送"}
+              className={styles['chat-input-send']}
+              // noDark
+              onClick={onUserSubmit}
+            >
+              send
+            </Button>
           </div>
         </div>
-      </WrapContent>
-    </>
+      </div>
+    </WrapContent>
   );
 };
 

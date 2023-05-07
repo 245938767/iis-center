@@ -71,6 +71,11 @@
             <groupId>cn.iiss</groupId>
             <artifactId>iiss-common-log</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.unfbx</groupId>
+            <artifactId>chatgpt-java</artifactId>
+            <version>1.0.12</version>
+        </dependency>
 
         <!-- RuoYi Common Swagger -->
         <dependency>

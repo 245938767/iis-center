@@ -39,7 +39,7 @@ public abstract class BaseOpenAIOperation implements OpenAIOperation {
         try {
             con.setRequestMethod(method);
             con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("Authorization", "Bearer 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");
+            con.setRequestProperty("Authorization", "Bearer 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");
             con.setDoOutput(true);
             con.getOutputStream().write(jsonObject.getBytes());
         } catch (Exception e) {

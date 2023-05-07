@@ -74,6 +74,7 @@
     "captchapng3": "^1.0.7",
     "classnames": "^2.2.6",
     "emoji-picker-react": "^4.4.8",
+    "event-source-polyfill": "^1.0.31",
     "g2": "^2.3.13",
     "gg-editor": "^2.0.2",
     "lodash": "^4.17.11",
