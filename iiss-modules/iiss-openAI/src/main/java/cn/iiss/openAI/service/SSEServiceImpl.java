@@ -98,6 +98,7 @@ public class SSEServiceImpl implements ISSEService {
             Message currentMessage = Message.builder().content(chatRequest.getMsg()).role(Message.Role.USER).build();
             messages.add(currentMessage);
         }
+        messages.addAll(LocalCache.getDefault());
 
         SseEmitter sseEmitter = (SseEmitter) LocalCache.CACHE.get(uid);
 
