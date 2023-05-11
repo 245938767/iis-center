@@ -154,7 +154,7 @@ setAutoScroll(true)
       >
         <InfiniteScroll
           dataLength={message.length}
-          ref={scrollRef}
+          // ref={scrollRef}
           next={load}
           hasMore={false}
           loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}

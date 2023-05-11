@@ -130,7 +130,7 @@ const Login: React.FC = () => {
             <GithubOutlined
               key="GithubOutlined"
               className={styles.icon}
-              onClick={async () => await auth('gitee')}
+              onClick={async () => await auth('github')}
             />,
             // <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
             // <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
