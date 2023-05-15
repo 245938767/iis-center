@@ -13,10 +13,10 @@ public enum OrderType implements BaseEnum<OrderType> {
   /**
    * 订单类型 -> 业务扩展点
    */
-  CHARGE(1, "充电"),
-  PARK(2,"停车"),
-  SHOP(3,"商城"),
   LOGISTICS(4,"物流"),
+  CHARGE(3, "充电"),
+  PARK(2,"停车"),
+  SHOP(1,"商城"),
   ;
 
   OrderType(Integer code, String name) {

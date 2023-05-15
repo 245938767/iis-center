@@ -57,6 +57,10 @@ public class OrderEventProcessor {
     }
 
     @EventListener
+    public void handleOrderCreateForOther(OrderEvents.OrderCreateEvent createEvent) {
+        //othe
+    }
+    @EventListener
     public void handleOrderCreateForLifecycle(OrderEvents.OrderCreateEvent createEvent) {
         OrderLifecycleCreator creator = new OrderLifecycleCreator();
         creator.setFlowNo(createEvent.getOrderBase().getFlowNo());

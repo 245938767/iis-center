@@ -13,7 +13,7 @@ public interface IOrderDomainService {
      * @param createModel
      * @return
      */
-    boolean orderCreate(OrderCreateModel createModel);
+    Long orderCreate(OrderCreateModel createModel);
 
     /**
      * 订单修订

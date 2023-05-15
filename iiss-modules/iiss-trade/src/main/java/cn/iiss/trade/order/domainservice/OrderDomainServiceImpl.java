@@ -35,7 +35,7 @@ public class OrderDomainServiceImpl implements IOrderDomainService {
     private final ApplicationEventPublisher eventPublisher;
 
     @Override
-    public boolean orderCreate(OrderCreateModel createModel) {
+    public Long orderCreate(OrderCreateModel createModel) {
         Assert.notEmpty(createModel.getItemInfoList());
         BigDecimal itemTotal = createModel.getItemInfoList().stream().map(OrderItemModel::getRealAmount)
                 .reduce(BigDecimal.ZERO, NumberUtil::add);
@@ -49,7 +49,7 @@ public class OrderDomainServiceImpl implements IOrderDomainService {
                 .update(e -> e.init(createModel))
                 .successHook(x -> eventPublisher.publishEvent(new OrderEvents.OrderCreateEvent(x, createModel)))
                 .execute();
-        return true;
+        return orderBase.getId();
     }
 
     @Override

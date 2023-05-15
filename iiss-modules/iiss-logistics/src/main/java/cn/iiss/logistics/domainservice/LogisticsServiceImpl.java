@@ -6,6 +6,7 @@ import cn.iiss.common.core.web.page.TableDataInfo;
 import cn.iiss.common.security.utils.SecurityUtils;
 import cn.iiss.commons.constants.CodeEnum;
 import cn.iiss.commons.exception.BusinessException;
+import cn.iiss.commons.exception.SystemException;
 import cn.iiss.commons.model.JsonObject;
 import cn.iiss.flowNo.face.service.IFlowNoFacade;
 import cn.iiss.logistics.LogisticsInfo;
@@ -60,7 +61,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
         Stream<Product> productStream = logisticsCreateRequest.getLogisticsProductRequests().stream().map(x -> {
             R<Product> byId = productService.getById(x.getProductId());
             if (byId.getCode() != 200) {
-                throw new BusinessException(CodeEnum.Fail);
+                throw new SystemException(byId.getMsg());
             }
             return byId.getData();
         });
@@ -84,7 +85,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
         JsonObject<Long> translation = warehouseService.assetTranslation(build);
 
         if (!(translation.isSuccess())) {
-            throw new BusinessException(CodeEnum.Fail);
+            throw new SystemException(translation.getMsg());
         }
         //创建订单
         OrderItemModel orderItem = OrderItemModel.builder().itemCount(1).feeRemark("物流转仓费用").skuId(1L).itemCount(1).realAmount(logisticsCreateRequest.getFreight()).productName("物流转仓").build();
@@ -100,7 +101,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
                 .build();
         JsonObject<Long> orderBase = tradeService.createOrderBase(builder);
         if (!(orderBase.isSuccess())) {
-            throw new BusinessException(CodeEnum.Fail);
+            throw new SystemException(orderBase.getMsg());
         }
         LogisticsInfo logisticsInfo = new LogisticsInfo();
         logisticsInfo.init(flowNo,

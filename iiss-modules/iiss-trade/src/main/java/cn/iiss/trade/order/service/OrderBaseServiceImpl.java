@@ -49,8 +49,8 @@ public class OrderBaseServiceImpl implements IOrderBaseService {
         orderCreateModel.setAttrs(creator.getAttrs());
         //订单商品信息
         orderCreateModel.setItemInfoList(creator.getOrderItemModelList());
-        boolean b = orderDomainService.orderCreate(orderCreateModel);
-        return b ? 1L : 0L;
+        Long b = orderDomainService.orderCreate(orderCreateModel);
+        return b ;
     }
 
     /**
