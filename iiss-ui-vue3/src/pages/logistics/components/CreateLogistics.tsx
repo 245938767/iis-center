@@ -53,7 +53,7 @@ const CreateLogistics: React.FC<CreateLogisticsProps> = (props) => {
   const handleFinish = async (formData: any) => {
     create({ ...formData }).then((res) => {
       if (!res) return;
-      if(res.code!=200){
+      if(res.code!=1){
       message.error(res.msg);
         return false;
       }

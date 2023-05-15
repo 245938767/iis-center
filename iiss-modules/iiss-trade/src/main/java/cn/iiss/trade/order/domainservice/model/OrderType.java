@@ -6,7 +6,7 @@ import cn.iiss.commons.constants.BaseEnum;
 import java.util.Optional;
 
 /**
- * @author gim
+ *
  *
  */
 public enum OrderType implements BaseEnum<OrderType> {
