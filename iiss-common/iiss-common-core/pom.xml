@@ -124,7 +124,7 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.iiss</groupId>
+            <groupId>cn.iiss.compont</groupId>
             <artifactId>iiss-commons</artifactId>
         </dependency>
 
