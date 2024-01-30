@@ -48,5 +48,6 @@ nbdist/
 !*/build/*.xml
 /docker/mysql/data/
 /docker/mysql/logs/
+/docker/mysql/nacos/
 /docker/nacos/logs/
 /docker/redis/data/

@@ -1,17 +1,12 @@
-version : '3'
+version: '3'
 services:
   iiss-nacos:
     container_name: iiss-nacos
-#    image: zhusaidong/nacos-server-m1:2.0.3
-    image: nnacos/nacos-server
-    build:
-      context: ./nacos
-      dockerfile: dockerfile
+    image: nacos/nacos-server:v2.3.0-slim
     environment:
       - MODE=standalone
       - JVM_XMX=256m
       - JVM_XMS=256m
-
     volumes:
       - ./nacos/logs/:/home/nacos/logs
       - ./nacos/conf/application.properties:/home/nacos/conf/application.properties
@@ -19,45 +14,63 @@ services:
       - "8848:8848"
       - "9848:9848"
       - "9849:9849"
-#    depends_on:
-#      - iiss-mysql
+    depends_on:
+      iiss-nacos-config:
+        condition: service_healthy
     network_mode: bridge
-  iiss-mysql:
-    container_name: iiss-mysql
-    image: mysql:5.7
-    platform: linux/amd64
-    ports:
-      - "3307:3306"
+  iiss-nacos-config:
+    container_name: iiss-nacos-config
+    image: mysql/mysql-server:8.0
+    platform: linux/x86_64
     volumes:
-      - ./mysql/conf/:/etc/mysql/conf.d/
-      - ./mysql/logs:/logs
-      - ./mysql/data/:/var/lib/mysql/
-      - ./mysql/db/:/docker-entrypoint-initdb.d/
-#    command:
-      # 将mysql8.0默认密码策略 修改为 原先 策略 (mysql8.0对其默认策略做了更改 会导致密码无法匹配)
-#      --default-authentication-plugin=mysql_native_password
-#      --character-set-server=utf8mb4
-#      --collation-server=utf8mb4_general_ci
-#      --explicit_defaults_for_timestamp=true
-#      --lower_case_table_names=1
+      - ./mysql/nacos/logs:/logs
+      - ./mysql/nacos/data/:/var/lib/mysql/
+      - ./mysql/db/iiss-config.sql:/docker-entrypoint-initdb.d/iiss-config.sql
     environment:
       # 时区上海
       TZ: Asia/Shanghai
-      MYSQL_DATABASE: 'iiss-cloud'
+      MYSQL_DATABASE: iiss-config
+      MYSQL_USER: nacos
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    network_mode: bridge
+  iiss-mysql:
+    container_name: iiss-mysql
+    image: mysql/mysql-server:8.0
+    platform: linux/x86_64
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql/logs:/logs
+      - ./mysql/data/:/var/lib/mysql/
+      - ./mysql/db/iiss-cloud.sql:/docker-entrypoint-initdb.d/iiss-cloud.sql
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      MYSQL_DATABASE: iiss-cloud
+      MYSQL_USER: iiss
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     restart: always
     network_mode: bridge
   iiss-redis:
     container_name: iiss-redis
-    image: redis
-    build:
-      context: ./redis
+    image: redis:latest
+#    build:
+#      context: ./
+#      dockerfile: dockerfile
     ports:
       - "6379:6379"
     volumes:
       - ./redis/conf/redis.conf:/home/iiss/redis/redis.conf
       - ./redis/data:/data
-    command: redis-server /home/iiss/redis/redis.conf
+#    command: redis-server /home/iiss/redis/redis.conf
     network_mode: bridge
   iiss-nginx:
     container_name: iiss-nginx
@@ -147,7 +160,7 @@ services:
       - "9300:9300"
     network_mode: bridge
     volumes:
-    - ./iiss/uploadPath:/home/iiss/uploadPath
+      - ./iiss/uploadPath:/home/iiss/uploadPath
   iiss-visual-monitor:
     container_name: iiss-visual-monitor
     build:
